@@ -1,0 +1,24 @@
+.titulo-hover .nav-link:hover {
+    color: rgba(255,255,255);
+}
+
+.titulo-hover .nav-link {
+    color: rgba(255,255,255,.65);
+}
+
+.jumbotron {
+    color: #FFF;
+    padding: 20px 0;
+}
+
+@media (min-width: 1400px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        max-width: 1140px;
+    }
+}
+
+.gradients {
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
