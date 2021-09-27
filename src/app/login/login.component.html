@@ -1,0 +1,32 @@
+<!-- Modal editar -->
+
+    <div class="modal-header bg-info">
+        <h5 class="modal-title">Inicio de Sesión</h5>
+        <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="input-group mb-3 col-12">
+                        <span class="input-group-text">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control" formControlName="user" placeholder="usuario">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group mb-3 col-12">
+                        <span class="input-group-text">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input type="password" class="form-control" formControlName="pass" placeholder="password">
+                    </div>
+                </div>   
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-info">Iniciar sesión</button>
+        </div>
+    </form>

@@ -1,35 +1,5 @@
-<!-- Modal editar -->
 <ng-template #modalData let-modal>
-            <div class="modal-header bg-info">
-                <h5 class="modal-title">Inicio de Sesión</h5>
-                <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
-            </div>
-            <form id="formEdit" role="form">
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="input-group mb-3 col-12">
-                                <span class="input-group-text">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                                <input type="text" class="form-control" name="user" id="user" placeholder="usuario">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-group mb-3 col-12">
-                                <span class="input-group-text">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                                <input type="password" class="form-control" name="pass" id="password" placeholder="password">
-                            </div>
-                        </div>   
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
-                    <button type="button" class="btn btn-info">Iniciar sesión</button>
-                </div>
-            </form>
+  <app-login></app-login>
 </ng-template>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -46,7 +16,7 @@
             <li class="nav-item"><a class="nav-link" href="#"> Equipos</a></li>
         </ul>
         <span class="nav-item">
-            <a class="nav-link" (click)="modal.open(modalData,{size:'sm'})" style="cursor: pointer;">Iniciar sesión <i class="fas fa-sign-in-alt"></i></a>
+            <a class="nav-link" (click)="abrirLogin()" style="cursor: pointer;">Iniciar sesión <i class="fas fa-sign-in-alt"></i></a>
         </span>
       </div>
     </div>
