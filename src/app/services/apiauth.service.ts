@@ -52,4 +52,15 @@ export class ApiauthService {
         localStorage.removeItem('usuario');
         this.usuarioSubject?.next(null!);
     }
+
+    // verifica si hay sesión
+    public isAuthenticated() {
+        const usuario = this.usuarioData;
+
+        if (usuario) {
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -1,1 +1,47 @@
-<router-outlet></router-outlet>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">Gestión de torneo</div>
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Campeonato Actual</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Crear Campeonato</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Gestión de partidos</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Crear equipos</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Agregar Árbitros</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Agregar Jueces de mesa</a>
+        </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container">
+                <button *ngIf="this.apiauthService.isAuthenticated()" class="btn btn-primary" id="sidebarToggle" (click)="sidebar()"><i class="fas fa-bars"></i></button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="nav-item active"><a class="nav-link" href="#!">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Calendario</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Resultados</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Estadísticas</a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#!">Tabla de posiciones</a>
+                                <a class="dropdown-item" href="#!">Tabla de goleadores</a>
+                                <!-- <div class="dropdown-divider"></div> -->
+                                <a class="dropdown-item" href="#!">Tarjetero</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link me-5" href="#!">Equipos</a></li>
+                        <li class="nav-item"><a class="nav-link" (click)="abrirLogin()" *ngIf="!usuario" style="cursor: pointer;">Iniciar sesión <i class="fas fa-sign-in-alt"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" (click)="logout()" *ngIf="usuario" style="cursor: pointer;">Cerrar sesión <i class="fas fa-sign-in-alt"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+  </div>

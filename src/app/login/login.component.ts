@@ -22,9 +22,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {
-    // if (this.apiauthService.usuarioData) {
-    //     this.router.navigate(['/']);
-    // }
    }
 
   ngOnInit(): void {
@@ -35,6 +32,7 @@ export class LoginComponent implements OnInit {
       if (response.exito === 0) {
         this.modal.close();
         this.router.navigate(['/menu']);
+        document.body.classList.toggle('sb-sidenav-toggled');
       }
     })
   }
