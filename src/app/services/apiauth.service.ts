@@ -37,8 +37,8 @@ export class ApiauthService {
     login(login: Login): Observable<Response> {
         return this._http.post<Response>(this.url, login, httpOption).pipe(
             map( res => {
-                if (res.Exito === 0) {
-                    const usuario: Usuario = res.Data;
+                if (res.exito === 0) {
+                    const usuario: Usuario = res.data;
                     localStorage.setItem('usuario', JSON.stringify(usuario));
                     this.usuarioSubject?.next(usuario);
                 }

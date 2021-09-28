@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { ApiauthService } from '../services/apiauth.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     public modal: NgbActiveModal,
     public apiauthService: ApiauthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {
    }
 
@@ -29,8 +31,9 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.apiauthService.login(this.loginForm.value).subscribe( response => {
-      if (response.Exito === 0) {
+      if (response.exito === 0) {
         this.modal.close();
+        this.toastr.info('Sesión iniciada exitosamente', 'Iniciar Sesión');
         this.router.navigate(['/menu']);
         document.body.classList.toggle('sb-sidenav-toggled');
       }

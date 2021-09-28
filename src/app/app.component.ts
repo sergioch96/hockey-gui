@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { LoginComponent } from 'src/app/login/login.component';
 import { Usuario } from 'src/app/models/modelsLogin';
 import { ApiauthService } from 'src/app/services/apiauth.service';
@@ -19,6 +20,7 @@ export class AppComponent {
     private modalService: NgbModal,
     public apiauthService: ApiauthService,
     private router: Router,
+    private toastr: ToastrService
   ) { 
     this.apiauthService.usuario.subscribe(res => {
       this.usuario = res;
@@ -47,7 +49,7 @@ export class AppComponent {
   logout() {
     this.apiauthService.logout();
     this.router.navigate(['/home']);
-
+    this.toastr.info('Sesión finalizada exitosamente', 'Cerrar Sesión');
     if (!document.body.classList.contains('sb-sidenav-toggled')) {
       this.sidebar();
     }

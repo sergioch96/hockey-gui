@@ -22,6 +22,7 @@ export class CrearEquipoComponent implements OnInit {
   directorTecnico: PersonaDTO | undefined;
   asistenteTecnico: PersonaDTO | undefined;
   preparadorFisico: PersonaDTO | undefined;
+  cuerpoTecnico: PersonaDTO[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -52,17 +53,15 @@ export class CrearEquipoComponent implements OnInit {
   agregarEquipo() {
     const equipo : Equipo = {
       NombreEquipo: this.formEquipo.get('NombreEquipo')?.value,
-      DirectorTecnico: this.directorTecnico,
-      AsistenteTecnico: this.asistenteTecnico,
-      PreparadorFisico: this.preparadorFisico
-    }
-
+      CuerpoTecnico: this.cuerpoTecnico
+    };
     this._equipoService.agregarEquipo(equipo).subscribe(
       resultado => {
-        if (resultado.Exito === 0) {
-          this.toastr.success(resultado.Mensaje, 'Equipo agregado');
+        
+        if (resultado.exito === 0) {
+          this.toastr.success(resultado.mensaje, 'Equipo agregado');
         } else {
-          this.toastr.error(resultado.Mensaje, 'Error');
+          this.toastr.error(resultado.mensaje, 'Error');
         }
       }, error => {
         this.toastr.error('Ocurrió un error al agregar equipo', 'Error');
@@ -95,25 +94,25 @@ export class CrearEquipoComponent implements OnInit {
   agregarPersona() {
     
     const persona: PersonaDTO = this.formPersona.value;
-    console.log(persona.NombreApellido);
+
     switch (this.tipoPersona) {
       case "dt":
-        this.directorTecnico = persona;
+        persona.IdRol = 2;
         this.formEquipo.controls["DirectorTecnico"].setValue(persona.NombreApellido);
         break;
       case "at":
-        this.asistenteTecnico = persona;
+        persona.IdRol = 3;
         this.formEquipo.controls["AsistenteTecnico"].setValue(persona.NombreApellido);
         break;
       case "pf":
-        this.preparadorFisico = persona;
+        persona.IdRol = 4;
         this.formEquipo.controls["PreparadorFisico"].setValue(persona.NombreApellido);
         break;
       default:
         break;
     }
+    this.cuerpoTecnico.push(persona);
 
-    console.log(persona);
     this.modalService.dismissAll();
   }
 

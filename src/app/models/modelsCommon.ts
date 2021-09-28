@@ -1,9 +1,7 @@
 export interface Equipo {
     IdEquipo?: number,
     NombreEquipo?: string,
-    DirectorTecnico?: PersonaDTO,
-    AsistenteTecnico?: PersonaDTO,
-    PreparadorFisico?: PersonaDTO,
+    CuerpoTecnico?: PersonaDTO[],
 }
 
 export interface PersonaDTO {
