@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.apiauthService.login(this.loginForm.value).subscribe( response => {
-      if (response.exito === 0) {
+      if (response.Exito === 0) {
         this.modal.close();
         this.router.navigate(['/menu']);
         document.body.classList.toggle('sb-sidenav-toggled');

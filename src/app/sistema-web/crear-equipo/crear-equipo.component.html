@@ -1,0 +1,139 @@
+<div class="row mt-4">
+    <div class="col-lg-8 offset-lg-2">
+        <h3 class="">Crear equipo</h3>
+    </div>
+</div>
+
+<div class="row mt-4 ms-4">
+    <div class="col-12">
+        <form [formGroup]="formEquipo" (ngSubmit)="agregarEquipo()">
+            <div class="row mb-3">
+                <label for="inputEquipo" class="col-2 col-form-label">
+                    Nombre del equipo
+                </label>
+                <div class="col-4">
+                    <input formControlName="NombreEquipo" id="inputEquipo" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputDt" class="col-2 col-form-label">
+                    Director técnico
+                </label>
+                <div class="col-4">
+                    <input formControlName="DirectorTecnico" id="inputDt" type="text" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary" (click)="abrirModalPerson(modalPersona, 'dt')"><i class="fas fa-user-plus"></i></button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputAt" class="col-2 col-form-label">
+                    Asistente técnico
+                </label>
+                <div class="col-4">
+                    <input formControlName="AsistenteTecnico" id="inputAt" type="text" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary" (click)="abrirModalPerson(modalPersona,'at')"><i class="fas fa-user-plus"></i></button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputPf" class="col-2 col-form-label">
+                    Preparador físico
+                </label>
+                <div class="col-4">
+                    <input formControlName="PreparadorFisico" id="inputPf" type="text" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary" (click)="abrirModalPerson(modalPersona, 'pf')"><i class="fas fa-user-plus"></i></button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6 d-flex justify-content-end">
+                    <button [disabled]="this.formEquipo.invalid" type="submit" class="btn btn-primary"><i class="fas fa-database"></i>&nbsp; Agregar equipo</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="titulo">LISTADO DE TARJETAS</h5>
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let tarjeta of listTarjetas">
+                            <td>{{ tarjeta.titular }}</td>
+                            <td>{{ tarjeta.numeroTarjeta }}</td>
+                            <td>{{ tarjeta.fechaExpiracion }}</td>
+                            <td>
+                                <i (click)="editarTarjeta(tarjeta)" class="far fa-edit text-info"></i>
+                            </td>
+                            <td>
+                                <i (click)="eliminarTarjeta(tarjeta.id)" class="far fa-trash-alt text-danger"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> -->
+</div>
+
+<!-- Modal Persona -->
+<ng-template #modalPersona let-modal>
+    <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white">Agregar {{ tituloModalPersona }}</h5>
+        <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
+    </div>
+    <form [formGroup]="formPersona" (ngSubmit)="agregarPersona()">
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <label for="inputNombre" class="col-md-6 col-form-label">
+                        Nombre y apellido
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="NombreApellido" id="inputNombre" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputDocumento" class="col-md-6 col-form-label">
+                        Número de documento
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="NumDocumento" id="inputDocumento" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputFecha" class="col-md-6 col-form-label">
+                        Fecha de nacimiento
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="FechaNacimiento" id="inputFecha" type="date" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputTel" class="col-md-6 col-form-label">
+                        Teléfono
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="Telefono" id="inputTel" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail" class="col-md-6 col-form-label">
+                        Email
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="Email"id="inputEmail" type="email" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
+            <button type="submit" [disabled]="this.formPersona.invalid" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</ng-template>
