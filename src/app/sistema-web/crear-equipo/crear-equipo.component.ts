@@ -60,6 +60,8 @@ export class CrearEquipoComponent implements OnInit {
         
         if (resultado.exito === 0) {
           this.toastr.success(resultado.mensaje, 'Equipo agregado');
+          this.formEquipo.get('NombreEquipo')?.disable;
+          document.getElementById('btnAddEquipo')?.classList.add('d-none');
         } else {
           this.toastr.error(resultado.mensaje, 'Error');
         }
@@ -82,6 +84,10 @@ export class CrearEquipoComponent implements OnInit {
         break;
       case "pf":
         this.tituloModalPersona = "Preparador Físico";
+        this.tipoPersona = tipo;
+        break;
+      case "jug":
+        this.tituloModalPersona = "Jugador";
         this.tipoPersona = tipo;
         break;
       default:
@@ -108,12 +114,35 @@ export class CrearEquipoComponent implements OnInit {
         persona.IdRol = 4;
         this.formEquipo.controls["PreparadorFisico"].setValue(persona.NombreApellido);
         break;
+      case "jug":
+        persona.IdRol = 1;
+        break;
       default:
         break;
     }
-    this.cuerpoTecnico.push(persona);
+
+    if (this.tipoPersona == "jug") {
+      this.listaJugadores.push(persona);
+      this.toastr.success('Se agrego el jugador al equipo', 'Jugador agregado');
+    } else {
+      this.cuerpoTecnico.push(persona);
+    }
 
     this.modalService.dismissAll();
   }
 
+  agregarJugador(jugador: PersonaDTO) {
+    
+  }
+
+  editarJugador(modalPersona: any, jugador: PersonaDTO) {
+    this.formPersona.patchValue({
+      NombreApellido: jugador.NombreApellido,
+      NumDocumento: jugador.NumDocumento,
+      FechaNacimiento: jugador.FechaNacimiento,
+      Telefono: jugador.Telefono,
+      Email: jugador.Email
+    });
+    this.modalService.open(modalPersona);
+  }
 }
