@@ -85,8 +85,7 @@
                                 <td class="text-center">{{ partido.EquipoVisitante }}</td>
                                 <td class="text-center">{{ partido.GolesVisitante }}</td>
                                 <td>
-                                    <!-- (click)="programarPartido(modalProgramar, partido.IdPartido)" -->
-                                    <button type="button" class="btn btn-primary me-1">
+                                    <button type="button" class="btn btn-primary me-1" (click)="mostrarProgramar(modalProgramar, partido)">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                     <!-- (click)="cargarPartido(modalCargar, partido.IdPartido)" -->
@@ -115,59 +114,71 @@
 </div>
 
 <!-- Modal Persona -->
-<!-- <ng-template #modalPersona let-modal>
+<ng-template #modalProgramar let-modal>
     <div class="modal-header bg-primary">
-        <h5 class="modal-title text-white">Agregar {{ tituloModalPersona }}</h5>
+        <h5 class="modal-title text-white">Programar Partido</h5>
         <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
     </div>
-    <form [formGroup]="formPersona" (ngSubmit)="agregarPersona()">
+    <form (ngSubmit)="programarPartido()">
+        <div class="text-center">
+            <h5 class="mt-2">Torneo Apertura 2021</h5>
+            <span class="me-2"><b>{{ fechaTorneoProgramar }}:</b></span>
+            <span>{{ equipo1Programar }} VS {{ equipo2Programar }}</span>
+        </div>
+        <hr>
         <div class="modal-body">
             <div class="container-fluid">
                 <div class="row mb-3">
-                    <label for="inputNombre" class="col-md-6 col-form-label">
-                        Nombre y apellido
-                    </label>
-                    <div class="col-md-6">
-                        <input formControlName="NombreApellido" id="inputNombre" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="inputDocumento" class="col-md-6 col-form-label">
-                        Número de documento
-                    </label>
-                    <div class="col-md-6">
-                        <input formControlName="NumDocumento" id="inputDocumento" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="row mb-3">
                     <label for="inputFecha" class="col-md-6 col-form-label">
-                        Fecha de nacimiento
+                        Fecha
                     </label>
                     <div class="col-md-6">
-                        <input formControlName="FechaNacimiento" id="inputFecha" type="date" class="form-control">
+                        <input [(ngModel)]="fechaProgramar" name="fechaProgramar" id="inputFecha" type="date" class="form-control">
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputTel" class="col-md-6 col-form-label">
-                        Teléfono
+                    <label for="inputHora" class="col-md-6 col-form-label">
+                        Hora
                     </label>
                     <div class="col-md-6">
-                        <input formControlName="Telefono" id="inputTel" type="text" class="form-control">
+                        <input [(ngModel)]="horaProgramar" name="horaProgramar" id="inputHora" type="time" class="form-control">
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail" class="col-md-6 col-form-label">
-                        Email
+                    <label for="selectArbitro1" class="col-md-6 col-form-label">
+                        Árbitro 1
                     </label>
                     <div class="col-md-6">
-                        <input formControlName="Email"id="inputEmail" type="email" class="form-control">
+                        <select [(ngModel)]="arbitro1Programar" name="arbitro1Programar" id="selectArbitro1" class="form-select" aria-label="Default select example">
+                            <option *ngFor="let arbitro of arbitros" [value]="arbitro">{{arbitro}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="selectArbitro2" class="col-md-6 col-form-label">
+                        Árbitro 2
+                    </label>
+                    <div class="col-md-6">
+                        <select [(ngModel)]="arbitro2Programar" name="arbitro2Programar" id="selectArbitro2" class="form-select" aria-label="Default select example">
+                            <option *ngFor="let arbitro of arbitros" [value]="arbitro">{{arbitro}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="selectJuez" class="col-md-6 col-form-label">
+                        Juez de mesa
+                    </label>
+                    <div class="col-md-6">
+                        <select [(ngModel)]="juezProgramar" name="juezProgramar" id="selectJuez" class="form-select" aria-label="Default select example">
+                            <option *ngFor="let juez of jueces" [value]="juez">{{juez}}</option>
+                        </select>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
-            <button type="submit" [disabled]="this.formPersona.invalid" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
     </form>
-</ng-template> -->
+</ng-template>

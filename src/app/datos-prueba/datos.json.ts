@@ -1,4 +1,4 @@
-import { EquipoDTO, PartidoDTO } from "../models/modelsCommon";
+import { EquipoDTO, PartidoDTO, PersonaDTO } from "../models/modelsCommon";
 import { FixtureDTO, TablaPosicionesDTO } from "./models-prueba";
 
 export const TABLA_POSICIONES: TablaPosicionesDTO[] = [
@@ -42,6 +42,10 @@ export const EQUIPO: EquipoDTO[] = [
     { IdEquipo: 10, NombreEquipo: 'Deportivo Verde' }
 ];
 
+export const ARBITRO: string[] = [ 'Pedro Dominguez', 'Javier Benegas', 'Juan Cáceres', 'Federico Ruetalo', 'Gilberto Nandes' ];
+
+export const JUEZ: string[] = [ 'Pablo Morales', 'Jesús Portillo', 'Elias Noguera', 'Derlis Gómez', 'Orlando Ríos' ];
+
 export const PARTIDO: PartidoDTO[] = [
     { IdPartido: 1, FechaTorneo: 'Fecha 1', Estado: 'Finalizado', Dia: '25/09/2021', Hora: '17:00', EquipoLocal: 'Deportivo Gris', 
     GolesLocal: 4, EquipoVisitante: 'Deportivo Celeste', GolesVisitante: 1 },
@@ -75,4 +79,15 @@ export const PARTIDO: PartidoDTO[] = [
     GolesLocal: 0, EquipoVisitante: 'Deportivo Bordo', GolesVisitante: 0 },
     { IdPartido: 15, FechaTorneo: 'Fecha 3', Estado: 'Programado', Dia: '10/10/2021', Hora: '20:00', EquipoLocal: 'Deportivo Celeste', 
     GolesLocal: 0, EquipoVisitante: 'Deportivo Naranja', GolesVisitante: 0 },
+
+    { IdPartido: 16, FechaTorneo: 'Fecha 4', Estado: 'Pendiente', Dia: '', Hora: '', EquipoLocal: 'Deportivo Celeste', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Negro', GolesVisitante: 0 },
+    { IdPartido: 17, FechaTorneo: 'Fecha 4', Estado: 'Pendiente', Dia: '', Hora: '', EquipoLocal: 'Deportivo Amarillo', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Verde', GolesVisitante: 0 },
+    { IdPartido: 18, FechaTorneo: 'Fecha 4', Estado: 'Pendiente', Dia: '', Hora: '', EquipoLocal: 'Deportivo Bordo', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Rojo', GolesVisitante: 0 },
+    { IdPartido: 19, FechaTorneo: 'Fecha 4', Estado: 'Pendiente', Dia: '', Hora: '', EquipoLocal: 'Deportivo Violeta', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Naranja', GolesVisitante: 0 },
+    { IdPartido: 20, FechaTorneo: 'Fecha 4', Estado: 'Pendiente', Dia: '', Hora: '', EquipoLocal: 'Deportivo Azul', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Gris', GolesVisitante: 0 },
 ]

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { EQUIPO, FECHA_TORNEO, PARTIDO } from 'src/app/datos-prueba/datos.json';
+import { ARBITRO, EQUIPO, FECHA_TORNEO, JUEZ, PARTIDO } from 'src/app/datos-prueba/datos.json';
 import { ESTADO_PARTIDO } from 'src/app/models/constantes';
 import { PartidoDTO } from 'src/app/models/modelsCommon';
+import * as moment from 'moment'; 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-gestion-partidos',
@@ -18,6 +21,8 @@ export class GestionPartidosComponent implements OnInit {
   estados = ESTADO_PARTIDO;
   fechasTorneo = FECHA_TORNEO;
   equipos = EQUIPO;
+  arbitros = ARBITRO;
+  jueces = JUEZ;
 
   listaPartidos: PartidoDTO[] = [];
 
@@ -26,7 +31,21 @@ export class GestionPartidosComponent implements OnInit {
   filtroEquipo: string = "";
   filtroFecha: string = "";
 
-  constructor() {
+  fechaProgramar: string = "";
+  horaProgramar: string = "";
+  arbitro1Programar: string = "";
+  arbitro2Programar: string = "";
+  juezProgramar: string = "";
+  equipo1Programar: string | undefined;
+  equipo2Programar: string | undefined;
+  fechaTorneoProgramar: string | undefined;
+
+  partidoSeleccionado: PartidoDTO = {};
+
+  constructor(
+    private modalService: NgbModal,
+    private toastr: ToastrService
+  ) {
     this.partidosSubject = new BehaviorSubject<PartidoDTO[]>(PARTIDO);
     this.listPartido = this.partidosSubject.asObservable();
 
@@ -40,33 +59,10 @@ export class GestionPartidosComponent implements OnInit {
 
   FiltrarPartidos() {
     
-    var dia: string;
-    if (this.filtroFecha != "") {
-      
-      switch (this.filtroFecha) {
-        case "2021-09-25":
-          dia = "25/09/2021"
-          break;
-        case "2021-09-26":
-          dia = "26/09/2021"
-          break;
-        case "2021-10-02":
-          dia = "02/10/2021"
-          break;
-        case "2021-10-03":
-          dia = "03/10/2021"
-          break;
-        case "2021-10-09":
-          dia = "09/10/2021"
-          break;
-        case "2021-10-10":
-          dia = "10/10/2021"
-          break;
-        default:
-          break;
-      }
-    }
-
+    var dia: string = "";
+    if (this.filtroFecha != "")
+      dia = moment(this.filtroFecha).format('DD/MM/YYYY');
+    
     this.listaPartidos = this._listaPartidos.filter(x => 
       (this.filtroEstado == "" || x.Estado == this.filtroEstado)
       && (this.filtroFechaTorneo == "" || x.FechaTorneo == this.filtroFechaTorneo)
@@ -80,6 +76,58 @@ export class GestionPartidosComponent implements OnInit {
     this.filtroFechaTorneo = "";
     this.filtroEquipo = "";
     this.filtroFecha = "";
+  }
+
+  mostrarProgramar(modalProgramar: any, par: PartidoDTO) {
+    var partido = this._listaPartidos.find(x => x.IdPartido == par.IdPartido);
+    this.equipo1Programar = partido?.EquipoLocal;
+    this.equipo2Programar = partido?.EquipoVisitante;
+    this.fechaTorneoProgramar = partido?.FechaTorneo;
+    this.partidoSeleccionado = par;
+
+    this.modalService.open(modalProgramar);
+  }
+
+  programarPartido() {
+    var result = this._listaPartidos.find(x => x.IdPartido == this.partidoSeleccionado.IdPartido);
+    
+    if (result?.Estado != "Pendiente") {
+      this.toastr.error('El partido seleccionado ya fue programado', 'Error');
+      this.limpiarModal();
+      return;
+    }
+    console.log("sigue");
+    const partido: PartidoDTO = {
+      IdPartido: result?.IdPartido,
+      FechaTorneo: result?.FechaTorneo,
+      Estado: "Programado",
+      Dia: this.fechaProgramar,
+      Hora: this.horaProgramar,
+      EquipoLocal: result?.EquipoLocal,
+      GolesLocal: 0,
+      EquipoVisitante: result?.EquipoVisitante,
+      GolesVisitante: 0,
+    }
+
+    const index = this._listaPartidos.indexOf(this.partidoSeleccionado);
+
+    if (index !== -1) {
+      this._listaPartidos.splice(index, 1, partido);
+      this.toastr.success('Se programo el partido correctamente', 'Partido programado');
+    }
+    else {
+      this.toastr.error('No se pudo programar el partido', 'Error');
+    }
+    this.limpiarModal();
+  }
+
+  limpiarModal() {
+    this.fechaProgramar = "";
+    this.horaProgramar = "";
+    this.arbitro1Programar = "";
+    this.arbitro2Programar = "";
+    this.juezProgramar = "";
+    this.modalService.dismissAll();
   }
 
 }
