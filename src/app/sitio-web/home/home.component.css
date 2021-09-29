@@ -22,27 +22,3 @@
     background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-
-.text-yellow {
-    color: #ffc107;
-}
-
-.text-violet {
-    color: #6f42c1;
-}
-
-.text-orange {
-    color: #fd7e14;
-}
-
-.text-blue {
-    color: #005fee;
-}
-
-.text-bordo {
-    color: #9b1616;
-}
-
-.text-celeste {
-    color: #0dcaf0;
-}

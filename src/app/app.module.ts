@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './sistema-web/menu/menu.component';
 import { CrearEquipoComponent } from './sistema-web/crear-equipo/crear-equipo.component';
 import { GestionPartidosComponent } from './sistema-web/gestion-partidos/gestion-partidos.component';
+import { CrearCampeonatoComponent } from './sistema-web/crear-campeonato/crear-campeonato.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { GestionPartidosComponent } from './sistema-web/gestion-partidos/gestion
     LoginComponent,
     MenuComponent,
     CrearEquipoComponent,
-    GestionPartidosComponent
+    GestionPartidosComponent,
+    CrearCampeonatoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ARBITRO, EQUIPO, FECHA_TORNEO, JUEZ, PARTIDO } from 'src/app/datos-prueba/datos.json';
+import { ARBITRO, EQUIPO, FECHA_TORNEO, JUEZ, JUGADOR, PARTIDO } from 'src/app/datos-prueba/datos.json';
 import { ESTADO_PARTIDO } from 'src/app/models/constantes';
 import { PartidoDTO } from 'src/app/models/modelsCommon';
 import * as moment from 'moment'; 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { JugadorDTO } from 'src/app/datos-prueba/models-prueba';
 
 @Component({
   selector: 'app-gestion-partidos',
@@ -23,6 +24,9 @@ export class GestionPartidosComponent implements OnInit {
   equipos = EQUIPO;
   arbitros = ARBITRO;
   jueces = JUEZ;
+  jugadores = JUGADOR;
+  jugadoresNegro: JugadorDTO[] = [];
+  jugadoresRojo: JugadorDTO[] = [];
 
   listaPartidos: PartidoDTO[] = [];
 
@@ -58,6 +62,8 @@ export class GestionPartidosComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.jugadoresNegro = this.jugadores.filter(x => x.Equipo == 'Deportivo Negro');
+    this.jugadoresRojo = this.jugadores.filter(x => x.Equipo == 'Deportivo Rojo');
   }
 
   FiltrarPartidos() {

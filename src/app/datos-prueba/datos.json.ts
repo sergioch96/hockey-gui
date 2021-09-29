@@ -1,5 +1,5 @@
-import { EquipoDTO, PartidoDTO, PersonaDTO } from "../models/modelsCommon";
-import { FixtureDTO, TablaPosicionesDTO } from "./models-prueba";
+import { EquipoDTO, PartidoDTO } from "../models/modelsCommon";
+import { FixtureDTO, GoleadorDTO, JugadorDTO, TablaPosicionesDTO, TarjetaDTO } from "./models-prueba";
 
 export const TABLA_POSICIONES: TablaPosicionesDTO[] = [
     { equipo: 'Deportivo Negro', partidosJugados: 9, partidosGanados: 9, partidosEmpatados: 0, partidosPerdidos: 0, golesFavor: 98, golesContra: 5, diferenciaGoles: 93, puntos: 27 },
@@ -27,14 +27,42 @@ export const PROXIMOS_ENCUENTROS: FixtureDTO[] = [
     { equipoLocal: 'Deportivo Celeste', equipoVisitante: 'Deportivo Naranja', fecha: '10/10/2021', hora: '20:00 hs' },
 ];
 
+export const EMPAREJAMIENTOS: FixtureDTO[] = [
+    { equipoLocal: 'Deportivo Violeta', equipoVisitante: 'Deportivo Rojo', fecha: 'fecha 1' },
+    { equipoLocal: 'Deportivo Naranja', equipoVisitante: 'Deportivo Verde', fecha: 'fecha 1' },
+    { equipoLocal: 'Deportivo Azul', equipoVisitante: 'Deportivo Negro', fecha: 'fecha 1' },
+    { equipoLocal: 'Deportivo Gris', equipoVisitante: 'Deportivo Amarillo', fecha: 'fecha 1' },
+    { equipoLocal: 'Deportivo Bordo', equipoVisitante: 'Deportivo Celeste', fecha: 'fecha 1' },
+
+    { equipoLocal: 'Deportivo Amarillo', equipoVisitante: 'Deportivo Violeta', fecha: 'fecha 2' },
+    { equipoLocal: 'Deportivo Rojo', equipoVisitante: 'Deportivo Azul', fecha: 'fecha 2' },
+    { equipoLocal: 'Deportivo Verde', equipoVisitante: 'Deportivo Gris', fecha: 'fecha 2' },
+    { equipoLocal: 'Deportivo Negro', equipoVisitante: 'Deportivo Bordo', fecha: 'fecha 2' },
+    { equipoLocal: 'Deportivo Celeste', equipoVisitante: 'Deportivo Naranja', fecha: 'fecha 2' },
+
+    { equipoLocal: 'Deportivo Amarillo', equipoVisitante: 'Deportivo Naranja', fecha: 'fecha 3' },
+    { equipoLocal: 'Deportivo Verde', equipoVisitante: 'Deportivo Azul', fecha: 'fecha 3' },
+    { equipoLocal: 'Deportivo Violeta', equipoVisitante: 'Deportivo Celeste', fecha: 'fecha 3' },
+    { equipoLocal: 'Deportivo Gris', equipoVisitante: 'Deportivo Rojo', fecha: 'fecha 3' },
+    { equipoLocal: 'Deportivo Negro', equipoVisitante: 'Deportivo Bordo', fecha: 'fecha 3' },
+
+    { equipoLocal: 'Deportivo Bordo', equipoVisitante: 'Deportivo Naranja', fecha: 'fecha 4' },
+    { equipoLocal: 'Deportivo Verde', equipoVisitante: 'Deportivo Violeta', fecha: 'fecha 4' },
+    { equipoLocal: 'Deportivo Rojo', equipoVisitante: 'Deportivo Amarillo', fecha: 'fecha 4' },
+    { equipoLocal: 'Deportivo Gris', equipoVisitante: 'Deportivo Azul', fecha: 'fecha 4' },
+    { equipoLocal: 'Deportivo Negro', equipoVisitante: 'Deportivo Celeste', fecha: 'fecha 4' }
+];
+
 export const FECHA_TORNEO: string[] = [ 'Fecha 1', 'Fecha 2', 'Fecha 3', 'Fecha 4', 'Fecha 5', 'Fecha 6'];
+
+export const TIPO_TORNEO: string[] = [ 'Apertura', 'Clausura' ];
 
 export const EQUIPO: EquipoDTO[] = [
     { IdEquipo: 1, NombreEquipo: 'Deportivo Negro' },
     { IdEquipo: 2, NombreEquipo: 'Deportivo Amarillo' },
     { IdEquipo: 3, NombreEquipo: 'Deportivo Azul' },
     { IdEquipo: 4, NombreEquipo: 'Deportivo Celeste' },
-    { IdEquipo: 5, NombreEquipo: 'Deportivo Bordo' },
+    { IdEquipo: 5, NombreEquipo: 'Deportivo Rojo' },
     { IdEquipo: 6, NombreEquipo: 'Deportivo Naranja' },
     { IdEquipo: 7, NombreEquipo: 'Deportivo Bordo' },
     { IdEquipo: 8, NombreEquipo: 'Deportivo Violeta' },
@@ -90,4 +118,93 @@ export const PARTIDO: PartidoDTO[] = [
     GolesLocal: 0, EquipoVisitante: 'Deportivo Naranja', GolesVisitante: 0 },
     { IdPartido: 20, FechaTorneo: 'Fecha 4', Estado: 'Pendiente', Dia: '', Hora: '', EquipoLocal: 'Deportivo Azul', 
     GolesLocal: 0, EquipoVisitante: 'Deportivo Gris', GolesVisitante: 0 },
+];
+
+export const GOLEADOR: GoleadorDTO[] = [
+    { Nombre: 'Elias Vera', Equipo: 'Deportivo Negro', Goles: 27 },
+    { Nombre: 'Horacio Pekholtz', Equipo: 'Deportivo Rojo', Goles: 23 },
+    { Nombre: 'Alejandro Mbaibe', Equipo: 'Deportivo Verde', Goles: 21 },
+    { Nombre: 'Santiago Villamayor', Equipo: 'Deportivo Negro', Goles: 18 },
+    { Nombre: 'Julio Russo', Equipo: 'Deportivo Verde', Goles: 18 },
+    { Nombre: 'Ricardo Samudio', Equipo: 'Deportivo Negro', Goles: 15 },
+    { Nombre: 'Gabriel Paredes', Equipo: 'Deportivo Amarillo', Goles: 13 },
+    { Nombre: 'Rolando Ojeda', Equipo: 'Deportivo Celeste', Goles: 11 },
+    { Nombre: 'Fabián Romero', Equipo: 'Deportivo Negro', Goles: 11 },
+    { Nombre: 'Mateo Giménez', Equipo: 'Deportivo Naranja', Goles: 10 },
+    { Nombre: 'Pablo Zambrini', Equipo: 'Deportivo Rojo', Goles: 10 },
+    { Nombre: 'Juan Benegas', Equipo: 'Deportivo Gris', Goles: 9 },
+    { Nombre: 'Mathias Samudio', Equipo: 'Deportivo Rojo', Goles: 9 },
+    { Nombre: 'Renato Zárate', Equipo: 'Deportivo Rojo', Goles: 9 },
+    { Nombre: 'Guillermo Mendoza', Equipo: 'Deportivo Naranja', Goles: 8 },
+    { Nombre: 'Humberto Recalde', Equipo: 'Deportivo Gris', Goles: 8 },
+    { Nombre: 'Mario Cardozo', Equipo: 'Deportivo Bordo', Goles: 7 },
+    { Nombre: 'Lino Laneri', Equipo: 'Deportivo Negro', Goles: 7 },
+    { Nombre: 'Alan Montenegro', Equipo: 'Deportivo Celeste', Goles: 7 },
+    { Nombre: 'Jorge Pereira', Equipo: 'Deportivo Verde', Goles: 7 },
+    { Nombre: 'Santiago Ruetalo', Equipo: 'Deportivo Naranja', Goles: 7 },
+]
+
+export const TARJETA: TarjetaDTO[] = [
+    { Nombre: 'Horacio Pekholtz', Equipo: 'Deportivo Rojo', TarjetasVerdes: 3, TarjetasAmarillas: 2, TarjetasRojas: 0 },
+    { Nombre: 'Ricardo Samudio', Equipo: 'Deportivo Negro', TarjetasVerdes: 3, TarjetasAmarillas: 1, TarjetasRojas: 0 },
+    { Nombre: 'Rolando Ojeda', Equipo: 'Deportivo Celeste', TarjetasVerdes: 2, TarjetasAmarillas: 1, TarjetasRojas: 0 },
+    { Nombre: 'Fabián Romero', Equipo: 'Deportivo Negro', TarjetasVerdes: 2, TarjetasAmarillas: 0, TarjetasRojas: 1 },
+    { Nombre: 'Santiago Villamayor', Equipo: 'Deportivo Negro', TarjetasVerdes: 2, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+    { Nombre: 'Gabriel Paredes', Equipo: 'Deportivo Amarillo', TarjetasVerdes: 1, TarjetasAmarillas: 1, TarjetasRojas: 1 },
+    { Nombre: 'Mateo Giménez', Equipo: 'Deportivo Naranja', TarjetasVerdes: 1, TarjetasAmarillas: 1, TarjetasRojas: 0 },
+    { Nombre: 'Julio Russo', Equipo: 'Deportivo Verde', TarjetasVerdes: 1, TarjetasAmarillas: 1, TarjetasRojas: 1 },
+    { Nombre: 'Mathias Samudio', Equipo: 'Deportivo Rojo', TarjetasVerdes: 1, TarjetasAmarillas: 1, TarjetasRojas: 0 },
+    { Nombre: 'Elias Vera', Equipo: 'Deportivo Negro', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 1 },
+    { Nombre: 'Juan Benegas', Equipo: 'Deportivo Gris', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+    { Nombre: 'Renato Zárate', Equipo: 'Deportivo Rojo', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+    { Nombre: 'Guillermo Mendoza', Equipo: 'Deportivo Naranja', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+    { Nombre: 'Alejandro Mbaibe', Equipo: 'Deportivo Verde', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+    { Nombre: 'Mario Cardozo', Equipo: 'Deportivo Bordo', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+    { Nombre: 'Humberto Recalde', Equipo: 'Deportivo Gris', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+    { Nombre: 'Lino Laneri', Equipo: 'Deportivo Negro', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+    { Nombre: 'Alan Montenegro', Equipo: 'Deportivo Celeste', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+    { Nombre: 'Jorge Pereira', Equipo: 'Deportivo Verde', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+    { Nombre: 'Pablo Zambrini', Equipo: 'Deportivo Rojo', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+    { Nombre: 'Santiago Ruetalo', Equipo: 'Deportivo Naranja', TarjetasVerdes: 1, TarjetasAmarillas: 0, TarjetasRojas: 0 },
+];
+
+export const JUGADOR: JugadorDTO[] = [
+    { Nombre: 'Ricardo Samudio', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Fabián Romero', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Santiago Villamayor', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Elias Vera', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Santiago Ruetalo', Equipo: 'Deportivo Negro' },   
+    { Nombre: 'Lino Laneri', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Federico Ruetalo', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Gabriel Ruetalo', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Sebastián Villamayor', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Mauricio Gómez', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Alberto Martínez', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Aldo Vera', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Juan Planas', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Rodolfo Paredes', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Arturo Mora', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Lucas Fretes', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Javier González', Equipo: 'Deportivo Negro' },
+    { Nombre: 'Hugo Romero', Equipo: 'Deportivo Negro' },
+
+    { Nombre: 'Horacio Pekholtz', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Rolando Ojeda', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Gabriel Paredes', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Mateo Giménez', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Julio Russo', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Mathias Samudio', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Juan Benegas', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Renato Zárate', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Guillermo Mendoza', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Alejandro Mbaibe', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Mario Cardozo', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Humberto Recalde', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Alan Montenegro', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Jorge Pereira', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Pablo Zambrini', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Alexis Duarte', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Tobias Monges', Equipo: 'Deportivo Rojo' },
+    { Nombre: 'Pablo Villar', Equipo: 'Deportivo Rojo' },
+
 ]

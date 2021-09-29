@@ -80,9 +80,39 @@
                                 <td class="text-center">{{ partido.Estado }}</td>
                                 <td class="text-center">{{ partido.Dia }}</td>
                                 <td class="text-center">{{ partido.Hora }}</td>
-                                <td class="text-center">{{ partido.EquipoLocal }}</td>
+                                <td>
+                                    <i class="fab fa-angular" 
+                                    [ngClass]="{
+                                        'text-danger': partido.EquipoLocal == 'Deportivo Rojo',
+                                        'text-orange': partido.EquipoLocal == 'Deportivo Naranja',
+                                        'text-success': partido.EquipoLocal == 'Deportivo Verde',
+                                        'text-violet': partido.EquipoLocal == 'Deportivo Violeta',
+                                        'text-blue': partido.EquipoLocal == 'Deportivo Azul',
+                                        'text-yellow': partido.EquipoLocal == 'Deportivo Amarillo',
+                                        'text-secondary': partido.EquipoLocal == 'Deportivo Gris',
+                                        'text-celeste': partido.EquipoLocal == 'Deportivo Celeste',
+                                        'text-bordo': partido.EquipoLocal == 'Deportivo Bordo'
+                                    }">
+                                    </i>
+                                    {{ partido.EquipoLocal }}
+                                </td>
                                 <td class="text-center">{{ partido.GolesLocal }}</td>
-                                <td class="text-center">{{ partido.EquipoVisitante }}</td>
+                                <td>
+                                    <i class="fab fa-angular" 
+                                    [ngClass]="{
+                                        'text-danger': partido.EquipoVisitante == 'Deportivo Rojo',
+                                        'text-orange': partido.EquipoVisitante == 'Deportivo Naranja',
+                                        'text-success': partido.EquipoVisitante == 'Deportivo Verde',
+                                        'text-violet': partido.EquipoVisitante == 'Deportivo Violeta',
+                                        'text-blue': partido.EquipoVisitante == 'Deportivo Azul',
+                                        'text-yellow': partido.EquipoVisitante == 'Deportivo Amarillo',
+                                        'text-secondary': partido.EquipoVisitante == 'Deportivo Gris',
+                                        'text-celeste': partido.EquipoVisitante == 'Deportivo Celeste',
+                                        'text-bordo': partido.EquipoVisitante == 'Deportivo Bordo'
+                                    }">
+                                    </i>
+                                    {{ partido.EquipoVisitante }}
+                                </td>
                                 <td class="text-center">{{ partido.GolesVisitante }}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary me-1" (click)="mostrarProgramar(modalProgramar, partido)">
@@ -191,7 +221,7 @@
     </div>
     <form (ngSubmit)="cargarPartido()">
         <div class="text-center">
-            <h4 class="mt-2">Planilla de Partido</h4>
+            <h4 class="my-3">Planilla de Partido</h4>
             <span class="me-2">
                 <b>Torneo:</b>
             </span>
@@ -246,7 +276,78 @@
 
         <div class="modal-body">
             <div class="container-fluid">
-                
+                <div class="row">
+                    <div class="mt-2 mb-5 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nº</th>
+                                            <th scope="col">Jugador</th>
+                                            <th scope="col">Goles</th>
+                                            <th scope="col">TV</th>
+                                            <th scope="col">TA</th>
+                                            <th scope="col">TR</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let jugador of jugadoresNegro; index as i">
+                                            <th scope="row"><input type="number"></th>
+                                            <td>{{ jugador.Nombre }}</td>
+                                            <td>
+                                                <input type="number">
+                                            </td>
+                                            <td><input type="number"></td>
+                                            <td>
+                                                <input type="number">
+                                            </td>
+                                            <td>
+                                                <input type="number">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 mb-5 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nº</th>
+                                            <th scope="col">Jugador</th>
+                                            <th scope="col">Goles</th>
+                                            <th scope="col">TV</th>
+                                            <th scope="col">TA</th>
+                                            <th scope="col">TR</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let jugador of jugadoresRojo; index as i">
+                                            <th scope="row"><input type="number"></th>
+                                            <td>{{ jugador.Nombre }}</td>
+                                            <td>
+                                                <input type="number">
+                                            </td>
+                                            <td>
+                                                <input type="number">
+                                            </td>
+                                            <td>
+                                                <input type="number">
+                                            </td>
+                                            <td>
+                                                <input type="number">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">

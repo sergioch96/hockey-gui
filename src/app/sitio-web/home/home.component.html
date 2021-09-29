@@ -369,3 +369,94 @@
     </div>
   </div>
 </div>
+
+<div class="row">
+  <div class="mt-4 mb-5 col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="titulo d-inline">Tabla de goleadores</h5>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Jugador</th>
+              <th scope="col">Equipo</th>
+              <th scope="col">Goles</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let goleador of goleadores; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ goleador.Nombre }}</td>
+              <td>
+                <i class="fab fa-angular" 
+                  [ngClass]="{
+                    'text-danger': goleador.Equipo == 'Deportivo Rojo',
+                    'text-orange': goleador.Equipo == 'Deportivo Naranja',
+                    'text-success': goleador.Equipo == 'Deportivo Verde',
+                    'text-violet': goleador.Equipo == 'Deportivo Violeta',
+                    'text-blue': goleador.Equipo == 'Deportivo Azul',
+                    'text-yellow': goleador.Equipo == 'Deportivo Amarillo',
+                    'text-secondary': goleador.Equipo == 'Deportivo Gris',
+                    'text-celeste': goleador.Equipo == 'Deportivo Celeste',
+                    'text-bordo': goleador.Equipo == 'Deportivo Bordo'
+                  }">
+                </i>
+                {{ goleador.Equipo }}
+              </td>
+              <td>{{ goleador.Goles }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="mt-4 mb-5 col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="titulo d-inline">Tabla de acumulación de tarjetas</h5>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Jugador</th>
+              <th scope="col">Equipo</th>
+              <th scope="col">TV</th>
+              <th scope="col">TA</th>
+              <th scope="col">TR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tarjeta of tarjetas; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ tarjeta.Nombre }}</td>
+              <td>
+                <i class="fab fa-angular" 
+                [ngClass]="{
+                  'text-danger': tarjeta.Equipo == 'Deportivo Rojo',
+                  'text-orange': tarjeta.Equipo == 'Deportivo Naranja',
+                  'text-success': tarjeta.Equipo == 'Deportivo Verde',
+                  'text-violet': tarjeta.Equipo == 'Deportivo Violeta',
+                  'text-blue': tarjeta.Equipo == 'Deportivo Azul',
+                  'text-yellow': tarjeta.Equipo == 'Deportivo Amarillo',
+                  'text-secondary': tarjeta.Equipo == 'Deportivo Gris',
+                  'text-celeste': tarjeta.Equipo == 'Deportivo Celeste',
+                  'text-bordo': tarjeta.Equipo == 'Deportivo Bordo'
+                }">
+                </i>
+                {{ tarjeta.Equipo }}
+              </td>
+              <td>{{ tarjeta.TarjetasVerdes }}</td>
+              <td>{{ tarjeta.TarjetasAmarillas }}</td>
+              <td>{{ tarjeta.TarjetasRojas }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
