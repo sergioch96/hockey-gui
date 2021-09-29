@@ -42,6 +42,9 @@ export class GestionPartidosComponent implements OnInit {
 
   partidoSeleccionado: PartidoDTO = {};
 
+  diaCargar: string | undefined;
+  horaCargar: string | undefined;
+
   constructor(
     private modalService: NgbModal,
     private toastr: ToastrService
@@ -96,12 +99,12 @@ export class GestionPartidosComponent implements OnInit {
       this.limpiarModal();
       return;
     }
-    console.log("sigue");
+
     const partido: PartidoDTO = {
       IdPartido: result?.IdPartido,
       FechaTorneo: result?.FechaTorneo,
       Estado: "Programado",
-      Dia: this.fechaProgramar,
+      Dia: moment(this.fechaProgramar).format('DD/MM/YYYY'),
       Hora: this.horaProgramar,
       EquipoLocal: result?.EquipoLocal,
       GolesLocal: 0,
@@ -128,6 +131,22 @@ export class GestionPartidosComponent implements OnInit {
     this.arbitro2Programar = "";
     this.juezProgramar = "";
     this.modalService.dismissAll();
+  }
+
+  mostrarCargar(modalCargar: any, par: PartidoDTO) {
+    var partido = this._listaPartidos.find(x => x.IdPartido == par.IdPartido);
+    this.equipo1Programar = partido?.EquipoLocal;
+    this.equipo2Programar = partido?.EquipoVisitante;
+    this.fechaTorneoProgramar = partido?.FechaTorneo;
+    this.diaCargar = partido?.Dia;
+    this.horaCargar = partido?.Hora;
+    this.partidoSeleccionado = par;
+
+    this.modalService.open(modalCargar, { size: 'xl' });
+  }
+
+  cargarPartido() {
+
   }
 
 }
