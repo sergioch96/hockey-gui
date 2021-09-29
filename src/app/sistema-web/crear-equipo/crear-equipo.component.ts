@@ -125,6 +125,7 @@ export class CrearEquipoComponent implements OnInit {
       this.listaJugadores.push(persona);
       this.toastr.success('Se agrego el jugador al equipo', 'Jugador agregado');
     } else {
+      this.toastr.success('Miembro del cuerpo técnico agregado correctamente', 'Éxito');
       this.cuerpoTecnico.push(persona);
     }
 

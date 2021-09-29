@@ -49,6 +49,12 @@ export class GestionPartidosComponent implements OnInit {
   diaCargar: string | undefined;
   horaCargar: string | undefined;
 
+  golesLocal: number = 0;
+  golesVisitante: number = 0;
+
+  valoresVisitante: number[] = [];
+  valoresLocal: number[] = [];
+
   constructor(
     private modalService: NgbModal,
     private toastr: ToastrService
@@ -136,6 +142,8 @@ export class GestionPartidosComponent implements OnInit {
     this.arbitro1Programar = "";
     this.arbitro2Programar = "";
     this.juezProgramar = "";
+    this.golesLocal = 0;
+    this.golesVisitante = 0;
     this.modalService.dismissAll();
   }
 
@@ -152,7 +160,56 @@ export class GestionPartidosComponent implements OnInit {
   }
 
   cargarPartido() {
+    var result = this._listaPartidos.find(x => x.IdPartido == this.partidoSeleccionado.IdPartido);
+    
+    if (result?.Estado != "Programado") {
+      this.toastr.error('El partido seleccionado debe tener un estado programado para cargar', 'Error');
+      this.limpiarModal();
+      return;
+    }
 
+    const partido: PartidoDTO = {
+      IdPartido: result?.IdPartido,
+      FechaTorneo: result?.FechaTorneo,
+      Estado: "Finalizado",
+      Dia: result.Dia,
+      Hora: result.Hora,
+      EquipoLocal: result?.EquipoLocal,
+      GolesLocal: this.golesLocal,
+      EquipoVisitante: result?.EquipoVisitante,
+      GolesVisitante: this.golesVisitante,
+    }
+
+    const index = this._listaPartidos.indexOf(this.partidoSeleccionado);
+
+    if (index !== -1) {
+      this._listaPartidos.splice(index, 1, partido);
+      this.toastr.success('El partido Se cargó correctamente', 'Partido finalizado');
+    }
+    else {
+      this.toastr.error('No se pudo finalizar el partido', 'Error');
+    }
+    this.limpiarModal();
+  }
+
+  cargarGolesVisitante() {
+    var suma: number = 0;
+    for (var i = 0; i < this.valoresVisitante.length; i++) {
+      if (this.valoresVisitante[i] != undefined) {
+        suma += this.valoresVisitante[i];
+      }
+    }
+    this.golesVisitante = suma;
+  }
+
+  cargarGolesLocal() {
+    var suma: number = 0;
+    for (var i = 0; i < this.valoresLocal.length; i++) {
+      if (this.valoresLocal[i] != undefined) {
+        suma += this.valoresLocal[i];
+      }
+    }
+    this.golesLocal = suma;
   }
 
 }

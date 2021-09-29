@@ -33,10 +33,14 @@ export class LoginComponent implements OnInit {
     this.apiauthService.login(this.loginForm.value).subscribe( response => {
       if (response.exito === 0) {
         this.modal.close();
-        this.toastr.info('Sesión iniciada exitosamente', 'Iniciar Sesión');
-        this.router.navigate(['/menu']);
+        this.toastr.success('Sesión iniciada exitosamente', 'Iniciar Sesión');
+        //this.router.navigate(['/menu']);
         document.body.classList.toggle('sb-sidenav-toggled');
+      } else {
+        this.toastr.error(response.mensaje, 'Error');  
       }
+    }, error => {
+      this.toastr.error('Ocurrió un error al intentar iniciar sesión', 'Error');
     })
   }
 

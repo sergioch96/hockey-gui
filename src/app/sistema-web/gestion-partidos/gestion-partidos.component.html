@@ -207,7 +207,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
+            <button type="button" class="btn btn-secondary" (click)="limpiarModal()">Cancelar</button>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
     </form>
@@ -251,7 +251,7 @@
                     <tbody>
                         <tr>
                             <td class="text-center">{{ equipo1Programar }}</td>
-                            <td class="text-center">0</td>
+                            <td class="text-center">{{ golesLocal }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -267,7 +267,7 @@
                     <tbody>
                         <tr>
                             <td class="text-center">{{ equipo2Programar }}</td>
-                            <td class="text-center">0</td>
+                            <td class="text-center">{{ golesVisitante }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -296,9 +296,11 @@
                                             <th scope="row"><input type="number"></th>
                                             <td>{{ jugador.Nombre }}</td>
                                             <td>
+                                                <input [(ngModel)]="valoresLocal[i]" name="valores" value="0" type="number" (blur)=cargarGolesLocal()>
+                                            </td>
+                                            <td>
                                                 <input type="number">
                                             </td>
-                                            <td><input type="number"></td>
                                             <td>
                                                 <input type="number">
                                             </td>
@@ -330,7 +332,7 @@
                                             <th scope="row"><input type="number"></th>
                                             <td>{{ jugador.Nombre }}</td>
                                             <td>
-                                                <input type="number">
+                                                <input [(ngModel)]="valoresVisitante[i]" name="valores" value="0" type="number" (blur)=cargarGolesVisitante()>
                                             </td>
                                             <td>
                                                 <input type="number">
@@ -347,12 +349,45 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <label for="inputCapitanLocal" class="col-md-3 mb-3 col-form-label">
+                        Capitán del equipo local
+                    </label>
+                    <div class="col-md-3">
+                        <input id="inputCapitanLocal" type="text" class="form-control">
+                    </div>
+                    <label for="inputCapitanVisitante" class="col-md-3 mb-3 col-form-label">
+                        Capitán del equipo visitante
+                    </label>
+                    <div class="col-md-3">
+                        <input id="inputCapitanVisitante" type="text" class="form-control">
+                    </div>
+                
+                    <label for="inputArbitro1" class="col-md-3 mb-3 col-form-label">
+                        Árbitro 1
+                    </label>
+                    <div class="col-md-3">
+                        <input id="inputArbitro1" type="text" class="form-control" value="Juan Vera" disabled>
+                    </div>
+                    <label for="inputArbitro2" class="col-md-3 mb-3 col-form-label">
+                        Árbitro 2
+                    </label>
+                    <div class="col-md-3">
+                        <input id="inputArbitro2" type="text" class="form-control" value="Tadeo Villalba" disabled>
+                    </div>
+                
+                    <label for="inputJuez" class="col-md-3 mb-3 col-form-label">
+                        Juez de Mesa
+                    </label>
+                    <div class="col-md-3">
+                        <input id="inputJuez" type="text" class="form-control" value="Victor Fretes" disabled>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-secondary" (click)="limpiarModal()">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Cargar partido</button>
         </div>
     </form>
 </ng-template>
