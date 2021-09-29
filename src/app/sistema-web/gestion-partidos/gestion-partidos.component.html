@@ -1,0 +1,173 @@
+<div class="row mt-4">
+    <div class="col-lg-8 offset-lg-2">
+        <h3 class="">Gestión de partidos</h3>
+    </div>
+</div>
+
+<div class="row mt-4 ms-4">
+    <div class="col-12">
+        <form (ngSubmit)="FiltrarPartidos()">
+            <div class="row mb-3">
+                <label for="selectEstado" class="col-2 col-form-label">
+                    Estado de partido
+                </label>
+                <div class="col-4">
+                    <select [(ngModel)]="filtroEstado" name="filtrEstado" id="selectEstado" class="form-select">
+                        <option *ngFor="let estado of estados" [value]="estado.Estado">{{estado.Estado}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="selectFechaTorneo" class="col-2 col-form-label">
+                    Fecha de torneo
+                </label>
+                <div class="col-4">
+                    <select [(ngModel)]="filtroFechaTorneo" name="filtrFechaTorneo" id="selectFechaTorneo" class="form-select" aria-label="Default select example">
+                        <option *ngFor="let fecha of fechasTorneo" [value]="fecha">{{fecha}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="selectEquipo" class="col-2 col-form-label">
+                    Equipo participante
+                </label>
+                <div class="col-4">
+                    <select [(ngModel)]="filtroEquipo" name="filtrEquipo" id="selectEquipo" class="form-select" aria-label="Default select example">
+                        <option *ngFor="let equipo of equipos" [value]="equipo.NombreEquipo">{{equipo.NombreEquipo}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="selectFecha" class="col-2 col-form-label">
+                    Fecha de encuentro
+                </label>
+                <div class="col-4">
+                    <input [(ngModel)]="filtroFecha" name="filtrFecha" id="selectFecha" type="date" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6 d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary me-2" (click)="limpiarFiltros()">Limpiar</button>
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="mt-4 mb-5 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="titulo d-inline">PARTIDOS DEL TORNEO</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Dia</th>
+                                <th scope="col">Hora</th>
+                                <th scope="col">Equipo local</th>
+                                <th scope="col">Goles</th>
+                                <th scope="col">Equipo visitante</th>
+                                <th scope="col">Goles</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="listaPartidos && listaPartidos.length > 0; else vacio">
+                            <tr *ngFor="let partido of listaPartidos; let i = index">
+                                <td class="text-center">{{ partido.FechaTorneo }}</td>
+                                <td class="text-center">{{ partido.Estado }}</td>
+                                <td class="text-center">{{ partido.Dia }}</td>
+                                <td class="text-center">{{ partido.Hora }}</td>
+                                <td class="text-center">{{ partido.EquipoLocal }}</td>
+                                <td class="text-center">{{ partido.GolesLocal }}</td>
+                                <td class="text-center">{{ partido.EquipoVisitante }}</td>
+                                <td class="text-center">{{ partido.GolesVisitante }}</td>
+                                <td>
+                                    <!-- (click)="programarPartido(modalProgramar, partido.IdPartido)" -->
+                                    <button type="button" class="btn btn-primary me-1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <!-- (click)="cargarPartido(modalCargar, partido.IdPartido)" -->
+                                    <button type="button" class="btn btn-primary me-1">
+                                        <i class="fas fa-clipboard-check"></i>
+                                    </button>
+                                    <!-- (click)="verPlanilla(modalCargar, partido.IdPartido)" -->
+                                    <button type="button" class="btn btn-primary" >
+                                        <i class="fas fa-file-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <ng-template #vacio>
+                            <tbody>
+                                <tr class="center-align">
+                                    <td colspan="6" class="text-center">Sin registros</td>
+                                </tr>
+                            </tbody>
+                        </ng-template>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Persona -->
+<!-- <ng-template #modalPersona let-modal>
+    <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white">Agregar {{ tituloModalPersona }}</h5>
+        <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
+    </div>
+    <form [formGroup]="formPersona" (ngSubmit)="agregarPersona()">
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <label for="inputNombre" class="col-md-6 col-form-label">
+                        Nombre y apellido
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="NombreApellido" id="inputNombre" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputDocumento" class="col-md-6 col-form-label">
+                        Número de documento
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="NumDocumento" id="inputDocumento" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputFecha" class="col-md-6 col-form-label">
+                        Fecha de nacimiento
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="FechaNacimiento" id="inputFecha" type="date" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputTel" class="col-md-6 col-form-label">
+                        Teléfono
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="Telefono" id="inputTel" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail" class="col-md-6 col-form-label">
+                        Email
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="Email"id="inputEmail" type="email" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
+            <button type="submit" [disabled]="this.formPersona.invalid" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</ng-template> -->

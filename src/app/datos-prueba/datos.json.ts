@@ -1,3 +1,4 @@
+import { EquipoDTO, PartidoDTO } from "../models/modelsCommon";
 import { FixtureDTO, TablaPosicionesDTO } from "./models-prueba";
 
 export const TABLA_POSICIONES: TablaPosicionesDTO[] = [
@@ -25,3 +26,53 @@ export const PROXIMOS_ENCUENTROS: FixtureDTO[] = [
     { equipoLocal: 'Deportivo Negro', equipoVisitante: 'Deportivo Bordo', fecha: '10/10/2021', hora: '18:00 hs' },
     { equipoLocal: 'Deportivo Celeste', equipoVisitante: 'Deportivo Naranja', fecha: '10/10/2021', hora: '20:00 hs' },
 ];
+
+export const FECHA_TORNEO: string[] = [ 'Fecha 1', 'Fecha 2', 'Fecha 3', 'Fecha 4', 'Fecha 5', 'Fecha 6'];
+
+export const EQUIPO: EquipoDTO[] = [
+    { IdEquipo: 1, NombreEquipo: 'Deportivo Negro' },
+    { IdEquipo: 2, NombreEquipo: 'Deportivo Amarillo' },
+    { IdEquipo: 3, NombreEquipo: 'Deportivo Azul' },
+    { IdEquipo: 4, NombreEquipo: 'Deportivo Celeste' },
+    { IdEquipo: 5, NombreEquipo: 'Deportivo Bordo' },
+    { IdEquipo: 6, NombreEquipo: 'Deportivo Naranja' },
+    { IdEquipo: 7, NombreEquipo: 'Deportivo Bordo' },
+    { IdEquipo: 8, NombreEquipo: 'Deportivo Violeta' },
+    { IdEquipo: 9, NombreEquipo: 'Deportivo Gris' },
+    { IdEquipo: 10, NombreEquipo: 'Deportivo Verde' }
+];
+
+export const PARTIDO: PartidoDTO[] = [
+    { IdPartido: 1, FechaTorneo: 'Fecha 1', Estado: 'Finalizado', Dia: '25/09/2021', Hora: '17:00', EquipoLocal: 'Deportivo Gris', 
+    GolesLocal: 4, EquipoVisitante: 'Deportivo Celeste', GolesVisitante: 1 },
+    { IdPartido: 2, FechaTorneo: 'Fecha 1', Estado: 'Finalizado', Dia: '25/09/2021', Hora: '19:00', EquipoLocal: 'Deportivo Verde', 
+    GolesLocal: 2, EquipoVisitante: 'Deportivo Negro', GolesVisitante: 7 },
+    { IdPartido: 3, FechaTorneo: 'Fecha 1', Estado: 'Finalizado', Dia: '26/09/2021', Hora: '16:00', EquipoLocal: 'Deportivo Amarillo', 
+    GolesLocal: 3, EquipoVisitante: 'Deportivo Rojo', GolesVisitante: 2 },
+    { IdPartido: 4, FechaTorneo: 'Fecha 1', Estado: 'Finalizado', Dia: '26/09/2021', Hora: '18:00', EquipoLocal: 'Deportivo Azul', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Violeta', GolesVisitante: 0 },
+    { IdPartido: 5, FechaTorneo: 'Fecha 1', Estado: 'Finalizado', Dia: '26/09/2021', Hora: '20:00', EquipoLocal: 'Deportivo Naranja', 
+    GolesLocal: 5, EquipoVisitante: 'Deportivo Bordo', GolesVisitante: 1 },
+
+    { IdPartido: 6, FechaTorneo: 'Fecha 2', Estado: 'Programado', Dia: '02/10/2021', Hora: '17:00', EquipoLocal: 'Deportivo Violeta', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Rojo', GolesVisitante: 0 },
+    { IdPartido: 7, FechaTorneo: 'Fecha 2', Estado: 'Programado', Dia: '02/10/2021', Hora: '19:00', EquipoLocal: 'Deportivo Naranja', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Verde', GolesVisitante: 0 },
+    { IdPartido: 8, FechaTorneo: 'Fecha 2', Estado: 'Programado', Dia: '03/10/2021', Hora: '16:00', EquipoLocal: 'Deportivo Azul', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Negro', GolesVisitante: 0 },
+    { IdPartido: 9, FechaTorneo: 'Fecha 2', Estado: 'Programado', Dia: '03/10/2021', Hora: '18:00', EquipoLocal: 'Deportivo Gris', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Amarillo', GolesVisitante: 0 },
+    { IdPartido: 10, FechaTorneo: 'Fecha 2', Estado: 'Programado', Dia: '03/10/2021', Hora: '20:00', EquipoLocal: 'Deportivo Bordo', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Celeste', GolesVisitante: 0 },
+
+    { IdPartido: 11, FechaTorneo: 'Fecha 3', Estado: 'Programado', Dia: '09/10/2021', Hora: '17:00', EquipoLocal: 'Deportivo Amarillo', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Violeta', GolesVisitante: 0 },
+    { IdPartido: 12, FechaTorneo: 'Fecha 3', Estado: 'Programado', Dia: '09/10/2021', Hora: '19:00', EquipoLocal: 'Deportivo Rojo', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Azul', GolesVisitante: 0 },
+    { IdPartido: 13, FechaTorneo: 'Fecha 3', Estado: 'Programado', Dia: '10/10/2021', Hora: '16:00', EquipoLocal: 'Deportivo Verde', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Gris', GolesVisitante: 0 },
+    { IdPartido: 14, FechaTorneo: 'Fecha 3', Estado: 'Programado', Dia: '10/10/2021', Hora: '18:00', EquipoLocal: 'Deportivo Negro', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Bordo', GolesVisitante: 0 },
+    { IdPartido: 15, FechaTorneo: 'Fecha 3', Estado: 'Programado', Dia: '10/10/2021', Hora: '20:00', EquipoLocal: 'Deportivo Celeste', 
+    GolesLocal: 0, EquipoVisitante: 'Deportivo Naranja', GolesVisitante: 0 },
+]

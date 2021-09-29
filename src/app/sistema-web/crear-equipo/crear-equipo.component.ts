@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { Equipo, PersonaDTO } from 'src/app/models/modelsCommon';
+import { EquipoDTO, PersonaDTO } from 'src/app/models/modelsCommon';
 import { EquipoService } from 'src/app/services/equipo.service';
 
 @Component({
@@ -51,7 +51,7 @@ export class CrearEquipoComponent implements OnInit {
   }
 
   agregarEquipo() {
-    const equipo : Equipo = {
+    const equipo : EquipoDTO = {
       NombreEquipo: this.formEquipo.get('NombreEquipo')?.value,
       CuerpoTecnico: this.cuerpoTecnico
     };

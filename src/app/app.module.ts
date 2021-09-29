@@ -14,6 +14,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './sistema-web/menu/menu.component';
 import { CrearEquipoComponent } from './sistema-web/crear-equipo/crear-equipo.component';
+import { GestionPartidosComponent } from './sistema-web/gestion-partidos/gestion-partidos.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CrearEquipoComponent } from './sistema-web/crear-equipo/crear-equipo.co
     HomeComponent,
     LoginComponent,
     MenuComponent,
-    CrearEquipoComponent
+    CrearEquipoComponent,
+    GestionPartidosComponent
   ],
   imports: [
     BrowserModule,

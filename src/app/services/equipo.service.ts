@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Equipo } from '../models/modelsCommon';
+import { EquipoDTO } from '../models/modelsCommon';
 import { Response } from '../models/response';
 
 const httpOption = {
@@ -18,7 +18,7 @@ export class EquipoService {
 
   constructor( private _http: HttpClient ) { }
 
-  agregarEquipo(equipo: Equipo): Observable<Response> {
+  agregarEquipo(equipo: EquipoDTO): Observable<Response> {
     return this._http.post<Response>(this.url, equipo, httpOption);
   }
 }
