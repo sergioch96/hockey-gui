@@ -16,6 +16,7 @@ import { MenuComponent } from './sistema-web/menu/menu.component';
 import { CrearEquipoComponent } from './sistema-web/crear-equipo/crear-equipo.component';
 import { GestionPartidosComponent } from './sistema-web/gestion-partidos/gestion-partidos.component';
 import { CrearCampeonatoComponent } from './sistema-web/crear-campeonato/crear-campeonato.component';
+import { GestionEquiposComponent } from './sistema-web/gestion-equipos/gestion-equipos.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CrearCampeonatoComponent } from './sistema-web/crear-campeonato/crear-c
     MenuComponent,
     CrearEquipoComponent,
     GestionPartidosComponent,
-    CrearCampeonatoComponent
+    CrearCampeonatoComponent,
+    GestionEquiposComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
- .text-yellow {
+/* STYLES PROPIOS DEL PROYECTO */
+
+.text-yellow {
   color: #ffc107;
 }
 
@@ -35,6 +37,10 @@
 .text-celeste {
   color: #0dcaf0;
 }
+
+/* FIN STYLES PROPIOS DEL PROYECTO */
+
+/* STYLES GENERALES */
 
 :root {
   --bs-blue: #0d6efd;
