@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="titulo d-inline">LISTADO DE EQUIPOS</h5>
-                    <a class="btn btn-primary float-end" [routerLink]="['/crear-equipo']">Agregar Equipo</a>
+                    <a class="btn btn-primary float-end" [routerLink]="['/crear-equipo', '']">Agregar Equipo</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -39,15 +39,15 @@
                         <tbody *ngIf="listaEquipos && listaEquipos.length > 0; else vacio">
                             <tr *ngFor="let equipo of listaEquipos; let i = index">
                                 <td>{{ i + 1 }}</td>
-                                <td>{{ equipo.NombreEquipo }}</td>
-                                <td>Pedro Martinez</td>
-                                <td>Joel Martinez</td>
-                                <td>Benjamin Martinez</td>
-                                <td>activo</td>
+                                <td>{{ equipo.nombreEquipo }}</td>
+                                <td>{{ equipo.directorTecnico }}</td>
+                                <td>{{ equipo.asistenteTecnico }}</td>
+                                <td>{{ equipo.preparadorFisico }}</td>
+                                <td>{{ equipo.estado ? "activo" : "inactivo" }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary">
+                                    <a class="btn btn-primary" [routerLink]="['/crear-equipo', equipo.idEquipo]">
                                         <i class="fas fa-user-edit"></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { EquipoDTO, PersonaDTO } from 'src/app/models/modelsCommon';
+import { EquipoDTO, ListaEquiposDTO, PersonaDTO } from 'src/app/models/modelsCommon';
 import { EquipoService } from 'src/app/services/equipo.service';
+import { JugadorService } from 'src/app/services/jugador.service';
 
 @Component({
   selector: 'app-crear-equipo',
@@ -19,18 +21,17 @@ export class CrearEquipoComponent implements OnInit {
   idJugador: number | undefined;
   tituloModalPersona: string = "";
   tipoPersona: string = "";
-  directorTecnico: PersonaDTO | undefined;
-  asistenteTecnico: PersonaDTO | undefined;
-  preparadorFisico: PersonaDTO | undefined;
   cuerpoTecnico: PersonaDTO[] = [];
 
   constructor(
     private fb: FormBuilder,
     private _equipoService: EquipoService,
+    private _jugadorService: JugadorService,
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private _router: ActivatedRoute
   ) { 
-
+    
     this.formEquipo = this.fb.group({
       NombreEquipo: ['', Validators.required],
       DirectorTecnico: [{value: '', disabled: true}, [Validators.required]],
@@ -39,15 +40,56 @@ export class CrearEquipoComponent implements OnInit {
     })
 
     this.formPersona = this.fb.group({
-      NombreApellido: ['', Validators.required],
-      NumDocumento: ['', [Validators.required]],
-      FechaNacimiento: ['', [Validators.required]],
-      Telefono: [''],
-      Email: ['']
+      nombreApellido: ['', Validators.required],
+      numDocumento: ['', [Validators.required]],
+      fechaNacimiento: ['', [Validators.required]],
+      telefono: [''],
+      email: ['']
     })
   }
 
   ngOnInit(): void {
+    let idEquipoParam = this._router.snapshot.paramMap.get('id');
+    this.idEquipo = idEquipoParam != null && idEquipoParam != '' ? +idEquipoParam : 0;
+
+    if (this.idEquipo > 0) {
+      this.getEquipo(this.idEquipo);
+      this.getJugadoresPorEquipo(this.idEquipo);
+    }
+  }
+
+  getEquipo(idEquipo: number) {
+    let equipo: ListaEquiposDTO;
+    this._equipoService.getEquipo(idEquipo).subscribe(
+      respuesta => {
+        if (respuesta.exito === 0) {
+          equipo = respuesta.data;
+          
+          this.formEquipo.patchValue({
+            NombreEquipo: equipo.nombreEquipo,
+            DirectorTecnico: equipo.directorTecnico,
+            AsistenteTecnico: equipo.asistenteTecnico,
+            PreparadorFisico: equipo.preparadorFisico,
+          });
+          document.getElementById('btnAddEquipo')?.classList.add('d-none');
+        }
+      }, error => {
+        this.toastr.error('Ocurrio un error al intentar recuperar el equipo seleccionado');
+      }
+    );
+  }
+
+  getJugadoresPorEquipo(idEquipo: number) {
+    this._jugadorService.getJugadoresPorEquipo(idEquipo).subscribe(
+      resultado => {
+        console.log(resultado.data);
+        if (resultado.exito === 0) {
+          this.listaJugadores = resultado.data;
+        }
+      }, error => {
+        this.toastr.error('Ocurrio un error al intentar recuperar los jugadores del equipo');
+      }
+    )
   }
 
   agregarEquipo() {
@@ -59,6 +101,7 @@ export class CrearEquipoComponent implements OnInit {
       resultado => {
         
         if (resultado.exito === 0) {
+          this.idEquipo = resultado.data;
           this.toastr.success(resultado.mensaje, 'Equipo agregado');
           this.formEquipo.get('NombreEquipo')?.disable;
           document.getElementById('btnAddEquipo')?.classList.add('d-none');
@@ -68,7 +111,7 @@ export class CrearEquipoComponent implements OnInit {
       }, error => {
         this.toastr.error('Ocurrió un error al agregar equipo', 'Error');
       }
-    )
+    );
   }
 
   abrirModalPerson(modalPersona: any, tipo: string) {
@@ -103,19 +146,19 @@ export class CrearEquipoComponent implements OnInit {
 
     switch (this.tipoPersona) {
       case "dt":
-        persona.IdRol = 2;
-        this.formEquipo.controls["DirectorTecnico"].setValue(persona.NombreApellido);
+        persona.idRol = 2;
+        this.formEquipo.controls["DirectorTecnico"].setValue(persona.nombreApellido);
         break;
       case "at":
-        persona.IdRol = 3;
-        this.formEquipo.controls["AsistenteTecnico"].setValue(persona.NombreApellido);
+        persona.idRol = 3;
+        this.formEquipo.controls["AsistenteTecnico"].setValue(persona.nombreApellido);
         break;
       case "pf":
-        persona.IdRol = 4;
-        this.formEquipo.controls["PreparadorFisico"].setValue(persona.NombreApellido);
+        persona.idRol = 4;
+        this.formEquipo.controls["PreparadorFisico"].setValue(persona.nombreApellido);
         break;
       case "jug":
-        persona.IdRol = 1;
+        persona.idRol = 1;
         break;
       default:
         break;
@@ -137,12 +180,17 @@ export class CrearEquipoComponent implements OnInit {
   }
 
   editarJugador(modalPersona: any, jugador: PersonaDTO) {
+    var fecha = jugador.fechaNacimiento;
+    var index = fecha?.indexOf('T');
+    if (index != -1)
+      var fecha = fecha?.substring(0, index);
+
     this.formPersona.patchValue({
-      NombreApellido: jugador.NombreApellido,
-      NumDocumento: jugador.NumDocumento,
-      FechaNacimiento: jugador.FechaNacimiento,
-      Telefono: jugador.Telefono,
-      Email: jugador.Email
+      nombreApellido: jugador.nombreApellido,
+      numDocumento: jugador.numDocumento,
+      fechaNacimiento: fecha,
+      telefono: jugador.telefono,
+      email: jugador.email
     });
     this.modalService.open(modalPersona);
   }

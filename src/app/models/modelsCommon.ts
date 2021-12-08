@@ -4,15 +4,24 @@ export interface EquipoDTO {
     CuerpoTecnico?: PersonaDTO[],
 }
 
+export interface ListaEquiposDTO {
+    idEquipo?: number,
+    nombreEquipo?: string,
+    directorTecnico?: string,
+    asistenteTecnico?: string,
+    preparadorFisico?: string,
+    estado?: boolean
+}
+
 export interface PersonaDTO {
-    IdPersona?: number,
-    NombreApellido?: string,
-    NumDocumento?: string,
-    FechaNacimiento?: string,
-    Telefono?: string,
-    Email?: string,
-    IdRol?: number,
-    IdEquipo?: number
+    idPersona?: number,
+    nombreApellido?: string,
+    numDocumento?: string,
+    fechaNacimiento?: string,
+    telefono?: string,
+    email?: string,
+    idRol?: number,
+    idEquipo?: number
 }
 
 export interface EstadoPartidoDTO {

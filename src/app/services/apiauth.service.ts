@@ -26,6 +26,11 @@ export class ApiauthService {
         return this.usuarioSubject.value;
     }
 
+    // retorna los headers para las peticiones
+    public getHeaders() {
+        return httpOption;
+    }
+
     constructor(
         private _http: HttpClient
     ) { 

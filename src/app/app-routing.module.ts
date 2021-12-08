@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
   { path: 'gestion-equipos', component: GestionEquiposComponent, canActivate: [AuthGuard] },
-  { path: 'crear-equipo', component: CrearEquipoComponent, canActivate: [AuthGuard] },
+  { path: 'crear-equipo/:id', component: CrearEquipoComponent, canActivate: [AuthGuard] },
   { path: 'gestion-partidos', component: GestionPartidosComponent, canActivate: [AuthGuard] },
   { path: 'crear-campeonato', component: CrearCampeonatoComponent, canActivate: [AuthGuard] },
 ];
