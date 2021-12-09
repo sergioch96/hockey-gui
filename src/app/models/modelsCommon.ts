@@ -30,19 +30,30 @@ export interface EstadoPartidoDTO {
 }
 
 export interface PartidoDTO {
-    IdPartido?: number
-    FechaTorneo?: string,
-    Estado?: string,
-    IdEstado?: number,
-    Dia?: string,
-    Hora?: string,
-    EquipoLocal?: string,
-    IdEquipoLocal?: number,
-    EquipoVisitante?: string,
-    IdEquipoVisitante?: number,
-    GolesLocal?: number,
-    GolesVisitante?: number,
-    Arbitro1?: string,
-    Arbitro2?: string,
-    Juez?: string
+    idPartido?: number
+    fechaTorneo?: string,
+    estado?: string,
+    idEstado?: number,
+    dia?: string,
+    hora?: string,
+    equipoLocal?: string,
+    idEquipoLocal?: number,
+    equipoVisitante?: string,
+    idEquipoVisitante?: number,
+    golesLocal?: number,
+    golesVisitante?: number,
+    arbitro1?: string,
+    arbitro2?: string,
+    juez?: string
+}
+
+export interface EmparejamientoDTO {
+    local: number,
+    visitante: number
+}
+
+export interface NumeroParticipanteDTO {
+    idEquipo?: number,
+    nombreEquipo?: string,
+    numero?: number
 }

@@ -76,44 +76,44 @@
                         </thead>
                         <tbody *ngIf="listaPartidos && listaPartidos.length > 0; else vacio">
                             <tr *ngFor="let partido of listaPartidos; let i = index">
-                                <td class="text-center">{{ partido.FechaTorneo }}</td>
-                                <td class="text-center">{{ partido.Estado }}</td>
-                                <td class="text-center">{{ partido.Dia }}</td>
-                                <td class="text-center">{{ partido.Hora }}</td>
+                                <td class="text-center">{{ partido.fechaTorneo }}</td>
+                                <td class="text-center">{{ partido.estado }}</td>
+                                <td class="text-center">{{ partido.dia }}</td>
+                                <td class="text-center">{{ partido.hora }}</td>
                                 <td>
                                     <i class="fab fa-angular" 
                                     [ngClass]="{
-                                        'text-danger': partido.EquipoLocal == 'Deportivo Rojo',
-                                        'text-orange': partido.EquipoLocal == 'Deportivo Naranja',
-                                        'text-success': partido.EquipoLocal == 'Deportivo Verde',
-                                        'text-violet': partido.EquipoLocal == 'Deportivo Violeta',
-                                        'text-blue': partido.EquipoLocal == 'Deportivo Azul',
-                                        'text-yellow': partido.EquipoLocal == 'Deportivo Amarillo',
-                                        'text-secondary': partido.EquipoLocal == 'Deportivo Gris',
-                                        'text-celeste': partido.EquipoLocal == 'Deportivo Celeste',
-                                        'text-bordo': partido.EquipoLocal == 'Deportivo Bordo'
+                                        'text-danger': partido.equipoLocal == 'Deportivo Rojo',
+                                        'text-orange': partido.equipoLocal == 'Deportivo Naranja',
+                                        'text-success': partido.equipoLocal == 'Deportivo Verde',
+                                        'text-violet': partido.equipoLocal == 'Deportivo Violeta',
+                                        'text-blue': partido.equipoLocal == 'Deportivo Azul',
+                                        'text-yellow': partido.equipoLocal == 'Deportivo Amarillo',
+                                        'text-secondary': partido.equipoLocal == 'Deportivo Gris',
+                                        'text-celeste': partido.equipoLocal == 'Deportivo Celeste',
+                                        'text-bordo': partido.equipoLocal == 'Deportivo Bordo'
                                     }">
                                     </i>
-                                    {{ partido.EquipoLocal }}
+                                    {{ partido.equipoLocal }}
                                 </td>
-                                <td class="text-center">{{ partido.GolesLocal }}</td>
+                                <td class="text-center">{{ partido.golesLocal }}</td>
                                 <td>
                                     <i class="fab fa-angular" 
                                     [ngClass]="{
-                                        'text-danger': partido.EquipoVisitante == 'Deportivo Rojo',
-                                        'text-orange': partido.EquipoVisitante == 'Deportivo Naranja',
-                                        'text-success': partido.EquipoVisitante == 'Deportivo Verde',
-                                        'text-violet': partido.EquipoVisitante == 'Deportivo Violeta',
-                                        'text-blue': partido.EquipoVisitante == 'Deportivo Azul',
-                                        'text-yellow': partido.EquipoVisitante == 'Deportivo Amarillo',
-                                        'text-secondary': partido.EquipoVisitante == 'Deportivo Gris',
-                                        'text-celeste': partido.EquipoVisitante == 'Deportivo Celeste',
-                                        'text-bordo': partido.EquipoVisitante == 'Deportivo Bordo'
+                                        'text-danger': partido.equipoVisitante == 'Deportivo Rojo',
+                                        'text-orange': partido.equipoVisitante == 'Deportivo Naranja',
+                                        'text-success': partido.equipoVisitante == 'Deportivo Verde',
+                                        'text-violet': partido.equipoVisitante == 'Deportivo Violeta',
+                                        'text-blue': partido.equipoVisitante == 'Deportivo Azul',
+                                        'text-yellow': partido.equipoVisitante == 'Deportivo Amarillo',
+                                        'text-secondary': partido.equipoVisitante == 'Deportivo Gris',
+                                        'text-celeste': partido.equipoVisitante == 'Deportivo Celeste',
+                                        'text-bordo': partido.equipoVisitante == 'Deportivo Bordo'
                                     }">
                                     </i>
-                                    {{ partido.EquipoVisitante }}
+                                    {{ partido.equipoVisitante }}
                                 </td>
-                                <td class="text-center">{{ partido.GolesVisitante }}</td>
+                                <td class="text-center">{{ partido.golesVisitante }}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary me-1" (click)="mostrarProgramar(modalProgramar, partido)">
                                         <i class="fas fa-edit"></i>

@@ -79,10 +79,10 @@ export class GestionPartidosComponent implements OnInit {
       dia = moment(this.filtroFecha).format('DD/MM/YYYY');
     
     this.listaPartidos = this._listaPartidos.filter(x => 
-      (this.filtroEstado == "" || x.Estado == this.filtroEstado)
-      && (this.filtroFechaTorneo == "" || x.FechaTorneo == this.filtroFechaTorneo)
-      && (this.filtroEquipo == "" || x.EquipoLocal == this.filtroEquipo || x.EquipoVisitante == this.filtroEquipo)
-      && (this.filtroFecha == "" || x.Dia == dia)
+      (this.filtroEstado == "" || x.estado == this.filtroEstado)
+      && (this.filtroFechaTorneo == "" || x.fechaTorneo == this.filtroFechaTorneo)
+      && (this.filtroEquipo == "" || x.equipoLocal == this.filtroEquipo || x.equipoVisitante == this.filtroEquipo)
+      && (this.filtroFecha == "" || x.dia == dia)
     );
   }
 
@@ -94,34 +94,34 @@ export class GestionPartidosComponent implements OnInit {
   }
 
   mostrarProgramar(modalProgramar: any, par: PartidoDTO) {
-    var partido = this._listaPartidos.find(x => x.IdPartido == par.IdPartido);
-    this.equipo1Programar = partido?.EquipoLocal;
-    this.equipo2Programar = partido?.EquipoVisitante;
-    this.fechaTorneoProgramar = partido?.FechaTorneo;
+    var partido = this._listaPartidos.find(x => x.idPartido == par.idPartido);
+    this.equipo1Programar = partido?.equipoLocal;
+    this.equipo2Programar = partido?.equipoVisitante;
+    this.fechaTorneoProgramar = partido?.fechaTorneo;
     this.partidoSeleccionado = par;
 
     this.modalService.open(modalProgramar);
   }
 
   programarPartido() {
-    var result = this._listaPartidos.find(x => x.IdPartido == this.partidoSeleccionado.IdPartido);
+    var result = this._listaPartidos.find(x => x.idPartido == this.partidoSeleccionado.idPartido);
     
-    if (result?.Estado != "Pendiente") {
+    if (result?.estado != "Pendiente") {
       this.toastr.error('El partido seleccionado ya fue programado', 'Error');
       this.limpiarModal();
       return;
     }
 
     const partido: PartidoDTO = {
-      IdPartido: result?.IdPartido,
-      FechaTorneo: result?.FechaTorneo,
-      Estado: "Programado",
-      Dia: moment(this.fechaProgramar).format('DD/MM/YYYY'),
-      Hora: this.horaProgramar,
-      EquipoLocal: result?.EquipoLocal,
-      GolesLocal: 0,
-      EquipoVisitante: result?.EquipoVisitante,
-      GolesVisitante: 0,
+      idPartido: result?.idPartido,
+      fechaTorneo: result?.fechaTorneo,
+      estado: "Programado",
+      dia: moment(this.fechaProgramar).format('DD/MM/YYYY'),
+      hora: this.horaProgramar,
+      equipoLocal: result?.equipoLocal,
+      golesLocal: 0,
+      equipoVisitante: result?.equipoVisitante,
+      golesVisitante: 0,
     }
 
     const index = this._listaPartidos.indexOf(this.partidoSeleccionado);
@@ -148,36 +148,36 @@ export class GestionPartidosComponent implements OnInit {
   }
 
   mostrarCargar(modalCargar: any, par: PartidoDTO) {
-    var partido = this._listaPartidos.find(x => x.IdPartido == par.IdPartido);
-    this.equipo1Programar = partido?.EquipoLocal;
-    this.equipo2Programar = partido?.EquipoVisitante;
-    this.fechaTorneoProgramar = partido?.FechaTorneo;
-    this.diaCargar = partido?.Dia;
-    this.horaCargar = partido?.Hora;
+    var partido = this._listaPartidos.find(x => x.idPartido == par.idPartido);
+    this.equipo1Programar = partido?.equipoLocal;
+    this.equipo2Programar = partido?.equipoVisitante;
+    this.fechaTorneoProgramar = partido?.fechaTorneo;
+    this.diaCargar = partido?.dia;
+    this.horaCargar = partido?.hora;
     this.partidoSeleccionado = par;
 
     this.modalService.open(modalCargar, { size: 'xl' });
   }
 
   cargarPartido() {
-    var result = this._listaPartidos.find(x => x.IdPartido == this.partidoSeleccionado.IdPartido);
+    var result = this._listaPartidos.find(x => x.idPartido == this.partidoSeleccionado.idPartido);
     
-    if (result?.Estado != "Programado") {
+    if (result?.estado != "Programado") {
       this.toastr.error('El partido seleccionado debe tener un estado programado para cargar', 'Error');
       this.limpiarModal();
       return;
     }
 
     const partido: PartidoDTO = {
-      IdPartido: result?.IdPartido,
-      FechaTorneo: result?.FechaTorneo,
-      Estado: "Finalizado",
-      Dia: result.Dia,
-      Hora: result.Hora,
-      EquipoLocal: result?.EquipoLocal,
-      GolesLocal: this.golesLocal,
-      EquipoVisitante: result?.EquipoVisitante,
-      GolesVisitante: this.golesVisitante,
+      idPartido: result?.idPartido,
+      fechaTorneo: result?.fechaTorneo,
+      estado: "Finalizado",
+      dia: result.dia,
+      hora: result.hora,
+      equipoLocal: result?.equipoLocal,
+      golesLocal: this.golesLocal,
+      equipoVisitante: result?.equipoVisitante,
+      golesVisitante: this.golesVisitante,
     }
 
     const index = this._listaPartidos.indexOf(this.partidoSeleccionado);

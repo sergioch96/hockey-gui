@@ -1,147 +1,167 @@
-<div class="row mt-4">
-    <div class="col-lg-8 offset-lg-2">
-        <h3 class="">Crear Campeonato</h3>
+<div class="row ms-4">
+    <div class="row mt-3">
+        <div class="col-12">
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="nounderline" href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Crear Campeonato</li>
+                </ol>
+            </nav>
+        </div>
     </div>
-</div>
 
-<div class="row mt-4 ms-4">
-    <div class="col-12">
-        <div class="row mb-3">
-            <label for="selectTipoTorneo" class="col-2 col-form-label">
-                Tipo de Torneo
-            </label>
-            <div class="col-4">
-                <select [(ngModel)]="tipoTorneo" name="tipoTorneo" id="selectTipoTorneo" class="form-select">
-                    <option *ngFor="let tipo of _tiposTorneo" [value]="tipo">{{tipo}}</option>
-                </select>
+    <div class="row mt-4">
+        <div class="col-lg-8">
+            <h3 class="">Crear Campeonato</h3>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="row mb-3">
+                <label for="selectTipoTorneo" class="col-2 col-form-label">
+                    Tipo de Torneo
+                </label>
+                <div class="col-4">
+                    <select [(ngModel)]="tipoTorneo" name="tipoTorneo" id="selectTipoTorneo" class="form-select">
+                        <option *ngFor="let tipo of _tiposTorneo" [value]="tipo">{{tipo}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row my-3">
+                <label for="ruedas" class="col-2 col-form-label">
+                    Cantidad de ruedas
+                </label>
+                <div class="col-4">
+                    <input [(ngModel)]="rueda" name="rueda" value="0" type="number" max="2" min="1">
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-12 text-center">
-            <h4 *ngIf="tipoTorneo != ''">Torneo {{ tipoTorneo }} 2021</h4>
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <h4 *ngIf="tipoTorneo != ''">Torneo {{ tipoTorneo }} 2022</h4>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="mt-4 mb-5 col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h6 class="titulo d-inline">ASIGNAR EQUIPOS AL TORNEO</h6>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <h5 class="mb-4">Equipos disponibles</h5>
-                            <div class="list-group" *ngFor="let equipo of _equiposDisponibles">
-                                <a (click)="asignarEquipo(equipo)" class="list-group-item list-group-item-action"> 
-                                    <i class="fab fa-angular" 
-                                        [ngClass]="{
-                                        'text-danger': equipo.NombreEquipo == 'Deportivo Rojo',
-                                        'text-orange': equipo.NombreEquipo == 'Deportivo Naranja',
-                                        'text-success': equipo.NombreEquipo == 'Deportivo Verde',
-                                        'text-violet': equipo.NombreEquipo == 'Deportivo Violeta',
-                                        'text-blue': equipo.NombreEquipo == 'Deportivo Azul',
-                                        'text-yellow': equipo.NombreEquipo == 'Deportivo Amarillo',
-                                        'text-secondary': equipo.NombreEquipo == 'Deportivo Gris',
-                                        'text-celeste': equipo.NombreEquipo == 'Deportivo Celeste',
-                                        'text-bordo': equipo.NombreEquipo == 'Deportivo Bordo'
-                                        }">
-                                    </i>
-                                    {{equipo.NombreEquipo}} <span class="float-end"><i class="fas fa-arrow-right"></i></span>
-                                </a>
+        <div class="row">
+            <div class="mt-4 mb-5 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="titulo d-inline">ASIGNAR EQUIPOS AL TORNEO</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <h5 class="mb-4">Equipos disponibles</h5>
+                                <div class="list-group" *ngFor="let equipo of equiposDisponibles">
+                                    <a (click)="asignarEquipo(equipo)" class="list-group-item list-group-item-action"> 
+                                        <i class="fab fa-angular" 
+                                            [ngClass]="{
+                                            'text-danger': equipo.nombreEquipo == 'Deportivo Rojo',
+                                            'text-orange': equipo.nombreEquipo == 'Deportivo Naranja',
+                                            'text-success': equipo.nombreEquipo == 'Deportivo Verde',
+                                            'text-violet': equipo.nombreEquipo == 'Deportivo Violeta',
+                                            'text-blue': equipo.nombreEquipo == 'Deportivo Azul',
+                                            'text-yellow': equipo.nombreEquipo == 'Deportivo Amarillo',
+                                            'text-secondary': equipo.nombreEquipo == 'Deportivo Gris',
+                                            'text-celeste': equipo.nombreEquipo == 'Deportivo Celeste',
+                                            'text-bordo': equipo.nombreEquipo == 'Deportivo Bordo'
+                                            }">
+                                        </i>
+                                        {{equipo.nombreEquipo}} <span class="float-end"><i class="fas fa-arrow-right"></i></span>
+                                    </a>
+                                </div>
+                                <li class="center-align" *ngIf="equiposDisponibles && equiposDisponibles.length == 0">No existen equipos disponibles</li>
                             </div>
-                            <li class="center-align" *ngIf="_equiposDisponibles && _equiposDisponibles.length == 0">No existen equipos disponibles</li>
+                            <div class="col-md-5 offset-md-1">
+                                <h5 class="mb-4">Equipos asignados</h5>
+                                <div class="list-group" *ngFor="let equipo of equiposAsignados">
+                                    <a (click)="desasignarEquipo(equipo)" class="list-group-item list-group-item-action">
+                                        <i class="fab fa-angular" 
+                                            [ngClass]="{
+                                            'text-danger': equipo.nombreEquipo == 'Deportivo Rojo',
+                                            'text-orange': equipo.nombreEquipo == 'Deportivo Naranja',
+                                            'text-success': equipo.nombreEquipo == 'Deportivo Verde',
+                                            'text-violet': equipo.nombreEquipo == 'Deportivo Violeta',
+                                            'text-blue': equipo.nombreEquipo == 'Deportivo Azul',
+                                            'text-yellow': equipo.nombreEquipo == 'Deportivo Amarillo',
+                                            'text-secondary': equipo.nombreEquipo == 'Deportivo Gris',
+                                            'text-celeste': equipo.nombreEquipo == 'Deportivo Celeste',
+                                            'text-bordo': equipo.nombreEquipo == 'Deportivo Bordo'
+                                            }">
+                                        </i>
+                                        {{equipo.nombreEquipo}} <span class="float-end"><i class="fas fa-arrow-left"></i></span>
+                                    </a>
+                                </div>
+                                <li class="center-align" *ngIf="equiposAsignados && equiposAsignados.length == 0">Selecione los equipos a participar</li>
+                            </div>
                         </div>
-                        <div class="col-md-5 offset-md-1">
-                            <h5 class="mb-4">Equipos asignados</h5>
-                            <div class="list-group" *ngFor="let equipo of equiposAsignados">
-                                <a (click)="desasignarEquipo(equipo)" class="list-group-item list-group-item-action">
-                                    <i class="fab fa-angular" 
-                                        [ngClass]="{
-                                        'text-danger': equipo.NombreEquipo == 'Deportivo Rojo',
-                                        'text-orange': equipo.NombreEquipo == 'Deportivo Naranja',
-                                        'text-success': equipo.NombreEquipo == 'Deportivo Verde',
-                                        'text-violet': equipo.NombreEquipo == 'Deportivo Violeta',
-                                        'text-blue': equipo.NombreEquipo == 'Deportivo Azul',
-                                        'text-yellow': equipo.NombreEquipo == 'Deportivo Amarillo',
-                                        'text-secondary': equipo.NombreEquipo == 'Deportivo Gris',
-                                        'text-celeste': equipo.NombreEquipo == 'Deportivo Celeste',
-                                        'text-bordo': equipo.NombreEquipo == 'Deportivo Bordo'
-                                        }">
-                                    </i>
-                                    {{equipo.NombreEquipo}} <span class="float-end"><i class="fas fa-arrow-left"></i></span>
-                                </a>
+                        <div class="row my-4">
+                            <div class="col-11 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary" (click)="generarPartidos()">Generar Emparejamientos</button>
                             </div>
-                            <li class="center-align" *ngIf="equiposAsignados && equiposAsignados.length == 0">Selecione los equipos a participar</li>
                         </div>
                     </div>
-                    <div class="row my-4">
-                        <div class="col-11 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary" (click)="generarPartidos()">Generar Emparejamientos</button>
-                        </div>
+                </div>
+            </div>
+        </div>
+        <div id="emparejamientos" class="row d-none">
+            <div class="mt-4 mb-5 col-md-10 offset-md-1">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="titulo d-inline">Emparejamientos del Torneo {{ tipoTorneo }} 2022 </h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Equipo local</th>
+                                    <th></th>
+                                    <th scope="col">Equipo visitante</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let partido of encuentrosProgramados">
+                                    <td>
+                                        {{ partido.fechaTorneo }}
+                                    </td>
+                                    <td>
+                                        <i class="fab fa-angular" [ngClass]="{
+                                        'text-danger': partido.equipoLocal == 'Deportivo Rojo',
+                                        'text-orange': partido.equipoLocal == 'Deportivo Naranja',
+                                        'text-success': partido.equipoLocal == 'Deportivo Verde',
+                                        'text-violet': partido.equipoLocal == 'Deportivo Violeta',
+                                        'text-blue': partido.equipoLocal == 'Deportivo Azul',
+                                        'text-yellow': partido.equipoLocal == 'Deportivo Amarillo',
+                                        'text-secondary': partido.equipoLocal == 'Deportivo Gris',
+                                        'text-celeste': partido.equipoLocal == 'Deportivo Celeste',
+                                        'text-bordo': partido.equipoLocal == 'Deportivo Bordo'
+                                        }">
+                                        </i>
+                                        {{ partido.equipoLocal }}
+                                    </td>
+                                    <td>VS</td>
+                                    <td>
+                                        <i class="fab fa-angular" [ngClass]="{
+                                        'text-danger': partido.equipoVisitante == 'Deportivo Rojo',
+                                        'text-orange': partido.equipoVisitante == 'Deportivo Naranja',
+                                        'text-success': partido.equipoVisitante == 'Deportivo Verde',
+                                        'text-violet': partido.equipoVisitante == 'Deportivo Violeta',
+                                        'text-blue': partido.equipoVisitante == 'Deportivo Azul',
+                                        'text-yellow': partido.equipoVisitante == 'Deportivo Amarillo',
+                                        'text-secondary': partido.equipoVisitante == 'Deportivo Gris',
+                                        'text-celeste': partido.equipoVisitante == 'Deportivo Celeste',
+                                        'text-bordo': partido.equipoVisitante == 'Deportivo Bordo'
+                                        }">
+                                        </i>
+                                        {{ partido.equipoVisitante }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="emparejamientos" class="row d-none">
-        <div class="mt-4 mb-5 col-md-10 offset-md-1">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="titulo d-inline">Emparejamientos del Torneo {{ tipoTorneo }} 2021 </h5>
-                </div>
-                <div class="card-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Equipo local</th>
-                                <th></th>
-                                <th scope="col">Equipo visitante</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let partido of encuentros">
-                                <td>
-                                    {{ partido.fecha }}
-                                </td>
-                                <td>
-                                    <i class="fab fa-angular" [ngClass]="{
-                                    'text-danger': partido.equipoLocal == 'Deportivo Rojo',
-                                    'text-orange': partido.equipoLocal == 'Deportivo Naranja',
-                                    'text-success': partido.equipoLocal == 'Deportivo Verde',
-                                    'text-violet': partido.equipoLocal == 'Deportivo Violeta',
-                                    'text-blue': partido.equipoLocal == 'Deportivo Azul',
-                                    'text-yellow': partido.equipoLocal == 'Deportivo Amarillo',
-                                    'text-secondary': partido.equipoLocal == 'Deportivo Gris',
-                                    'text-celeste': partido.equipoLocal == 'Deportivo Celeste',
-                                    'text-bordo': partido.equipoLocal == 'Deportivo Bordo'
-                                    }">
-                                    </i>
-                                    {{ partido.equipoLocal }}
-                                </td>
-                                <td>VS</td>
-                                <td>
-                                    <i class="fab fa-angular" [ngClass]="{
-                                    'text-danger': partido.equipoVisitante == 'Deportivo Rojo',
-                                    'text-orange': partido.equipoVisitante == 'Deportivo Naranja',
-                                    'text-success': partido.equipoVisitante == 'Deportivo Verde',
-                                    'text-violet': partido.equipoVisitante == 'Deportivo Violeta',
-                                    'text-blue': partido.equipoVisitante == 'Deportivo Azul',
-                                    'text-yellow': partido.equipoVisitante == 'Deportivo Amarillo',
-                                    'text-secondary': partido.equipoVisitante == 'Deportivo Gris',
-                                    'text-celeste': partido.equipoVisitante == 'Deportivo Celeste',
-                                    'text-bordo': partido.equipoVisitante == 'Deportivo Bordo'
-                                    }">
-                                    </i>
-                                    {{ partido.equipoVisitante }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-
