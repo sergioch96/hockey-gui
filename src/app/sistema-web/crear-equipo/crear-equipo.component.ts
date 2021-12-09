@@ -17,9 +17,10 @@ export class CrearEquipoComponent implements OnInit {
   listaJugadores: PersonaDTO[] = [];
   formEquipo: FormGroup;
   formPersona: FormGroup;
-  idEquipo: number | undefined;
+  idEquipo: number = 0;
   idJugador: number | undefined;
   tituloModalPersona: string = "";
+  tituloVista: string = "Crear";
   tipoPersona: string = "";
   cuerpoTecnico: PersonaDTO[] = [];
 
@@ -40,6 +41,7 @@ export class CrearEquipoComponent implements OnInit {
     })
 
     this.formPersona = this.fb.group({
+      idPersona: [''],
       nombreApellido: ['', Validators.required],
       numDocumento: ['', [Validators.required]],
       fechaNacimiento: ['', [Validators.required]],
@@ -72,6 +74,8 @@ export class CrearEquipoComponent implements OnInit {
             PreparadorFisico: equipo.preparadorFisico,
           });
           document.getElementById('btnAddEquipo')?.classList.add('d-none');
+
+          this.tituloVista = "Editar";
         }
       }, error => {
         this.toastr.error('Ocurrio un error al intentar recuperar el equipo seleccionado');
@@ -82,7 +86,6 @@ export class CrearEquipoComponent implements OnInit {
   getJugadoresPorEquipo(idEquipo: number) {
     this._jugadorService.getJugadoresPorEquipo(idEquipo).subscribe(
       resultado => {
-        console.log(resultado.data);
         if (resultado.exito === 0) {
           this.listaJugadores = resultado.data;
         }
@@ -115,22 +118,21 @@ export class CrearEquipoComponent implements OnInit {
   }
 
   abrirModalPerson(modalPersona: any, tipo: string) {
-
     switch (tipo) {
       case "dt":
-        this.tituloModalPersona = "Director Técnico";
+        this.tituloModalPersona = "Agregar Director Técnico";
         this.tipoPersona = tipo;
         break;
       case "at":
-        this.tituloModalPersona = "Asistente Técnico";
+        this.tituloModalPersona = "Agregar Asistente Técnico";
         this.tipoPersona = tipo;
         break;
       case "pf":
-        this.tituloModalPersona = "Preparador Físico";
+        this.tituloModalPersona = "Agregar Preparador Físico";
         this.tipoPersona = tipo;
         break;
       case "jug":
-        this.tituloModalPersona = "Jugador";
+        this.tituloModalPersona = "Agregar Jugador";
         this.tipoPersona = tipo;
         break;
       default:
@@ -140,8 +142,7 @@ export class CrearEquipoComponent implements OnInit {
     this.modalService.open(modalPersona);
   }
 
-  agregarPersona() {
-    
+  guardarPersona() {
     const persona: PersonaDTO = this.formPersona.value;
 
     switch (this.tipoPersona) {
@@ -159,24 +160,40 @@ export class CrearEquipoComponent implements OnInit {
         break;
       case "jug":
         persona.idRol = 1;
+        persona.idEquipo = this.idEquipo;
         break;
       default:
         break;
     }
 
     if (this.tipoPersona == "jug") {
-      this.listaJugadores.push(persona);
-      this.toastr.success('Se agrego el jugador al equipo', 'Jugador agregado');
+      this.guardarJugador(persona);
     } else {
       this.toastr.success('Miembro del cuerpo técnico agregado correctamente', 'Éxito');
+      persona.idPersona = 0;
       this.cuerpoTecnico.push(persona);
     }
 
     this.modalService.dismissAll();
   }
 
-  agregarJugador(jugador: PersonaDTO) {
+  guardarJugador(jugador: PersonaDTO) {
+    jugador.idPersona = jugador.idPersona == null ? 0 : jugador.idPersona;
     
+    this._jugadorService.guardarJugador(jugador).subscribe(
+      resultado => {
+        if (resultado.exito === 0) {
+          this.getJugadoresPorEquipo(this.idEquipo);
+          
+          if (jugador.idPersona)
+            this.toastr.success('Se actualizo datos del jugador', 'Jugador actualizado');
+          else
+            this.toastr.success('Se agrego jugador al equipo', 'Jugador agregado');
+        }
+      }, error => {
+        this.toastr.error('Ocurrio un error al guardar datos del jugador');
+      }
+    )
   }
 
   editarJugador(modalPersona: any, jugador: PersonaDTO) {
@@ -186,12 +203,16 @@ export class CrearEquipoComponent implements OnInit {
       var fecha = fecha?.substring(0, index);
 
     this.formPersona.patchValue({
+      idPersona: jugador.idPersona,
       nombreApellido: jugador.nombreApellido,
       numDocumento: jugador.numDocumento,
       fechaNacimiento: fecha,
       telefono: jugador.telefono,
       email: jugador.email
     });
+
+    this.tituloModalPersona = "Editar Jugador";
+    this.tipoPersona = "jug";
     this.modalService.open(modalPersona);
   }
 }

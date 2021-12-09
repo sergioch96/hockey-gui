@@ -3,9 +3,9 @@
         <div class="col-12">
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item" aria-current="page"><a [routerLink]="['/gestion-equipos']">Gestión de equipos</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Crear equipo</li>
+                <li class="breadcrumb-item"><a class="nounderline" href="#">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a class="nounderline" [routerLink]="['/gestion-equipos']">Gestión de equipos</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ tituloVista }} equipo</li>
                 </ol>
             </nav>
         </div>
@@ -13,7 +13,7 @@
 
     <div class="row mt-4">
         <div class="col-lg-8">
-            <h3 class="">Crear equipo</h3>
+            <h3 class="">{{ tituloVista }} equipo</h3>
         </div>
     </div>
 
@@ -123,10 +123,10 @@
 <!-- Modal Persona -->
 <ng-template #modalPersona let-modal>
     <div class="modal-header bg-primary">
-        <h5 class="modal-title text-white">Agregar {{ tituloModalPersona }}</h5>
+        <h5 class="modal-title text-white">{{ tituloModalPersona }}</h5>
         <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
     </div>
-    <form [formGroup]="formPersona" (ngSubmit)="agregarPersona()">
+    <form [formGroup]="formPersona" (ngSubmit)="guardarPersona()">
         <div class="modal-body">
             <div class="container-fluid">
                 <div class="row mb-3">
