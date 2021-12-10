@@ -70,9 +70,9 @@ export const TIPO_TORNEO: string[] = [ 'Apertura', 'Clausura' ];
 //     { IdEquipo: 10, NombreEquipo: 'Deportivo Verde' }
 // ];
 
-export const ARBITRO: string[] = [ 'Pedro Dominguez', 'Javier Benegas', 'Juan Cáceres', 'Federico Ruetalo', 'Gilberto Nandes' ];
+// export const ARBITRO: string[] = [ 'Pedro Dominguez', 'Javier Benegas', 'Juan Cáceres', 'Federico Ruetalo', 'Gilberto Nandes' ];
 
-export const JUEZ: string[] = [ 'Pablo Morales', 'Jesús Portillo', 'Elias Noguera', 'Derlis Gómez', 'Orlando Ríos' ];
+// export const JUEZ: string[] = [ 'Pablo Morales', 'Jesús Portillo', 'Elias Noguera', 'Derlis Gómez', 'Orlando Ríos' ];
 
 // export const PARTIDO: PartidoDTO[] = [
 //     { idPartido: 1, fechaTorneo: 'Fecha 1', estado: 'Finalizado', dia: '25/09/2021', hora: '17:00', equipoLocal: 'Deportivo Gris', 

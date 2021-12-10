@@ -193,7 +193,7 @@
                     </label>
                     <div class="col-md-6">
                         <select [(ngModel)]="arbitro1Programar" name="arbitro1Programar" id="selectArbitro1" class="form-select" aria-label="Default select example">
-                            <option *ngFor="let arbitro of arbitros" [value]="arbitro">{{arbitro}}</option>
+                            <option *ngFor="let arbitro of arbitros" [value]="arbitro.nombreApellido">{{arbitro.nombreApellido}}</option>
                         </select>
                     </div>
                 </div>
@@ -203,7 +203,7 @@
                     </label>
                     <div class="col-md-6">
                         <select [(ngModel)]="arbitro2Programar" name="arbitro2Programar" id="selectArbitro2" class="form-select" aria-label="Default select example">
-                            <option *ngFor="let arbitro of arbitros" [value]="arbitro">{{arbitro}}</option>
+                            <option *ngFor="let arbitro of arbitros" [value]="arbitro.nombreApellido">{{arbitro.nombreApellido}}</option>
                         </select>
                     </div>
                 </div>
@@ -213,7 +213,7 @@
                     </label>
                     <div class="col-md-6">
                         <select [(ngModel)]="juezProgramar" name="juezProgramar" id="selectJuez" class="form-select" aria-label="Default select example">
-                            <option *ngFor="let juez of jueces" [value]="juez">{{juez}}</option>
+                            <option *ngFor="let juez of jueces" [value]="juez.nombreApellido">{{juez.nombreApellido}}</option>
                         </select>
                     </div>
                 </div>

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-//import { BehaviorSubject, Observable } from 'rxjs';
-import { ARBITRO, JUEZ, JUGADOR } from 'src/app/datos-prueba/datos.json';
+import { JUGADOR } from 'src/app/datos-prueba/datos.json';
 import { ESTADO_PARTIDO } from 'src/app/models/constantes';
-import { ListaEquiposDTO, PartidoDTO } from 'src/app/models/modelsCommon';
+import { ListaEquiposDTO, PartidoDTO, PersonaDTO } from 'src/app/models/modelsCommon';
 import * as moment from 'moment'; 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { JugadorDTO } from 'src/app/datos-prueba/models-prueba';
 import { PartidoService } from 'src/app/services/partido.service';
 import { EquipoService } from 'src/app/services/equipo.service';
+import { AutoridadService } from 'src/app/services/autoridad.service';
 
 @Component({
   selector: 'app-gestion-partidos',
@@ -17,17 +17,14 @@ import { EquipoService } from 'src/app/services/equipo.service';
 })
 export class GestionPartidosComponent implements OnInit {
 
-  // private partidosSubject: BehaviorSubject<PartidoDTO[]>;
-  // public listPartido: Observable<PartidoDTO[]>;
-
   // lista original de partidos
   _listaPartidos: PartidoDTO[] = [];
   estados = ESTADO_PARTIDO;
   fechasTorneo: string[] = [];
   cantidadDeFechas: number = 0;
   equipos: ListaEquiposDTO[] = [];
-  arbitros = ARBITRO;
-  jueces = JUEZ;
+  arbitros: PersonaDTO[] = [];
+  jueces: PersonaDTO[] = [];
   jugadores = JUGADOR;
   jugadoresNegro: JugadorDTO[] = [];
   jugadoresRojo: JugadorDTO[] = [];
@@ -64,19 +61,14 @@ export class GestionPartidosComponent implements OnInit {
     private modalService: NgbModal,
     private toastr: ToastrService,
     private _partidoService: PartidoService,
-    private _equipoService: EquipoService
-  ) {
-    // this.partidosSubject = new BehaviorSubject<PartidoDTO[]>(PARTIDO);
-    // this.listPartido = this.partidosSubject.asObservable();
-
-    // this.listPartido.subscribe(res =>
-    //   this.listaPartidos = res
-    // );
-   }
+    private _equipoService: EquipoService,
+    private _autoridadService: AutoridadService
+  ) { }
 
   ngOnInit(): void {
     this.obtenerPartidos();
     this.obtenerEquipos();
+    this.obtenerAutoridades();
     this.jugadoresNegro = this.jugadores.filter(x => x.Equipo == 'Deportivo Negro');
     this.jugadoresRojo = this.jugadores.filter(x => x.Equipo == 'Deportivo Rojo');
   }
@@ -123,8 +115,23 @@ export class GestionPartidosComponent implements OnInit {
     );
   }
 
+  obtenerAutoridades() {
+    this._autoridadService.obtenerAutoridades().subscribe(
+      resultado => {
+        if (resultado.exito === 0) {
+          let autoridades: PersonaDTO[] = resultado.data;
+          this.arbitros = autoridades.filter(x => x.idRol == 5);
+          this.jueces = autoridades.filter(x => x.idRol == 6);
+        } else {
+          this.toastr.error(resultado.mensaje, 'Ocurrió un error al obtener arbitros y jueces');
+        }
+      }, error => {
+        this.toastr.error('Ocurrió un error al obtener arbitros y jueces', 'Error');
+      }
+    );
+  }
+
   filtrarPartidos() {
-    
     var dia: string = "";
     if (this.filtroFecha != "")
       dia = moment(this.filtroFecha).format('DD/MM/YYYY');
