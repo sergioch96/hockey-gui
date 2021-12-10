@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="titulo d-inline">LISTADO DE EQUIPOS</h5>
-                    <a class="btn btn-primary float-end" [routerLink]="['/crear-equipo', '']">Agregar Equipo</a>
+                    <a class="btn btn-primary float-end" [routerLink]="['/crear-equipo', '']" *ngIf="this._apiauthService.usuarioData.idTipoUsuario == 1">Agregar Equipo</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">

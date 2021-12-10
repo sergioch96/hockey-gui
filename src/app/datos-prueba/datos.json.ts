@@ -1,4 +1,4 @@
-import { EquipoDTO, PartidoDTO } from "../models/modelsCommon";
+//import { EquipoDTO, PartidoDTO } from "../models/modelsCommon";
 import { FixtureDTO, GoleadorDTO, JugadorDTO, TablaPosicionesDTO, TarjetaDTO } from "./models-prueba";
 
 export const TABLA_POSICIONES: TablaPosicionesDTO[] = [
@@ -27,98 +27,98 @@ export const PROXIMOS_ENCUENTROS: FixtureDTO[] = [
     { equipoLocal: 'Deportivo Celeste', equipoVisitante: 'Deportivo Naranja', fecha: '10/10/2021', hora: '20:00 hs' },
 ];
 
-export const EMPAREJAMIENTOS: FixtureDTO[] = [
-    { equipoLocal: 'Deportivo Violeta', equipoVisitante: 'Deportivo Rojo', fecha: 'fecha 1' },
-    { equipoLocal: 'Deportivo Naranja', equipoVisitante: 'Deportivo Verde', fecha: 'fecha 1' },
-    { equipoLocal: 'Deportivo Azul', equipoVisitante: 'Deportivo Negro', fecha: 'fecha 1' },
-    { equipoLocal: 'Deportivo Gris', equipoVisitante: 'Deportivo Amarillo', fecha: 'fecha 1' },
-    { equipoLocal: 'Deportivo Bordo', equipoVisitante: 'Deportivo Celeste', fecha: 'fecha 1' },
+// export const EMPAREJAMIENTOS: FixtureDTO[] = [
+//     { equipoLocal: 'Deportivo Violeta', equipoVisitante: 'Deportivo Rojo', fecha: 'fecha 1' },
+//     { equipoLocal: 'Deportivo Naranja', equipoVisitante: 'Deportivo Verde', fecha: 'fecha 1' },
+//     { equipoLocal: 'Deportivo Azul', equipoVisitante: 'Deportivo Negro', fecha: 'fecha 1' },
+//     { equipoLocal: 'Deportivo Gris', equipoVisitante: 'Deportivo Amarillo', fecha: 'fecha 1' },
+//     { equipoLocal: 'Deportivo Bordo', equipoVisitante: 'Deportivo Celeste', fecha: 'fecha 1' },
 
-    { equipoLocal: 'Deportivo Amarillo', equipoVisitante: 'Deportivo Violeta', fecha: 'fecha 2' },
-    { equipoLocal: 'Deportivo Rojo', equipoVisitante: 'Deportivo Azul', fecha: 'fecha 2' },
-    { equipoLocal: 'Deportivo Verde', equipoVisitante: 'Deportivo Gris', fecha: 'fecha 2' },
-    { equipoLocal: 'Deportivo Negro', equipoVisitante: 'Deportivo Bordo', fecha: 'fecha 2' },
-    { equipoLocal: 'Deportivo Celeste', equipoVisitante: 'Deportivo Naranja', fecha: 'fecha 2' },
+//     { equipoLocal: 'Deportivo Amarillo', equipoVisitante: 'Deportivo Violeta', fecha: 'fecha 2' },
+//     { equipoLocal: 'Deportivo Rojo', equipoVisitante: 'Deportivo Azul', fecha: 'fecha 2' },
+//     { equipoLocal: 'Deportivo Verde', equipoVisitante: 'Deportivo Gris', fecha: 'fecha 2' },
+//     { equipoLocal: 'Deportivo Negro', equipoVisitante: 'Deportivo Bordo', fecha: 'fecha 2' },
+//     { equipoLocal: 'Deportivo Celeste', equipoVisitante: 'Deportivo Naranja', fecha: 'fecha 2' },
 
-    { equipoLocal: 'Deportivo Amarillo', equipoVisitante: 'Deportivo Naranja', fecha: 'fecha 3' },
-    { equipoLocal: 'Deportivo Verde', equipoVisitante: 'Deportivo Azul', fecha: 'fecha 3' },
-    { equipoLocal: 'Deportivo Violeta', equipoVisitante: 'Deportivo Celeste', fecha: 'fecha 3' },
-    { equipoLocal: 'Deportivo Gris', equipoVisitante: 'Deportivo Rojo', fecha: 'fecha 3' },
-    { equipoLocal: 'Deportivo Negro', equipoVisitante: 'Deportivo Bordo', fecha: 'fecha 3' },
+//     { equipoLocal: 'Deportivo Amarillo', equipoVisitante: 'Deportivo Naranja', fecha: 'fecha 3' },
+//     { equipoLocal: 'Deportivo Verde', equipoVisitante: 'Deportivo Azul', fecha: 'fecha 3' },
+//     { equipoLocal: 'Deportivo Violeta', equipoVisitante: 'Deportivo Celeste', fecha: 'fecha 3' },
+//     { equipoLocal: 'Deportivo Gris', equipoVisitante: 'Deportivo Rojo', fecha: 'fecha 3' },
+//     { equipoLocal: 'Deportivo Negro', equipoVisitante: 'Deportivo Bordo', fecha: 'fecha 3' },
 
-    { equipoLocal: 'Deportivo Bordo', equipoVisitante: 'Deportivo Naranja', fecha: 'fecha 4' },
-    { equipoLocal: 'Deportivo Verde', equipoVisitante: 'Deportivo Violeta', fecha: 'fecha 4' },
-    { equipoLocal: 'Deportivo Rojo', equipoVisitante: 'Deportivo Amarillo', fecha: 'fecha 4' },
-    { equipoLocal: 'Deportivo Gris', equipoVisitante: 'Deportivo Azul', fecha: 'fecha 4' },
-    { equipoLocal: 'Deportivo Negro', equipoVisitante: 'Deportivo Celeste', fecha: 'fecha 4' }
-];
+//     { equipoLocal: 'Deportivo Bordo', equipoVisitante: 'Deportivo Naranja', fecha: 'fecha 4' },
+//     { equipoLocal: 'Deportivo Verde', equipoVisitante: 'Deportivo Violeta', fecha: 'fecha 4' },
+//     { equipoLocal: 'Deportivo Rojo', equipoVisitante: 'Deportivo Amarillo', fecha: 'fecha 4' },
+//     { equipoLocal: 'Deportivo Gris', equipoVisitante: 'Deportivo Azul', fecha: 'fecha 4' },
+//     { equipoLocal: 'Deportivo Negro', equipoVisitante: 'Deportivo Celeste', fecha: 'fecha 4' }
+// ];
 
-export const FECHA_TORNEO: string[] = [ 'Fecha 1', 'Fecha 2', 'Fecha 3', 'Fecha 4', 'Fecha 5', 'Fecha 6'];
+// export const FECHA_TORNEO: string[] = [ 'Fecha 1', 'Fecha 2', 'Fecha 3', 'Fecha 4', 'Fecha 5', 'Fecha 6'];
 
 export const TIPO_TORNEO: string[] = [ 'Apertura', 'Clausura' ];
 
-export const EQUIPO: EquipoDTO[] = [
-    { IdEquipo: 1, NombreEquipo: 'Deportivo Negro' },
-    { IdEquipo: 2, NombreEquipo: 'Deportivo Amarillo' },
-    { IdEquipo: 3, NombreEquipo: 'Deportivo Azul' },
-    { IdEquipo: 4, NombreEquipo: 'Deportivo Celeste' },
-    { IdEquipo: 5, NombreEquipo: 'Deportivo Rojo' },
-    { IdEquipo: 6, NombreEquipo: 'Deportivo Naranja' },
-    { IdEquipo: 7, NombreEquipo: 'Deportivo Bordo' },
-    { IdEquipo: 8, NombreEquipo: 'Deportivo Violeta' },
-    { IdEquipo: 9, NombreEquipo: 'Deportivo Gris' },
-    { IdEquipo: 10, NombreEquipo: 'Deportivo Verde' }
-];
+// export const EQUIPO: EquipoDTO[] = [
+//     { IdEquipo: 1, NombreEquipo: 'Deportivo Negro' },
+//     { IdEquipo: 2, NombreEquipo: 'Deportivo Amarillo' },
+//     { IdEquipo: 3, NombreEquipo: 'Deportivo Azul' },
+//     { IdEquipo: 4, NombreEquipo: 'Deportivo Celeste' },
+//     { IdEquipo: 5, NombreEquipo: 'Deportivo Rojo' },
+//     { IdEquipo: 6, NombreEquipo: 'Deportivo Naranja' },
+//     { IdEquipo: 7, NombreEquipo: 'Deportivo Bordo' },
+//     { IdEquipo: 8, NombreEquipo: 'Deportivo Violeta' },
+//     { IdEquipo: 9, NombreEquipo: 'Deportivo Gris' },
+//     { IdEquipo: 10, NombreEquipo: 'Deportivo Verde' }
+// ];
 
 export const ARBITRO: string[] = [ 'Pedro Dominguez', 'Javier Benegas', 'Juan Cáceres', 'Federico Ruetalo', 'Gilberto Nandes' ];
 
 export const JUEZ: string[] = [ 'Pablo Morales', 'Jesús Portillo', 'Elias Noguera', 'Derlis Gómez', 'Orlando Ríos' ];
 
-export const PARTIDO: PartidoDTO[] = [
-    { idPartido: 1, fechaTorneo: 'Fecha 1', estado: 'Finalizado', dia: '25/09/2021', hora: '17:00', equipoLocal: 'Deportivo Gris', 
-    golesLocal: 4, equipoVisitante: 'Deportivo Celeste', golesVisitante: 1 },
-    { idPartido: 2, fechaTorneo: 'Fecha 1', estado: 'Finalizado', dia: '25/09/2021', hora: '19:00', equipoLocal: 'Deportivo Verde', 
-    golesLocal: 2, equipoVisitante: 'Deportivo Negro', golesVisitante: 7 },
-    { idPartido: 3, fechaTorneo: 'Fecha 1', estado: 'Finalizado', dia: '26/09/2021', hora: '16:00', equipoLocal: 'Deportivo Amarillo', 
-    golesLocal: 3, equipoVisitante: 'Deportivo Rojo', golesVisitante: 2 },
-    { idPartido: 4, fechaTorneo: 'Fecha 1', estado: 'Finalizado', dia: '26/09/2021', hora: '18:00', equipoLocal: 'Deportivo Azul', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Violeta', golesVisitante: 0 },
-    { idPartido: 5, fechaTorneo: 'Fecha 1', estado: 'Finalizado', dia: '26/09/2021', hora: '20:00', equipoLocal: 'Deportivo Naranja', 
-    golesLocal: 5, equipoVisitante: 'Deportivo Bordo', golesVisitante: 1 },
+// export const PARTIDO: PartidoDTO[] = [
+//     { idPartido: 1, fechaTorneo: 'Fecha 1', estado: 'Finalizado', dia: '25/09/2021', hora: '17:00', equipoLocal: 'Deportivo Gris', 
+//     golesLocal: 4, equipoVisitante: 'Deportivo Celeste', golesVisitante: 1 },
+//     { idPartido: 2, fechaTorneo: 'Fecha 1', estado: 'Finalizado', dia: '25/09/2021', hora: '19:00', equipoLocal: 'Deportivo Verde', 
+//     golesLocal: 2, equipoVisitante: 'Deportivo Negro', golesVisitante: 7 },
+//     { idPartido: 3, fechaTorneo: 'Fecha 1', estado: 'Finalizado', dia: '26/09/2021', hora: '16:00', equipoLocal: 'Deportivo Amarillo', 
+//     golesLocal: 3, equipoVisitante: 'Deportivo Rojo', golesVisitante: 2 },
+//     { idPartido: 4, fechaTorneo: 'Fecha 1', estado: 'Finalizado', dia: '26/09/2021', hora: '18:00', equipoLocal: 'Deportivo Azul', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Violeta', golesVisitante: 0 },
+//     { idPartido: 5, fechaTorneo: 'Fecha 1', estado: 'Finalizado', dia: '26/09/2021', hora: '20:00', equipoLocal: 'Deportivo Naranja', 
+//     golesLocal: 5, equipoVisitante: 'Deportivo Bordo', golesVisitante: 1 },
 
-    { idPartido: 6, fechaTorneo: 'Fecha 2', estado: 'Programado', dia: '02/10/2021', hora: '17:00', equipoLocal: 'Deportivo Violeta', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Rojo', golesVisitante: 0 },
-    { idPartido: 7, fechaTorneo: 'Fecha 2', estado: 'Programado', dia: '02/10/2021', hora: '19:00', equipoLocal: 'Deportivo Naranja', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Verde', golesVisitante: 0 },
-    { idPartido: 8, fechaTorneo: 'Fecha 2', estado: 'Programado', dia: '03/10/2021', hora: '16:00', equipoLocal: 'Deportivo Azul', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Negro', golesVisitante: 0 },
-    { idPartido: 9, fechaTorneo: 'Fecha 2', estado: 'Programado', dia: '03/10/2021', hora: '18:00', equipoLocal: 'Deportivo Gris', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Amarillo', golesVisitante: 0 },
-    { idPartido: 10, fechaTorneo: 'Fecha 2', estado: 'Programado', dia: '03/10/2021', hora: '20:00', equipoLocal: 'Deportivo Bordo', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Celeste', golesVisitante: 0 },
+//     { idPartido: 6, fechaTorneo: 'Fecha 2', estado: 'Programado', dia: '02/10/2021', hora: '17:00', equipoLocal: 'Deportivo Violeta', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Rojo', golesVisitante: 0 },
+//     { idPartido: 7, fechaTorneo: 'Fecha 2', estado: 'Programado', dia: '02/10/2021', hora: '19:00', equipoLocal: 'Deportivo Naranja', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Verde', golesVisitante: 0 },
+//     { idPartido: 8, fechaTorneo: 'Fecha 2', estado: 'Programado', dia: '03/10/2021', hora: '16:00', equipoLocal: 'Deportivo Azul', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Negro', golesVisitante: 0 },
+//     { idPartido: 9, fechaTorneo: 'Fecha 2', estado: 'Programado', dia: '03/10/2021', hora: '18:00', equipoLocal: 'Deportivo Gris', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Amarillo', golesVisitante: 0 },
+//     { idPartido: 10, fechaTorneo: 'Fecha 2', estado: 'Programado', dia: '03/10/2021', hora: '20:00', equipoLocal: 'Deportivo Bordo', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Celeste', golesVisitante: 0 },
 
-    { idPartido: 11, fechaTorneo: 'Fecha 3', estado: 'Programado', dia: '09/10/2021', hora: '17:00', equipoLocal: 'Deportivo Amarillo', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Violeta', golesVisitante: 0 },
-    { idPartido: 12, fechaTorneo: 'Fecha 3', estado: 'Programado', dia: '09/10/2021', hora: '19:00', equipoLocal: 'Deportivo Rojo', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Azul', golesVisitante: 0 },
-    { idPartido: 13, fechaTorneo: 'Fecha 3', estado: 'Programado', dia: '10/10/2021', hora: '16:00', equipoLocal: 'Deportivo Verde', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Gris', golesVisitante: 0 },
-    { idPartido: 14, fechaTorneo: 'Fecha 3', estado: 'Programado', dia: '10/10/2021', hora: '18:00', equipoLocal: 'Deportivo Negro', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Bordo', golesVisitante: 0 },
-    { idPartido: 15, fechaTorneo: 'Fecha 3', estado: 'Programado', dia: '10/10/2021', hora: '20:00', equipoLocal: 'Deportivo Celeste', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Naranja', golesVisitante: 0 },
+//     { idPartido: 11, fechaTorneo: 'Fecha 3', estado: 'Programado', dia: '09/10/2021', hora: '17:00', equipoLocal: 'Deportivo Amarillo', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Violeta', golesVisitante: 0 },
+//     { idPartido: 12, fechaTorneo: 'Fecha 3', estado: 'Programado', dia: '09/10/2021', hora: '19:00', equipoLocal: 'Deportivo Rojo', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Azul', golesVisitante: 0 },
+//     { idPartido: 13, fechaTorneo: 'Fecha 3', estado: 'Programado', dia: '10/10/2021', hora: '16:00', equipoLocal: 'Deportivo Verde', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Gris', golesVisitante: 0 },
+//     { idPartido: 14, fechaTorneo: 'Fecha 3', estado: 'Programado', dia: '10/10/2021', hora: '18:00', equipoLocal: 'Deportivo Negro', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Bordo', golesVisitante: 0 },
+//     { idPartido: 15, fechaTorneo: 'Fecha 3', estado: 'Programado', dia: '10/10/2021', hora: '20:00', equipoLocal: 'Deportivo Celeste', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Naranja', golesVisitante: 0 },
 
-    { idPartido: 16, fechaTorneo: 'Fecha 4', estado: 'Pendiente', dia: '', hora: '', equipoLocal: 'Deportivo Celeste', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Negro', golesVisitante: 0 },
-    { idPartido: 17, fechaTorneo: 'Fecha 4', estado: 'Pendiente', dia: '', hora: '', equipoLocal: 'Deportivo Amarillo', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Verde', golesVisitante: 0 },
-    { idPartido: 18, fechaTorneo: 'Fecha 4', estado: 'Pendiente', dia: '', hora: '', equipoLocal: 'Deportivo Bordo', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Rojo', golesVisitante: 0 },
-    { idPartido: 19, fechaTorneo: 'Fecha 4', estado: 'Pendiente', dia: '', hora: '', equipoLocal: 'Deportivo Violeta', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Naranja', golesVisitante: 0 },
-    { idPartido: 20, fechaTorneo: 'Fecha 4', estado: 'Pendiente', dia: '', hora: '', equipoLocal: 'Deportivo Azul', 
-    golesLocal: 0, equipoVisitante: 'Deportivo Gris', golesVisitante: 0 },
-];
+//     { idPartido: 16, fechaTorneo: 'Fecha 4', estado: 'Pendiente', dia: '', hora: '', equipoLocal: 'Deportivo Celeste', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Negro', golesVisitante: 0 },
+//     { idPartido: 17, fechaTorneo: 'Fecha 4', estado: 'Pendiente', dia: '', hora: '', equipoLocal: 'Deportivo Amarillo', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Verde', golesVisitante: 0 },
+//     { idPartido: 18, fechaTorneo: 'Fecha 4', estado: 'Pendiente', dia: '', hora: '', equipoLocal: 'Deportivo Bordo', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Rojo', golesVisitante: 0 },
+//     { idPartido: 19, fechaTorneo: 'Fecha 4', estado: 'Pendiente', dia: '', hora: '', equipoLocal: 'Deportivo Violeta', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Naranja', golesVisitante: 0 },
+//     { idPartido: 20, fechaTorneo: 'Fecha 4', estado: 'Pendiente', dia: '', hora: '', equipoLocal: 'Deportivo Azul', 
+//     golesLocal: 0, equipoVisitante: 'Deportivo Gris', golesVisitante: 0 },
+// ];
 
 export const GOLEADOR: GoleadorDTO[] = [
     { Nombre: 'Elias Vera', Equipo: 'Deportivo Negro', Goles: 27 },

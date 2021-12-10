@@ -4,6 +4,7 @@ export interface Login {
 }
 
 export interface Usuario {
-    usuario: string;
-    token: string;
+    usuario?: string;
+    token?: string;
+    idTipoUsuario?: number;
 }

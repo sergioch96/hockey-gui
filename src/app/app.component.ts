@@ -24,7 +24,6 @@ export class AppComponent {
   ) { 
     this.apiauthService.usuario.subscribe(res => {
       this.usuario = res;
-      console.log('cambio el objeto: ' + res);
     });
   }
 

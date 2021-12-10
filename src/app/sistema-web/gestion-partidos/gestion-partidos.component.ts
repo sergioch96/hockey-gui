@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { ARBITRO, EQUIPO, FECHA_TORNEO, JUEZ, JUGADOR, PARTIDO } from 'src/app/datos-prueba/datos.json';
+//import { BehaviorSubject, Observable } from 'rxjs';
+import { ARBITRO, JUEZ, JUGADOR } from 'src/app/datos-prueba/datos.json';
 import { ESTADO_PARTIDO } from 'src/app/models/constantes';
-import { PartidoDTO } from 'src/app/models/modelsCommon';
+import { ListaEquiposDTO, PartidoDTO } from 'src/app/models/modelsCommon';
 import * as moment from 'moment'; 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { JugadorDTO } from 'src/app/datos-prueba/models-prueba';
+import { PartidoService } from 'src/app/services/partido.service';
+import { EquipoService } from 'src/app/services/equipo.service';
 
 @Component({
   selector: 'app-gestion-partidos',
@@ -15,19 +17,22 @@ import { JugadorDTO } from 'src/app/datos-prueba/models-prueba';
 })
 export class GestionPartidosComponent implements OnInit {
 
-  private partidosSubject: BehaviorSubject<PartidoDTO[]>;
-  public listPartido: Observable<PartidoDTO[]>;
+  // private partidosSubject: BehaviorSubject<PartidoDTO[]>;
+  // public listPartido: Observable<PartidoDTO[]>;
 
-  _listaPartidos = PARTIDO;
+  // lista original de partidos
+  _listaPartidos: PartidoDTO[] = [];
   estados = ESTADO_PARTIDO;
-  fechasTorneo = FECHA_TORNEO;
-  equipos = EQUIPO;
+  fechasTorneo: string[] = [];
+  cantidadDeFechas: number = 0;
+  equipos: ListaEquiposDTO[] = [];
   arbitros = ARBITRO;
   jueces = JUEZ;
   jugadores = JUGADOR;
   jugadoresNegro: JugadorDTO[] = [];
   jugadoresRojo: JugadorDTO[] = [];
 
+  // lista filtrada de partidos
   listaPartidos: PartidoDTO[] = [];
 
   filtroEstado: string = "";
@@ -57,22 +62,68 @@ export class GestionPartidosComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private _partidoService: PartidoService,
+    private _equipoService: EquipoService
   ) {
-    this.partidosSubject = new BehaviorSubject<PartidoDTO[]>(PARTIDO);
-    this.listPartido = this.partidosSubject.asObservable();
+    // this.partidosSubject = new BehaviorSubject<PartidoDTO[]>(PARTIDO);
+    // this.listPartido = this.partidosSubject.asObservable();
 
-    this.listPartido.subscribe(res =>
-      this.listaPartidos = res
-    );
+    // this.listPartido.subscribe(res =>
+    //   this.listaPartidos = res
+    // );
    }
 
   ngOnInit(): void {
+    this.obtenerPartidos();
+    this.obtenerEquipos();
     this.jugadoresNegro = this.jugadores.filter(x => x.Equipo == 'Deportivo Negro');
     this.jugadoresRojo = this.jugadores.filter(x => x.Equipo == 'Deportivo Rojo');
   }
 
-  FiltrarPartidos() {
+  obtenerPartidos() {
+    this._partidoService.obtenerPartidos().subscribe(
+      resultado => {
+        if (resultado.exito === 0) {
+          this._listaPartidos = resultado.data;
+          this.listaPartidos = resultado.data;
+          this.calcularFechasTorneo();
+        } else {
+          this.toastr.error(resultado.mensaje, 'Ocurrió un error al obtener los partidos');
+        }
+      }, error => {
+        this.toastr.error('Ocurrió un error al obtener los partidos', 'Error');
+      }
+    );
+  }
+
+  calcularFechasTorneo() {
+    let cantidadPartidos = this.listaPartidos.length;
+    let fechaTorneo = this.listaPartidos[cantidadPartidos - 1].fechaTorneo;
+    let fechas = fechaTorneo?.substring(fechaTorneo.length - 1);
+    this.cantidadDeFechas = Number(fechas);
+
+    for (let index = 1; index <= this.cantidadDeFechas; index++) {
+      this.fechasTorneo.push("fecha " + index);      
+    }
+  }
+
+  obtenerEquipos() {
+    this._equipoService.obtenerEquipos().subscribe(
+      resultado => {
+        if (resultado.exito === 0) {
+          this.equipos = resultado.data;
+          this.equipos = this.equipos.filter(x => x.estado == true);
+        } else {
+          this.toastr.error(resultado.mensaje, 'Ocurrió un error al obtener equipos');
+        }
+      }, error => {
+        this.toastr.error('Ocurrió un error al obtener equipos', 'Error');
+      }
+    );
+  }
+
+  filtrarPartidos() {
     
     var dia: string = "";
     if (this.filtroFecha != "")

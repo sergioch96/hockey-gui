@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { EMPAREJAMIENTOS, EQUIPO, PROXIMOS_ENCUENTROS, TIPO_TORNEO } from 'src/app/datos-prueba/datos.json';
-import { EmparejamientoDTO, EquipoDTO, ListaEquiposDTO, NumeroParticipanteDTO, PartidoDTO } from 'src/app/models/modelsCommon';
+import { TIPO_TORNEO } from 'src/app/datos-prueba/datos.json';
+import { EmparejamientoDTO, ListaEquiposDTO, NumeroParticipanteDTO, PartidoDTO } from 'src/app/models/modelsCommon';
 import { EquipoService } from 'src/app/services/equipo.service';
 
 @Component({
@@ -87,6 +87,7 @@ export class CrearCampeonatoComponent implements OnInit {
     this.crearPartidos(crucesGenerados);
     this.toastr.success('Se generaron los partidos del torneo', 'Emparejamientos');
     document.getElementById('emparejamientos')?.classList.remove('d-none');
+    document.getElementById('btn-emparejamientos')?.classList.remove('d-none');
   }
 
   // asigna numeros aleatoriamente a cada participante para los emparejamientos 
@@ -175,7 +176,6 @@ export class CrearCampeonatoComponent implements OnInit {
 
   // genera los cruces del fixture cuando la cantidad de equipos es impar
   calcularLigaNumEquiposImpar(numEquipos: number): any {
-    debugger;
     var rondas = new Array();
     let numRondas: number = numEquipos;
     let numPartidosPorRonda: number = ~~(numEquipos / 2);
@@ -279,5 +279,9 @@ export class CrearCampeonatoComponent implements OnInit {
         }
       }
     }
+  }
+
+  crearCampeonato() {
+    this.toastr.error('Ya existe un campeonato activo', 'Error');
   }
 }

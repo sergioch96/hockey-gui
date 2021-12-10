@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ListaEquiposDTO } from 'src/app/models/modelsCommon';
+import { ApiauthService } from 'src/app/services/apiauth.service';
 import { EquipoService } from 'src/app/services/equipo.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class GestionEquiposComponent implements OnInit {
 
   constructor(
     private _equipoService: EquipoService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public _apiauthService: ApiauthService
   ) { }
 
   ngOnInit(): void {
