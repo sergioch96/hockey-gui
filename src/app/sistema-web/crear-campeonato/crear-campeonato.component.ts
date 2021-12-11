@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { TIPO_TORNEO } from 'src/app/datos-prueba/datos.json';
+import { TIPO_TORNEO } from 'src/app/models/constantes';
 import { EmparejamientoDTO, ListaEquiposDTO, NumeroParticipanteDTO, PartidoDTO } from 'src/app/models/modelsCommon';
 import { EquipoService } from 'src/app/services/equipo.service';
 

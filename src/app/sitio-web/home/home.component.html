@@ -36,36 +36,57 @@
             <div class="col-9 col-md-9">
                 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                      <button *ngFor="let partido of resultados; index as i" type="button" data-bs-target="#carouselExampleDark" [attr.data-bs-slide-to]="i" 
+                      [ngClass]="{'active': i == 0}" [attr.aria-current]="i == 0 ? true : false" [attr.aria-label]="'Slide ' + (i+1)"></button>
                     </div>
                     <div class="carousel-inner">
-                      <div class="carousel-item active" data-bs-interval="10000">
+                      <div *ngFor="let partido of resultados; index as i" class="carousel-item" [ngClass]="{'active': i == 0}" data-bs-interval="5000">
                         <div class="row" style="padding-top: 50px; padding-bottom: 50px;">
                           <div class="col-12">
                             <div class="row">
                               <div class="col-4">
-                                <i class="text-secondary fab fa-angular fa-8x d-flex justify-content-end"></i>
+                                <i class="fab fa-angular fa-8x d-flex justify-content-end"
+                                  [ngClass]="{
+                                    'text-danger': partido.equipoLocal == 'Deportivo Rojo',
+                                    'text-orange': partido.equipoLocal == 'Deportivo Naranja',
+                                    'text-success': partido.equipoLocal == 'Deportivo Verde',
+                                    'text-violet': partido.equipoLocal == 'Deportivo Violeta',
+                                    'text-blue': partido.equipoLocal == 'Deportivo Azul',
+                                    'text-yellow': partido.equipoLocal == 'Deportivo Amarillo',
+                                    'text-secondary': partido.equipoLocal == 'Deportivo Gris',
+                                    'text-celeste': partido.equipoLocal == 'Deportivo Celeste',
+                                    'text-bordo': partido.equipoLocal == 'Deportivo Bordo'
+                                  }">                                  
+                                </i>
                               </div>
                               <div class="col-4">
                                 <h6 class="d-flex mb-4 justify-content-center">
-                                  25 de Septiembre del 2021
+                                  {{ partido.dia }}
                                 </h6>
                                 <h1 class="d-flex justify-content-center">
-                                  4 - 1
+                                  {{ partido.golesLocal }} - {{ partido.golesVisitante }}
                                 </h1>
                               </div>
                               <div class="col-4">
-                                <i class="text-celeste fab fa-angular fa-8x d-flex justify-content-start"></i>
+                                <i class="fab fa-angular fa-8x d-flex justify-content-start"
+                                  [ngClass]="{
+                                    'text-danger': partido.equipoVisitante == 'Deportivo Rojo',
+                                    'text-orange': partido.equipoVisitante == 'Deportivo Naranja',
+                                    'text-success': partido.equipoVisitante == 'Deportivo Verde',
+                                    'text-violet': partido.equipoVisitante == 'Deportivo Violeta',
+                                    'text-blue': partido.equipoVisitante == 'Deportivo Azul',
+                                    'text-yellow': partido.equipoVisitante == 'Deportivo Amarillo',
+                                    'text-secondary': partido.equipoVisitante == 'Deportivo Gris',
+                                    'text-celeste': partido.equipoVisitante == 'Deportivo Celeste',
+                                    'text-bordo': partido.equipoVisitante == 'Deportivo Bordo'
+                                  }">
+                                </i>
                               </div>
                             </div>
                               <div class="row mt-3">
                                 <div class="col-4">
                                   <h5 class="d-flex justify-content-end">
-                                    Deportivo Gris
+                                    {{ partido.equipoLocal }}
                                   </h5>
                                 </div>
                                 <div class="col-4">
@@ -75,163 +96,7 @@
                               </div>
                               <div class="col-4">
                                 <h5 class="d-flex justify-content-start">
-                                  Deportivo Celeste
-                                </h5>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item" data-bs-interval="2000">
-                        <div class="row" style="padding-top: 50px; padding-bottom: 50px;">
-                          <div class="col-12">
-                            <div class="row">
-                              <div class="col-4">
-                                <i class="text-success fab fa-angular fa-8x d-flex justify-content-end"></i>
-                              </div>
-                              <div class="col-4">
-                                <h6 class="d-flex mb-4 justify-content-center">
-                                  25 de Septiembre del 2021
-                                </h6>
-                                <h1 class="d-flex justify-content-center">
-                                  2 - 7
-                                </h1>
-                              </div>
-                              <div class="col-4">
-                                <i class="fab fa-angular fa-8x d-flex justify-content-start"></i>
-                              </div>
-                            </div>
-                              <div class="row mt-3">
-                                <div class="col-4">
-                                  <h5 class="d-flex justify-content-end">
-                                    Deportivo Verde
-                                  </h5>
-                                </div>
-                                <div class="col-4">
-                                  <h5 class="d-flex justify-content-center">
-                                  VS
-                                </h5>
-                              </div>
-                              <div class="col-4">
-                                <h5 class="d-flex justify-content-start">
-                                  Deportivo Negro
-                                </h5>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <div class="row" style="padding-top: 50px; padding-bottom: 50px;">
-                          <div class="col-12">
-                            <div class="row">
-                              <div class="col-4">
-                                <i class="text-yellow fab fa-angular fa-8x d-flex justify-content-end"></i>
-                              </div>
-                              <div class="col-4">
-                                <h6 class="d-flex mb-4 justify-content-center">
-                                  26 de Septiembre del 2021
-                                </h6>
-                                <h1 class="d-flex justify-content-center">
-                                  3 - 2
-                                </h1>
-                              </div>
-                              <div class="col-4">
-                                <i class="text-danger fab fa-angular fa-8x d-flex justify-content-start"></i>
-                              </div>
-                            </div>
-                              <div class="row mt-3">
-                                <div class="col-4">
-                                  <h5 class="d-flex justify-content-end">
-                                    Deportivo Amarillo
-                                  </h5>
-                                </div>
-                                <div class="col-4">
-                                  <h5 class="d-flex justify-content-center">
-                                  VS
-                                </h5>
-                              </div>
-                              <div class="col-4">
-                                <h5 class="d-flex justify-content-start">
-                                  Deportivo Rojo
-                                </h5>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <div class="row" style="padding-top: 50px; padding-bottom: 50px;">
-                          <div class="col-12">
-                            <div class="row">
-                              <div class="col-4">
-                                <i class="text-blue fab fa-angular fa-8x d-flex justify-content-end"></i>
-                              </div>
-                              <div class="col-4">
-                                <h6 class="d-flex mb-4 justify-content-center">
-                                  26 de Septiembre del 2021
-                                </h6>
-                                <h1 class="d-flex justify-content-center">
-                                  0 - 0
-                                </h1>
-                              </div>
-                              <div class="col-4">
-                                <i class="text-violet fab fa-angular fa-8x d-flex justify-content-start"></i>
-                              </div>
-                            </div>
-                              <div class="row mt-3">
-                                <div class="col-4">
-                                  <h5 class="d-flex justify-content-end">
-                                    Deportivo Azul
-                                  </h5>
-                                </div>
-                                <div class="col-4">
-                                  <h5 class="d-flex justify-content-center">
-                                  VS
-                                </h5>
-                              </div>
-                              <div class="col-4">
-                                <h5 class="d-flex justify-content-start">
-                                  Deportivo Violeta
-                                </h5>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <div class="row" style="padding-top: 50px; padding-bottom: 50px;">
-                          <div class="col-12">
-                            <div class="row">
-                              <div class="col-4">
-                                <i class="text-orange fab fa-angular fa-8x d-flex justify-content-end"></i>
-                              </div>
-                              <div class="col-4">
-                                <h6 class="d-flex mb-4 justify-content-center">
-                                  26 de Septiembre del 2021
-                                </h6>
-                                <h1 class="d-flex justify-content-center">
-                                  5 - 1
-                                </h1>
-                              </div>
-                              <div class="col-4">
-                                <i class="text-bordo fab fa-angular fa-8x d-flex justify-content-start"></i>
-                              </div>
-                            </div>
-                              <div class="row mt-3">
-                                <div class="col-4">
-                                  <h5 class="d-flex justify-content-end">
-                                    Deportivo Naranja
-                                  </h5>
-                                </div>
-                                <div class="col-4">
-                                  <h5 class="d-flex justify-content-center">
-                                  VS
-                                </h5>
-                              </div>
-                              <div class="col-4">
-                                <h5 class="d-flex justify-content-start">
-                                  Deportivo Bordo
+                                  {{ partido.equipoVisitante }}
                                 </h5>
                               </div>
                             </div>
@@ -247,7 +112,7 @@
                       <span class="carousel-control-next-icon" style="color: #FFF;" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
-                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -273,7 +138,7 @@
           <tbody>
             <tr *ngFor="let partido of encuentros">
               <td>
-                {{ partido.fecha }}
+                {{ partido.dia }}
               </td>
               <td>
                 <i class="fab fa-angular" 
