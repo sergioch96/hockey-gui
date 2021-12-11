@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PartidoDTO } from '../models/modelsCommon';
 import { Response } from '../models/response';
 import { ApiauthService } from './apiauth.service';
 
@@ -14,5 +15,9 @@ export class PartidoService {
 
   obtenerPartidos(): Observable<Response> {
     return this._http.get<Response>(this.url, this._apiAuthService.getHeaders());
+  }
+
+  programarPartido(partido: PartidoDTO): Observable<Response> {
+    return this._http.put<Response>(this.url, partido, this._apiAuthService.getHeaders());
   }
 }

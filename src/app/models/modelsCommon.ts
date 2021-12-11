@@ -43,8 +43,11 @@ export interface PartidoDTO {
     golesLocal?: number,
     golesVisitante?: number,
     arbitro1?: string,
+    idArbitro1?: number,
     arbitro2?: string,
+    idArbitro2?: number,
     juez?: string
+    idJuez?: number,
 }
 
 export interface EmparejamientoDTO {

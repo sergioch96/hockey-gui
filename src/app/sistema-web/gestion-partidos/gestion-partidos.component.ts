@@ -39,9 +39,9 @@ export class GestionPartidosComponent implements OnInit {
 
   fechaProgramar: string = "";
   horaProgramar: string = "";
-  arbitro1Programar: string = "";
-  arbitro2Programar: string = "";
-  juezProgramar: string = "";
+  idArbitro1Programar: number | undefined;
+  idArbitro2Programar: number | undefined;
+  idJuezProgramar: number | undefined;
   equipo1Programar: string | undefined;
   equipo2Programar: string | undefined;
   fechaTorneoProgramar: string | undefined;
@@ -152,56 +152,55 @@ export class GestionPartidosComponent implements OnInit {
   }
 
   mostrarProgramar(modalProgramar: any, par: PartidoDTO) {
-    var partido = this._listaPartidos.find(x => x.idPartido == par.idPartido);
-    this.equipo1Programar = partido?.equipoLocal;
-    this.equipo2Programar = partido?.equipoVisitante;
-    this.fechaTorneoProgramar = partido?.fechaTorneo;
+    this.equipo1Programar = par.equipoLocal;
+    this.equipo2Programar = par.equipoVisitante;
+    this.fechaTorneoProgramar = par.fechaTorneo;
     this.partidoSeleccionado = par;
 
     this.modalService.open(modalProgramar);
   }
 
   programarPartido() {
-    var result = this._listaPartidos.find(x => x.idPartido == this.partidoSeleccionado.idPartido);
-    
-    if (result?.estado != "Pendiente") {
+    if (this.partidoSeleccionado.estado != "Pendiente") {
       this.toastr.error('El partido seleccionado ya fue programado', 'Error');
       this.limpiarModal();
       return;
     }
 
     const partido: PartidoDTO = {
-      idPartido: result?.idPartido,
-      fechaTorneo: result?.fechaTorneo,
-      estado: "Programado",
-      dia: moment(this.fechaProgramar).format('DD/MM/YYYY'),
+      idPartido: this.partidoSeleccionado.idPartido,
+      idEstado: 1,
+      dia: this.fechaProgramar,
       hora: this.horaProgramar,
-      equipoLocal: result?.equipoLocal,
-      golesLocal: 0,
-      equipoVisitante: result?.equipoVisitante,
-      golesVisitante: 0,
+      idArbitro1: this.idArbitro1Programar,
+      idArbitro2: this.idArbitro2Programar,
+      idJuez: this.idJuezProgramar
     }
 
-    const index = this._listaPartidos.indexOf(this.partidoSeleccionado);
-
-    if (index !== -1) {
-      this._listaPartidos.splice(index, 1, partido);
-      this.toastr.success('Se programo el partido correctamente', 'Partido programado');
-    }
-    else {
-      this.toastr.error('No se pudo programar el partido', 'Error');
-    }
+    this._partidoService.programarPartido(partido).subscribe(
+      resultado => {
+        if (resultado.exito === 0) {
+          this.obtenerPartidos();
+          this.toastr.success(resultado.mensaje, 'Partido programado');
+        } else {
+          this.toastr.error(resultado.mensaje, 'Error');
+        }
+      }, error => {
+        this.toastr.error('No se pudo programar el partido', 'Error');
+      }
+    );
+    
     this.limpiarModal();
   }
 
   limpiarModal() {
     this.fechaProgramar = "";
     this.horaProgramar = "";
-    this.arbitro1Programar = "";
-    this.arbitro2Programar = "";
-    this.juezProgramar = "";
-    this.golesLocal = 0;
-    this.golesVisitante = 0;
+    this.idArbitro1Programar = 0;
+    this.idArbitro2Programar = 0;
+    this.idJuezProgramar = 0;
+    // this.golesLocal = 0;
+    // this.golesVisitante = 0;
     this.modalService.dismissAll();
   }
 

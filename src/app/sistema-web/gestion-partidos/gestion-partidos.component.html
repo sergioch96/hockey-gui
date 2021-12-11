@@ -127,7 +127,7 @@
                                     </td>
                                     <td class="text-center">{{ partido.golesVisitante }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary me-1" (click)="mostrarProgramar(modalProgramar, partido)">
+                                        <button type="button" class="btn btn-primary me-1" (click)="mostrarProgramar(modalProgramar, partido)" [disabled]="partido.idEstado != 3">
                                             <i class="fas fa-edit"></i>
                                         </button>
                                         
@@ -192,8 +192,8 @@
                         Árbitro 1
                     </label>
                     <div class="col-md-6">
-                        <select [(ngModel)]="arbitro1Programar" name="arbitro1Programar" id="selectArbitro1" class="form-select" aria-label="Default select example">
-                            <option *ngFor="let arbitro of arbitros" [value]="arbitro.nombreApellido">{{arbitro.nombreApellido}}</option>
+                        <select [(ngModel)]="idArbitro1Programar" name="idArbitro1Programar" id="selectArbitro1" class="form-select" aria-label="Default select example">
+                            <option *ngFor="let arbitro of arbitros" [value]="arbitro.idPersona">{{arbitro.nombreApellido}}</option>
                         </select>
                     </div>
                 </div>
@@ -202,8 +202,8 @@
                         Árbitro 2
                     </label>
                     <div class="col-md-6">
-                        <select [(ngModel)]="arbitro2Programar" name="arbitro2Programar" id="selectArbitro2" class="form-select" aria-label="Default select example">
-                            <option *ngFor="let arbitro of arbitros" [value]="arbitro.nombreApellido">{{arbitro.nombreApellido}}</option>
+                        <select [(ngModel)]="idArbitro2Programar" name="idArbitro2Programar" id="selectArbitro2" class="form-select" aria-label="Default select example">
+                            <option *ngFor="let arbitro of arbitros" [value]="arbitro.idPersona">{{arbitro.nombreApellido}}</option>
                         </select>
                     </div>
                 </div>
@@ -212,8 +212,8 @@
                         Juez de mesa
                     </label>
                     <div class="col-md-6">
-                        <select [(ngModel)]="juezProgramar" name="juezProgramar" id="selectJuez" class="form-select" aria-label="Default select example">
-                            <option *ngFor="let juez of jueces" [value]="juez.nombreApellido">{{juez.nombreApellido}}</option>
+                        <select [(ngModel)]="idJuezProgramar" name="idJuezProgramar" id="selectJuez" class="form-select" aria-label="Default select example">
+                            <option *ngFor="let juez of jueces" [value]="juez.idPersona">{{juez.nombreApellido}}</option>
                         </select>
                     </div>
                 </div>
