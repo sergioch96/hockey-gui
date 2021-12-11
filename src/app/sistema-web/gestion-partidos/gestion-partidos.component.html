@@ -315,22 +315,22 @@
                                             <td>{{ jugadorLocal.nombreApellido }}</td>
                                             <td>
                                                 <input type="number" min="0" max="100" [(ngModel)]="jugadorLocal.goles" name="jlg{{i}}" *ngIf="this.partidoSeleccionado.idEstado == 1" (blur)="cargarGolesLocal()"
-                                                [disabled]="jugadorLocal.partidosSuspendidos != undefined && jugadorLocal.partidosSuspendidos > 0">
+                                                [disabled]="jugadorLocal.numeroCamiseta != undefined && jugadorLocal.numeroCamiseta == 0">
                                                 <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugadorLocal.goles }}</div>
                                             </td>
                                             <td>
                                                 <input type="number" min="0" max="100" [(ngModel)]="jugadorLocal.tarjetasVerdes" name="jltv{{i}}" *ngIf="this.partidoSeleccionado.idEstado == 1" 
-                                                [disabled]="jugadorLocal.partidosSuspendidos != undefined && jugadorLocal.partidosSuspendidos > 0">
+                                                [disabled]="jugadorLocal.numeroCamiseta != undefined && jugadorLocal.numeroCamiseta == 0">
                                                 <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugadorLocal.tarjetasVerdes }}</div>
                                             </td>
                                             <td>
                                                 <input type="number" min="0" max="100" [(ngModel)]="jugadorLocal.tarjetasAmarillas" name="jlta{{i}}" *ngIf="this.partidoSeleccionado.idEstado == 1" 
-                                                [disabled]="jugadorLocal.partidosSuspendidos != undefined && jugadorLocal.partidosSuspendidos > 0">
+                                                [disabled]="jugadorLocal.numeroCamiseta != undefined && jugadorLocal.numeroCamiseta == 0">
                                                 <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugadorLocal.tarjetasAmarillas }}</div>
                                             </td>
                                             <td>
                                                 <input type="number" min="0" max="100" [(ngModel)]="jugadorLocal.tarjetasRojas" name="jltr{{i}}" *ngIf="this.partidoSeleccionado.idEstado == 1" 
-                                                [disabled]="jugadorLocal.partidosSuspendidos != undefined && jugadorLocal.partidosSuspendidos > 0">
+                                                [disabled]="jugadorLocal.numeroCamiseta != undefined && jugadorLocal.numeroCamiseta == 0">
                                                 <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugadorLocal.tarjetasRojas }}</div>
                                             </td>
                                         </tr>
@@ -363,22 +363,22 @@
                                             <td>{{ jugadorVisitante.nombreApellido }}</td>
                                             <td>
                                                 <input type="number" min="0" max="100" [(ngModel)]="jugadorVisitante.goles" name="jvg{{i}}" *ngIf="this.partidoSeleccionado.idEstado == 1" (blur)="cargarGolesVisitante()"
-                                                [disabled]="jugadorVisitante.partidosSuspendidos != undefined && jugadorVisitante.partidosSuspendidos > 0">
+                                                [disabled]="jugadorVisitante.numeroCamiseta != undefined && jugadorVisitante.numeroCamiseta == 0">
                                                 <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugadorVisitante.goles }}</div>
                                             </td>
                                             <td>
                                                 <input type="number" min="0" max="100" [(ngModel)]="jugadorVisitante.tarjetasVerdes" name="jvtv{{i}}" *ngIf="this.partidoSeleccionado.idEstado == 1" 
-                                                [disabled]="jugadorVisitante.partidosSuspendidos != undefined && jugadorVisitante.partidosSuspendidos > 0">
+                                                [disabled]="jugadorVisitante.numeroCamiseta != undefined && jugadorVisitante.numeroCamiseta == 0">
                                                 <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugadorVisitante.tarjetasVerdes }}</div>
                                             </td>
                                             <td>
                                                 <input type="number" min="0" max="100" [(ngModel)]="jugadorVisitante.tarjetasAmarillas" name="jvta{{i}}" *ngIf="this.partidoSeleccionado.idEstado == 1" 
-                                                [disabled]="jugadorVisitante.partidosSuspendidos != undefined && jugadorVisitante.partidosSuspendidos > 0">
+                                                [disabled]="jugadorVisitante.numeroCamiseta != undefined && jugadorVisitante.numeroCamiseta == 0">
                                                 <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugadorVisitante.tarjetasAmarillas }}</div>
                                             </td>
                                             <td>
                                                 <input type="number" min="0" max="100" [(ngModel)]="jugadorVisitante.tarjetasRojas" name="jvtr{{i}}" *ngIf="this.partidoSeleccionado.idEstado == 1" 
-                                                [disabled]="jugadorVisitante.partidosSuspendidos != undefined && jugadorVisitante.partidosSuspendidos > 0">
+                                                [disabled]="jugadorVisitante.numeroCamiseta != undefined && jugadorVisitante.numeroCamiseta == 0">
                                                 <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugadorVisitante.tarjetasRojas }}</div>
                                             </td>
                                         </tr>

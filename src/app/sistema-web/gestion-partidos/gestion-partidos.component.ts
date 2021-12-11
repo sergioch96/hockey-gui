@@ -249,6 +249,9 @@ export class GestionPartidosComponent implements OnInit {
       this.limpiarModal();
       return;
     }
+    
+    this.jugadoresLocal = this.jugadoresLocal.filter(x => x.numeroCamiseta != undefined && x.numeroCamiseta > 0);
+    this.jugadoresVisitante = this.jugadoresVisitante.filter(x => x.numeroCamiseta != undefined && x.numeroCamiseta > 0);
 
     const partido: PartidoDTO = {
       idPartido: this.partidoSeleccionado.idPartido,
@@ -256,24 +259,23 @@ export class GestionPartidosComponent implements OnInit {
       golesLocal: this.golesLocal,
       golesVisitante: this.golesVisitante,
       capitanLocal: this.capitanLocal,
-      capitanVisitante: this.capitanVisitante
+      capitanVisitante: this.capitanVisitante,
+      jugadoresLocal: this.jugadoresLocal,
+      jugadoresVisitante: this.jugadoresVisitante
     }
 
-    console.log(this.jugadoresLocal);
-    console.log(this.jugadoresVisitante);
-
-    // this._partidoService.programarPartido(partido).subscribe(
-    //   resultado => {
-    //     if (resultado.exito === 0) {
-    //       this.obtenerPartidos();
-    //       this.toastr.success(resultado.mensaje, 'Partido finalizado');
-    //     } else {
-    //       this.toastr.error(resultado.mensaje, 'Error');
-    //     }
-    //   }, error => {
-    //     this.toastr.error('No se pudo finalizar el partido', 'Error');
-    //   }
-    // );
+    this._partidoService.cargarPartido(partido).subscribe(
+      resultado => {
+        if (resultado.exito === 0) {
+          this.obtenerPartidos();
+          this.toastr.success(resultado.mensaje, 'Partido finalizado');
+        } else {
+          this.toastr.error(resultado.mensaje, 'Error');
+        }
+      }, error => {
+        this.toastr.error('No se pudo finalizar el partido', 'Error');
+      }
+    );
 
     this.limpiarModal();
   }
@@ -284,7 +286,6 @@ export class GestionPartidosComponent implements OnInit {
       if (this.golesLocal != undefined && x.goles != undefined)
         this.golesLocal += x.goles;
     })
-
   }
   
   cargarGolesVisitante() {

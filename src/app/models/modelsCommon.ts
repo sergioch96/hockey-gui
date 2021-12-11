@@ -50,7 +50,8 @@ export interface PartidoDTO {
     idJuez?: number,
     capitanLocal?: string,
     capitanVisitante?: string,
-    jugadores?: JugadorPartidoDTO[]
+    jugadoresLocal?: JugadorPartidoDTO[],
+    jugadoresVisitante?: JugadorPartidoDTO[]
 }
 
 export interface JugadorPartidoDTO {
