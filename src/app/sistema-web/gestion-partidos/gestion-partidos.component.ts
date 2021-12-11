@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { JUGADOR } from 'src/app/datos-prueba/datos.json';
 import { ESTADO_PARTIDO } from 'src/app/models/constantes';
-import { ListaEquiposDTO, PartidoDTO, PersonaDTO } from 'src/app/models/modelsCommon';
+import { JugadorPartidoDTO, ListaEquiposDTO, PartidoDTO, PersonaDTO } from 'src/app/models/modelsCommon';
 import * as moment from 'moment'; 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { JugadorDTO } from 'src/app/datos-prueba/models-prueba';
 import { PartidoService } from 'src/app/services/partido.service';
 import { EquipoService } from 'src/app/services/equipo.service';
 import { AutoridadService } from 'src/app/services/autoridad.service';
+import { JugadorService } from 'src/app/services/jugador.service';
 
 @Component({
   selector: 'app-gestion-partidos',
@@ -25,9 +24,9 @@ export class GestionPartidosComponent implements OnInit {
   equipos: ListaEquiposDTO[] = [];
   arbitros: PersonaDTO[] = [];
   jueces: PersonaDTO[] = [];
-  jugadores = JUGADOR;
-  jugadoresNegro: JugadorDTO[] = [];
-  jugadoresRojo: JugadorDTO[] = [];
+  //jugadores = JUGADOR;
+  jugadoresLocal: JugadorPartidoDTO[] = [];
+  jugadoresVisitante: JugadorPartidoDTO[] = [];
 
   // lista filtrada de partidos
   listaPartidos: PartidoDTO[] = [];
@@ -50,27 +49,29 @@ export class GestionPartidosComponent implements OnInit {
 
   diaCargar: string | undefined;
   horaCargar: string | undefined;
+  arbitro1Cargar: string | undefined;
+  arbitro2Cargar: string | undefined;
+  juezCargar: string | undefined;
 
   golesLocal: number = 0;
   golesVisitante: number = 0;
 
-  valoresVisitante: number[] = [];
-  valoresLocal: number[] = [];
+  // valoresVisitante: number[] = [];
+  // valoresLocal: number[] = [];
 
   constructor(
     private modalService: NgbModal,
     private toastr: ToastrService,
     private _partidoService: PartidoService,
     private _equipoService: EquipoService,
-    private _autoridadService: AutoridadService
+    private _autoridadService: AutoridadService,
+    private _jugadorService: JugadorService
   ) { }
 
   ngOnInit(): void {
     this.obtenerPartidos();
     this.obtenerEquipos();
     this.obtenerAutoridades();
-    this.jugadoresNegro = this.jugadores.filter(x => x.Equipo == 'Deportivo Negro');
-    this.jugadoresRojo = this.jugadores.filter(x => x.Equipo == 'Deportivo Rojo');
   }
 
   obtenerPartidos() {
@@ -204,14 +205,24 @@ export class GestionPartidosComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  mostrarCargar(modalCargar: any, par: PartidoDTO) {
-    var partido = this._listaPartidos.find(x => x.idPartido == par.idPartido);
-    this.equipo1Programar = partido?.equipoLocal;
-    this.equipo2Programar = partido?.equipoVisitante;
-    this.fechaTorneoProgramar = partido?.fechaTorneo;
-    this.diaCargar = partido?.dia;
-    this.horaCargar = partido?.hora;
+  async mostrarCargar(modalCargar: any, par: PartidoDTO) {
+    this.equipo1Programar = par.equipoLocal;
+    this.equipo2Programar = par.equipoVisitante;
+    this.fechaTorneoProgramar = par.fechaTorneo;
+    this.diaCargar = par.dia;
+    this.horaCargar = par.hora;
+    this.arbitro1Cargar = par.arbitro1;
+    this.arbitro2Cargar = par.arbitro2;
+    this.juezCargar = par.juez;
     this.partidoSeleccionado = par;
+
+    let jugLocal = await this._jugadorService.getJugadoresCargarPlanilla(par.idEquipoLocal).toPromise();
+    if (jugLocal != null)
+      this.jugadoresLocal = jugLocal.data;
+
+    let jugVisitante = await this._jugadorService.getJugadoresCargarPlanilla(par.idEquipoVisitante).toPromise();
+    if (jugVisitante != null)
+      this.jugadoresVisitante = jugVisitante.data;
 
     this.modalService.open(modalCargar, { size: 'xl' });
   }
@@ -249,24 +260,24 @@ export class GestionPartidosComponent implements OnInit {
     this.limpiarModal();
   }
 
-  cargarGolesVisitante() {
-    var suma: number = 0;
-    for (var i = 0; i < this.valoresVisitante.length; i++) {
-      if (this.valoresVisitante[i] != undefined) {
-        suma += this.valoresVisitante[i];
-      }
-    }
-    this.golesVisitante = suma;
-  }
+  // cargarGolesVisitante() {
+  //   var suma: number = 0;
+  //   for (var i = 0; i < this.valoresVisitante.length; i++) {
+  //     if (this.valoresVisitante[i] != undefined) {
+  //       suma += this.valoresVisitante[i];
+  //     }
+  //   }
+  //   this.golesVisitante = suma;
+  // }
 
-  cargarGolesLocal() {
-    var suma: number = 0;
-    for (var i = 0; i < this.valoresLocal.length; i++) {
-      if (this.valoresLocal[i] != undefined) {
-        suma += this.valoresLocal[i];
-      }
-    }
-    this.golesLocal = suma;
-  }
+  // cargarGolesLocal() {
+  //   var suma: number = 0;
+  //   for (var i = 0; i < this.valoresLocal.length; i++) {
+  //     if (this.valoresLocal[i] != undefined) {
+  //       suma += this.valoresLocal[i];
+  //     }
+  //   }
+  //   this.golesLocal = suma;
+  // }
 
 }

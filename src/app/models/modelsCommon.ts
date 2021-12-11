@@ -50,6 +50,18 @@ export interface PartidoDTO {
     idJuez?: number,
 }
 
+export interface JugadorPartidoDTO {
+    idPersona?: number,
+    nombreApellido?: string,
+    numeroCamiseta?: number,
+    goles?: number,
+    tarjetasVerdes?: number,
+    tarjetasAmarillas?: number,
+    tarjetasRojas?: number,
+    partidosSuspendidos?: number,
+    idEquipo?: number
+}
+
 export interface EmparejamientoDTO {
     local: number,
     visitante: number

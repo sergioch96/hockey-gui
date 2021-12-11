@@ -127,15 +127,17 @@
                                     </td>
                                     <td class="text-center">{{ partido.golesVisitante }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary me-1" (click)="mostrarProgramar(modalProgramar, partido)" [disabled]="partido.idEstado != 3">
+                                        <ng-template #programar>Programar partido</ng-template>
+                                        <button type="button" [ngbTooltip]="programar" class="btn btn-primary me-1" (click)="mostrarProgramar(modalProgramar, partido)" [disabled]="partido.idEstado != 3">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        
-                                        <button type="button" class="btn btn-primary me-1" (click)="mostrarCargar(modalCargar, partido)">
+                                        <ng-template #cargar>Cargar planilla de partido</ng-template>
+                                        <button type="button" [ngbTooltip]="cargar" class="btn btn-primary me-1" (click)="mostrarCargar(modalCargar, partido)" [disabled]="partido.idEstado != 1">
                                             <i class="fas fa-clipboard-check"></i>
                                         </button>
                                         <!-- (click)="verPlanilla(modalCargar, partido.IdPartido)" -->
-                                        <button type="button" class="btn btn-primary" >
+                                        <ng-template #ver>Ver planilla de partido</ng-template>
+                                        <button type="button" [ngbTooltip]="ver" class="btn btn-primary" [disabled]="partido.idEstado != 2">
                                             <i class="fas fa-file-alt"></i>
                                         </button>
                                     </td>
@@ -305,20 +307,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let jugador of jugadoresNegro; index as i">
-                                            <th scope="row"><input type="number"></th>
-                                            <td>{{ jugador.Nombre }}</td>
+                                        <tr *ngFor="let jugador of jugadoresLocal; index as i">
+                                            <th scope="row"><input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0"></th>
+                                            <td>{{ jugador.nombreApellido }}</td>
                                             <td>
-                                                <input [(ngModel)]="valoresLocal[i]" name="valores" value="0" type="number" (blur)=cargarGolesLocal()>
+                                                <!-- <input [(ngModel)]="valoresLocal[i]" name="valores" value="0" type="number" (blur)=cargarGolesLocal()> -->
+                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
                                             </td>
                                             <td>
-                                                <input type="number">
+                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
                                             </td>
                                             <td>
-                                                <input type="number">
+                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
                                             </td>
                                             <td>
-                                                <input type="number">
+                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -341,20 +344,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let jugador of jugadoresRojo; index as i">
-                                            <th scope="row"><input type="number"></th>
-                                            <td>{{ jugador.Nombre }}</td>
+                                        <tr *ngFor="let jugador of jugadoresVisitante; index as i">
+                                            <th scope="row"><input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0"></th>
+                                            <td>{{ jugador.nombreApellido }}</td>
                                             <td>
-                                                <input [(ngModel)]="valoresVisitante[i]" name="valores" value="0" type="number" (blur)=cargarGolesVisitante()>
+                                                <!-- <input [(ngModel)]="valoresVisitante[i]" name="valores" value="0" type="number" (blur)=cargarGolesVisitante()> -->
+                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
                                             </td>
                                             <td>
-                                                <input type="number">
+                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
                                             </td>
                                             <td>
-                                                <input type="number">
+                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
                                             </td>
                                             <td>
-                                                <input type="number">
+                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -380,20 +384,20 @@
                         Árbitro 1
                     </label>
                     <div class="col-md-3">
-                        <input id="inputArbitro1" type="text" class="form-control" value="Juan Vera" disabled>
+                        <input [(ngModel)]="arbitro1Cargar" name="arbitro1Cargar" id="inputArbitro1" type="text" class="form-control" disabled>
                     </div>
                     <label for="inputArbitro2" class="col-md-3 mb-3 col-form-label">
                         Árbitro 2
                     </label>
                     <div class="col-md-3">
-                        <input id="inputArbitro2" type="text" class="form-control" value="Tadeo Villalba" disabled>
+                        <input [(ngModel)]="arbitro2Cargar" name="arbitro2Cargar" id="inputArbitro2" type="text" class="form-control" disabled>
                     </div>
                 
                     <label for="inputJuez" class="col-md-3 mb-3 col-form-label">
                         Juez de Mesa
                     </label>
                     <div class="col-md-3">
-                        <input id="inputJuez" type="text" class="form-control" value="Victor Fretes" disabled>
+                        <input [(ngModel)]="juezCargar" name="juezCargar" id="inputJuez" type="text" class="form-control" disabled>
                     </div>
                 </div>
             </div>
