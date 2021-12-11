@@ -49,12 +49,14 @@ export class GestionPartidosComponent implements OnInit {
 
   diaCargar: string | undefined;
   horaCargar: string | undefined;
+  capitanLocal: string | undefined;
+  capitanVisitante: string | undefined;
   arbitro1Cargar: string | undefined;
   arbitro2Cargar: string | undefined;
   juezCargar: string | undefined;
 
-  golesLocal: number = 0;
-  golesVisitante: number = 0;
+  golesLocal: number | undefined;
+  golesVisitante: number | undefined;
 
   // valoresVisitante: number[] = [];
   // valoresLocal: number[] = [];
@@ -200,8 +202,6 @@ export class GestionPartidosComponent implements OnInit {
     this.idArbitro1Programar = 0;
     this.idArbitro2Programar = 0;
     this.idJuezProgramar = 0;
-    // this.golesLocal = 0;
-    // this.golesVisitante = 0;
     this.modalService.dismissAll();
   }
 
@@ -211,18 +211,33 @@ export class GestionPartidosComponent implements OnInit {
     this.fechaTorneoProgramar = par.fechaTorneo;
     this.diaCargar = par.dia;
     this.horaCargar = par.hora;
+    this.capitanLocal = par.capitanLocal;
+    this.capitanVisitante = par.capitanVisitante;
+    this.golesLocal = par.golesLocal;
+    this.golesVisitante = par.golesVisitante;
     this.arbitro1Cargar = par.arbitro1;
     this.arbitro2Cargar = par.arbitro2;
     this.juezCargar = par.juez;
     this.partidoSeleccionado = par;
 
-    let jugLocal = await this._jugadorService.getJugadoresCargarPlanilla(par.idEquipoLocal).toPromise();
-    if (jugLocal != null)
-      this.jugadoresLocal = jugLocal.data;
+    if (par.idEstado == 1) {
+      let jugLocal = await this._jugadorService.getJugadoresCargarPlanilla(par.idEquipoLocal).toPromise();
+      if (jugLocal != null)
+        this.jugadoresLocal = jugLocal.data;
+  
+      let jugVisitante = await this._jugadorService.getJugadoresCargarPlanilla(par.idEquipoVisitante).toPromise();
+      if (jugVisitante != null)
+        this.jugadoresVisitante = jugVisitante.data;
+    } else {
+      let jugLocal = await this._jugadorService.getJugadoresPartidoDisputado(par.idEquipoLocal, par.idPartido).toPromise();
+      if (jugLocal != null)
+        this.jugadoresLocal = jugLocal.data;
+  
+      let jugVisitante = await this._jugadorService.getJugadoresPartidoDisputado(par.idEquipoVisitante, par.idPartido).toPromise();
+      if (jugVisitante != null)
+        this.jugadoresVisitante = jugVisitante.data;
+    }
 
-    let jugVisitante = await this._jugadorService.getJugadoresCargarPlanilla(par.idEquipoVisitante).toPromise();
-    if (jugVisitante != null)
-      this.jugadoresVisitante = jugVisitante.data;
 
     this.modalService.open(modalCargar, { size: 'xl' });
   }

@@ -135,9 +135,8 @@
                                         <button type="button" [ngbTooltip]="cargar" class="btn btn-primary me-1" (click)="mostrarCargar(modalCargar, partido)" [disabled]="partido.idEstado != 1">
                                             <i class="fas fa-clipboard-check"></i>
                                         </button>
-                                        <!-- (click)="verPlanilla(modalCargar, partido.IdPartido)" -->
                                         <ng-template #ver>Ver planilla de partido</ng-template>
-                                        <button type="button" [ngbTooltip]="ver" class="btn btn-primary" [disabled]="partido.idEstado != 2">
+                                        <button type="button" [ngbTooltip]="ver" class="btn btn-primary" (click)="mostrarCargar(modalCargar, partido)" [disabled]="partido.idEstado != 2">
                                             <i class="fas fa-file-alt"></i>
                                         </button>
                                     </td>
@@ -308,20 +307,27 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let jugador of jugadoresLocal; index as i">
-                                            <th scope="row"><input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0"></th>
+                                            <th scope="row">
+                                                <input type="number" *ngIf="this.partidoSeleccionado.idEstado == 1" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugador.numeroCamiseta }}</div>
+                                            </th>
                                             <td>{{ jugador.nombreApellido }}</td>
                                             <td>
                                                 <!-- <input [(ngModel)]="valoresLocal[i]" name="valores" value="0" type="number" (blur)=cargarGolesLocal()> -->
-                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <input type="number" *ngIf="this.partidoSeleccionado.idEstado == 1" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugador.goles }}</div>
                                             </td>
                                             <td>
-                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <input type="number" *ngIf="this.partidoSeleccionado.idEstado == 1" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugador.tarjetasVerdes }}</div>
                                             </td>
                                             <td>
-                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <input type="number" *ngIf="this.partidoSeleccionado.idEstado == 1" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugador.tarjetasAmarillas }}</div>
                                             </td>
                                             <td>
-                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <input type="number" *ngIf="this.partidoSeleccionado.idEstado == 1" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugador.tarjetasRojas }}</div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -345,20 +351,27 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let jugador of jugadoresVisitante; index as i">
-                                            <th scope="row"><input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0"></th>
+                                            <th scope="row">
+                                                <input type="number" *ngIf="this.partidoSeleccionado.idEstado == 1" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugador.numeroCamiseta }}</div>
+                                            </th>
                                             <td>{{ jugador.nombreApellido }}</td>
                                             <td>
                                                 <!-- <input [(ngModel)]="valoresVisitante[i]" name="valores" value="0" type="number" (blur)=cargarGolesVisitante()> -->
-                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <input type="number" *ngIf="this.partidoSeleccionado.idEstado == 1" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugador.goles }}</div>
                                             </td>
                                             <td>
-                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <input type="number" *ngIf="this.partidoSeleccionado.idEstado == 1" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugador.tarjetasVerdes }}</div>
                                             </td>
                                             <td>
-                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <input type="number" *ngIf="this.partidoSeleccionado.idEstado == 1" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugador.tarjetasAmarillas }}</div>
                                             </td>
                                             <td>
-                                                <input type="number" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <input type="number" *ngIf="this.partidoSeleccionado.idEstado == 1" [disabled]="jugador.partidosSuspendidos != undefined && jugador.partidosSuspendidos > 0">
+                                                <div *ngIf="this.partidoSeleccionado.idEstado == 2">{{ jugador.tarjetasRojas }}</div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -371,13 +384,13 @@
                         Capitán del equipo local
                     </label>
                     <div class="col-md-3">
-                        <input id="inputCapitanLocal" type="text" class="form-control">
+                        <input [(ngModel)]="capitanLocal" name="capitanLocal" id="inputCapitanLocal" type="text" class="form-control" [disabled]="this.partidoSeleccionado.idEstado == 2">
                     </div>
                     <label for="inputCapitanVisitante" class="col-md-3 mb-3 col-form-label">
                         Capitán del equipo visitante
                     </label>
                     <div class="col-md-3">
-                        <input id="inputCapitanVisitante" type="text" class="form-control">
+                        <input [(ngModel)]="capitanVisitante" name="capitanVisitante" id="inputCapitanVisitante" type="text" class="form-control" [disabled]="this.partidoSeleccionado.idEstado == 2">
                     </div>
                 
                     <label for="inputArbitro1" class="col-md-3 mb-3 col-form-label">
@@ -404,7 +417,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="limpiarModal()">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Cargar partido</button>
+            <button type="submit" class="btn btn-primary" *ngIf="this.partidoSeleccionado.idEstado == 1">Cargar partido</button>
         </div>
     </form>
 </ng-template>

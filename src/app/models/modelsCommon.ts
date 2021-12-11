@@ -48,6 +48,8 @@ export interface PartidoDTO {
     idArbitro2?: number,
     juez?: string
     idJuez?: number,
+    capitanLocal?: string,
+    capitanVisitante?: string
 }
 
 export interface JugadorPartidoDTO {

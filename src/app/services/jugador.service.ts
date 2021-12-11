@@ -29,7 +29,7 @@ export class JugadorService {
     return this._http.get<Response>(`${this.url}/jugadorPlanilla/${idEquipo}`, this._apiAuthService.getHeaders());
   }
 
-  getJugadoresPartidoDisputado(idEquipo: number, idPartido: number): Observable<Response> {
+  getJugadoresPartidoDisputado(idEquipo: number | undefined, idPartido: number | undefined): Observable<Response> {
     return this._http.get<Response>(`${this.url}/jugadorPartidoDisputado/${idEquipo}/${idPartido}`, this._apiAuthService.getHeaders());
   }
 }
