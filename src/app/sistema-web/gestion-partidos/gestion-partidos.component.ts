@@ -18,24 +18,31 @@ export class GestionPartidosComponent implements OnInit {
 
   // lista original de partidos
   _listaPartidos: PartidoDTO[] = [];
+  // lista filtrada de partidos
+  listaPartidos: PartidoDTO[] = [];
+  
+  // lista de jugadores
+  jugadoresLocal: JugadorPartidoDTO[] = [];
+  jugadoresVisitante: JugadorPartidoDTO[] = [];
+
+  // datos para lista desplegable
   estados = ESTADO_PARTIDO;
   fechasTorneo: string[] = [];
   cantidadDeFechas: number = 0;
   equipos: ListaEquiposDTO[] = [];
   arbitros: PersonaDTO[] = [];
   jueces: PersonaDTO[] = [];
-  //jugadores = JUGADOR;
-  jugadoresLocal: JugadorPartidoDTO[] = [];
-  jugadoresVisitante: JugadorPartidoDTO[] = [];
 
-  // lista filtrada de partidos
-  listaPartidos: PartidoDTO[] = [];
-
+  // filtros
   filtroEstado: string = "";
   filtroFechaTorneo: string = "";
   filtroEquipo: string = "";
   filtroFecha: string = "";
+  
+  // partido seleccionado en programar o cargar
+  partidoSeleccionado: PartidoDTO = {};
 
+  // datos para programar partido
   fechaProgramar: string = "";
   horaProgramar: string = "";
   idArbitro1Programar: number | undefined;
@@ -45,8 +52,7 @@ export class GestionPartidosComponent implements OnInit {
   equipo2Programar: string | undefined;
   fechaTorneoProgramar: string | undefined;
 
-  partidoSeleccionado: PartidoDTO = {};
-
+  // datos para programar partido
   diaCargar: string | undefined;
   horaCargar: string | undefined;
   capitanLocal: string | undefined;
@@ -54,12 +60,8 @@ export class GestionPartidosComponent implements OnInit {
   arbitro1Cargar: string | undefined;
   arbitro2Cargar: string | undefined;
   juezCargar: string | undefined;
-
   golesLocal: number | undefined;
   golesVisitante: number | undefined;
-
-  // valoresVisitante: number[] = [];
-  // valoresLocal: number[] = [];
 
   constructor(
     private modalService: NgbModal,
@@ -238,61 +240,58 @@ export class GestionPartidosComponent implements OnInit {
         this.jugadoresVisitante = jugVisitante.data;
     }
 
-
     this.modalService.open(modalCargar, { size: 'xl' });
   }
 
   cargarPartido() {
-    var result = this._listaPartidos.find(x => x.idPartido == this.partidoSeleccionado.idPartido);
-    
-    if (result?.estado != "Programado") {
+    if (this.partidoSeleccionado.estado != "Programado") {
       this.toastr.error('El partido seleccionado debe tener un estado programado para cargar', 'Error');
       this.limpiarModal();
       return;
     }
 
     const partido: PartidoDTO = {
-      idPartido: result?.idPartido,
-      fechaTorneo: result?.fechaTorneo,
-      estado: "Finalizado",
-      dia: result.dia,
-      hora: result.hora,
-      equipoLocal: result?.equipoLocal,
+      idPartido: this.partidoSeleccionado.idPartido,
+      idEstado: 2,
       golesLocal: this.golesLocal,
-      equipoVisitante: result?.equipoVisitante,
       golesVisitante: this.golesVisitante,
+      capitanLocal: this.capitanLocal,
+      capitanVisitante: this.capitanVisitante
     }
 
-    const index = this._listaPartidos.indexOf(this.partidoSeleccionado);
+    console.log(this.jugadoresLocal);
+    console.log(this.jugadoresVisitante);
 
-    if (index !== -1) {
-      this._listaPartidos.splice(index, 1, partido);
-      this.toastr.success('El partido Se cargó correctamente', 'Partido finalizado');
-    }
-    else {
-      this.toastr.error('No se pudo finalizar el partido', 'Error');
-    }
+    // this._partidoService.programarPartido(partido).subscribe(
+    //   resultado => {
+    //     if (resultado.exito === 0) {
+    //       this.obtenerPartidos();
+    //       this.toastr.success(resultado.mensaje, 'Partido finalizado');
+    //     } else {
+    //       this.toastr.error(resultado.mensaje, 'Error');
+    //     }
+    //   }, error => {
+    //     this.toastr.error('No se pudo finalizar el partido', 'Error');
+    //   }
+    // );
+
     this.limpiarModal();
   }
 
-  // cargarGolesVisitante() {
-  //   var suma: number = 0;
-  //   for (var i = 0; i < this.valoresVisitante.length; i++) {
-  //     if (this.valoresVisitante[i] != undefined) {
-  //       suma += this.valoresVisitante[i];
-  //     }
-  //   }
-  //   this.golesVisitante = suma;
-  // }
+  cargarGolesLocal() {
+    this.golesLocal = 0;
+    this.jugadoresLocal.forEach(x => {
+      if (this.golesLocal != undefined && x.goles != undefined)
+        this.golesLocal += x.goles;
+    })
 
-  // cargarGolesLocal() {
-  //   var suma: number = 0;
-  //   for (var i = 0; i < this.valoresLocal.length; i++) {
-  //     if (this.valoresLocal[i] != undefined) {
-  //       suma += this.valoresLocal[i];
-  //     }
-  //   }
-  //   this.golesLocal = suma;
-  // }
-
+  }
+  
+  cargarGolesVisitante() {
+    this.golesVisitante = 0;
+    this.jugadoresVisitante.forEach(x => {
+      if (this.golesVisitante != undefined && x.goles != undefined)
+        this.golesVisitante += x.goles;
+    })
+  }
 }

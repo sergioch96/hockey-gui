@@ -49,7 +49,8 @@ export interface PartidoDTO {
     juez?: string
     idJuez?: number,
     capitanLocal?: string,
-    capitanVisitante?: string
+    capitanVisitante?: string,
+    jugadores?: JugadorPartidoDTO[]
 }
 
 export interface JugadorPartidoDTO {

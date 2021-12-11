@@ -18,6 +18,10 @@ export class PartidoService {
   }
 
   programarPartido(partido: PartidoDTO): Observable<Response> {
-    return this._http.put<Response>(this.url, partido, this._apiAuthService.getHeaders());
+    return this._http.put<Response>(`${this.url}/programar`, partido, this._apiAuthService.getHeaders());
+  }
+
+  cargarPartido(partido: PartidoDTO): Observable<Response> {
+    return this._http.put<Response>(`${this.url}/cargar`, partido, this._apiAuthService.getHeaders());
   }
 }
