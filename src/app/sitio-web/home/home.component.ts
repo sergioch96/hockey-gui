@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { GOLEADOR, TABLA_POSICIONES, TARJETA } from 'src/app/datos-prueba/datos.json';
 import { LoginComponent } from 'src/app/login/login.component';
-import { PartidoDTO } from 'src/app/models/modelsCommon';
+import { JugadorPartidoDTO, PartidoDTO, TablaPosicionesDTO } from 'src/app/models/modelsCommon';
+import { CampeonatoService } from 'src/app/services/campeonato.service';
 import { PartidoService } from 'src/app/services/partido.service';
 
 @Component({
@@ -12,19 +12,23 @@ import { PartidoService } from 'src/app/services/partido.service';
 })
 export class HomeComponent implements OnInit {
 
-  tabla = TABLA_POSICIONES;
-  goleadores = GOLEADOR;
+  tabla: TablaPosicionesDTO[] = [];
+  goleadores: JugadorPartidoDTO[] = [];
   encuentros: PartidoDTO[] = [];
   resultados: PartidoDTO[] = [];
-  tarjetas = TARJETA;
+  tarjetas: JugadorPartidoDTO[] = [];
 
   constructor(
     private modalService: NgbModal,
-    private _partidoService: PartidoService
+    private _partidoService: PartidoService,
+    private _campeonatoService: CampeonatoService
   ) { }
 
   ngOnInit(): void {
     this.obtenerPartidos();
+    this.obtenerTablaPosiciones();
+    this.obtenerTablaGoleadores();
+    this.obtenerTablaAcumulacionTarjetas();
   }
 
   abrirLogin() {
@@ -41,6 +45,42 @@ export class HomeComponent implements OnInit {
         }
       }, error => {
         console.log('Ocurrió un error al obtener los partidos', 'Error');
+      }
+    );
+  }
+
+  obtenerTablaPosiciones() {
+    this._campeonatoService.obtenerTablaPosiciones().subscribe(
+      resultado => {
+        if (resultado.exito === 0) {
+          this.tabla = resultado.data;
+        }
+      }, error => {
+        console.log('Ocurrió un error al obtener tabla de posiciones', 'Error');
+      }
+    );
+  }
+
+  obtenerTablaGoleadores() {
+    this._campeonatoService.obtenerTablaGoleadores().subscribe(
+      resultado => {
+        if (resultado.exito === 0) {
+          this.goleadores = resultado.data;
+        }
+      }, error => {
+        console.log('Ocurrió un error al obtener tabla de goleadores', 'Error');
+      }
+    );
+  }
+
+  obtenerTablaAcumulacionTarjetas() {
+    this._campeonatoService.obtenerTablaAcumulacionTarjetas().subscribe(
+      resultado => {
+        if (resultado.exito === 0) {
+          this.tarjetas = resultado.data;
+        }
+      }, error => {
+        console.log('Ocurrió un error al obtener tabla de acumulación de tarjetas', 'Error');
       }
     );
   }

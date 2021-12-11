@@ -206,15 +206,15 @@
               <td>
                 <i class="fab fa-angular" 
                   [ngClass]="{
-                    'text-danger': equipo.color == 'rojo',
-                    'text-orange': equipo.color == 'naranja',
-                    'text-success': equipo.color == 'verde',
-                    'text-violet': equipo.color == 'violeta',
-                    'text-blue': equipo.color == 'azul',
-                    'text-yellow': equipo.color == 'amarillo',
-                    'text-secondary': equipo.color == 'gris',
-                    'text-celeste': equipo.color == 'celeste',
-                    'text-bordo': equipo.color == 'bordo'
+                    'text-danger': equipo.equipo == 'Deportivo Rojo',
+                    'text-orange': equipo.equipo == 'Deportivo Naranja',
+                    'text-success': equipo.equipo == 'Deportivo Verde',
+                    'text-violet': equipo.equipo == 'Deportivo Violeta',
+                    'text-blue': equipo.equipo == 'Deportivo Azul',
+                    'text-yellow': equipo.equipo == 'Deportivo Amarillo',
+                    'text-secondary': equipo.equipo == 'Deportivo Gris',
+                    'text-celeste': equipo.equipo == 'Deportivo Celeste',
+                    'text-bordo': equipo.equipo == 'Deportivo Bordo'
                   }">
                 </i>
                 {{ equipo.equipo }}
@@ -254,24 +254,24 @@
           <tbody>
             <tr *ngFor="let goleador of goleadores; index as i">
               <th scope="row">{{ i + 1 }}</th>
-              <td>{{ goleador.Nombre }}</td>
+              <td>{{ goleador.nombreApellido }}</td>
               <td>
                 <i class="fab fa-angular" 
                   [ngClass]="{
-                    'text-danger': goleador.Equipo == 'Deportivo Rojo',
-                    'text-orange': goleador.Equipo == 'Deportivo Naranja',
-                    'text-success': goleador.Equipo == 'Deportivo Verde',
-                    'text-violet': goleador.Equipo == 'Deportivo Violeta',
-                    'text-blue': goleador.Equipo == 'Deportivo Azul',
-                    'text-yellow': goleador.Equipo == 'Deportivo Amarillo',
-                    'text-secondary': goleador.Equipo == 'Deportivo Gris',
-                    'text-celeste': goleador.Equipo == 'Deportivo Celeste',
-                    'text-bordo': goleador.Equipo == 'Deportivo Bordo'
+                    'text-danger': goleador.equipo == 'Deportivo Rojo',
+                    'text-orange': goleador.equipo == 'Deportivo Naranja',
+                    'text-success': goleador.equipo == 'Deportivo Verde',
+                    'text-violet': goleador.equipo == 'Deportivo Violeta',
+                    'text-blue': goleador.equipo == 'Deportivo Azul',
+                    'text-yellow': goleador.equipo == 'Deportivo Amarillo',
+                    'text-secondary': goleador.equipo == 'Deportivo Gris',
+                    'text-celeste': goleador.equipo == 'Deportivo Celeste',
+                    'text-bordo': goleador.equipo == 'Deportivo Bordo'
                   }">
                 </i>
-                {{ goleador.Equipo }}
+                {{ goleador.equipo }}
               </td>
-              <td>{{ goleador.Goles }}</td>
+              <td>{{ goleador.goles }}</td>
             </tr>
           </tbody>
         </table>
@@ -298,26 +298,26 @@
           <tbody>
             <tr *ngFor="let tarjeta of tarjetas; index as i">
               <th scope="row">{{ i + 1 }}</th>
-              <td>{{ tarjeta.Nombre }}</td>
+              <td>{{ tarjeta.nombreApellido }}</td>
               <td>
                 <i class="fab fa-angular" 
                 [ngClass]="{
-                  'text-danger': tarjeta.Equipo == 'Deportivo Rojo',
-                  'text-orange': tarjeta.Equipo == 'Deportivo Naranja',
-                  'text-success': tarjeta.Equipo == 'Deportivo Verde',
-                  'text-violet': tarjeta.Equipo == 'Deportivo Violeta',
-                  'text-blue': tarjeta.Equipo == 'Deportivo Azul',
-                  'text-yellow': tarjeta.Equipo == 'Deportivo Amarillo',
-                  'text-secondary': tarjeta.Equipo == 'Deportivo Gris',
-                  'text-celeste': tarjeta.Equipo == 'Deportivo Celeste',
-                  'text-bordo': tarjeta.Equipo == 'Deportivo Bordo'
+                  'text-danger': tarjeta.equipo == 'Deportivo Rojo',
+                  'text-orange': tarjeta.equipo == 'Deportivo Naranja',
+                  'text-success': tarjeta.equipo == 'Deportivo Verde',
+                  'text-violet': tarjeta.equipo == 'Deportivo Violeta',
+                  'text-blue': tarjeta.equipo == 'Deportivo Azul',
+                  'text-yellow': tarjeta.equipo == 'Deportivo Amarillo',
+                  'text-secondary': tarjeta.equipo == 'Deportivo Gris',
+                  'text-celeste': tarjeta.equipo == 'Deportivo Celeste',
+                  'text-bordo': tarjeta.equipo == 'Deportivo Bordo'
                 }">
                 </i>
-                {{ tarjeta.Equipo }}
+                {{ tarjeta.equipo }}
               </td>
-              <td>{{ tarjeta.TarjetasVerdes }}</td>
-              <td>{{ tarjeta.TarjetasAmarillas }}</td>
-              <td>{{ tarjeta.TarjetasRojas }}</td>
+              <td>{{ tarjeta.tarjetasVerdes }}</td>
+              <td>{{ tarjeta.tarjetasAmarillas }}</td>
+              <td>{{ tarjeta.tarjetasRojas }}</td>
             </tr>
           </tbody>
         </table>

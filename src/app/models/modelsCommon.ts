@@ -63,7 +63,8 @@ export interface JugadorPartidoDTO {
     tarjetasAmarillas?: number,
     tarjetasRojas?: number,
     partidosSuspendidos?: number,
-    idEquipo?: number
+    idEquipo?: number,
+    equipo?: string
 }
 
 export interface EmparejamientoDTO {
@@ -75,4 +76,16 @@ export interface NumeroParticipanteDTO {
     idEquipo?: number,
     nombreEquipo?: string,
     numero?: number
+}
+
+export interface TablaPosicionesDTO {
+    equipo: string,
+    puntos: number,
+    partidosJugados: number,
+    partidosGanados: number,
+    partidosEmpatados: number,
+    partidosPerdidos: number,
+    golesFavor: number,
+    golesContra: number,
+    diferenciaGoles: number
 }
