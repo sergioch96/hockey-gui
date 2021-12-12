@@ -19,6 +19,8 @@ import { CrearCampeonatoComponent } from './sistema-web/crear-campeonato/crear-c
 import { GestionEquiposComponent } from './sistema-web/gestion-equipos/gestion-equipos.component';
 import { GestionArbitrosComponent } from './sistema-web/gestion-arbitros/gestion-arbitros.component';
 import { GestionJuecesComponent } from './sistema-web/gestion-jueces/gestion-jueces.component';
+import { CalendarioComponent } from './sitio-web/calendario/calendario.component';
+import { ResultadosComponent } from './sitio-web/resultados/resultados.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { GestionJuecesComponent } from './sistema-web/gestion-jueces/gestion-jue
     CrearCampeonatoComponent,
     GestionEquiposComponent,
     GestionArbitrosComponent,
-    GestionJuecesComponent
+    GestionJuecesComponent,
+    CalendarioComponent,
+    ResultadosComponent
   ],
   imports: [
     BrowserModule,

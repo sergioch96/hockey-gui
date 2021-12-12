@@ -31,7 +31,6 @@ export class AppComponent {
     if (!this.apiauthService.isAuthenticated()) {
       
       if (!document.body.classList.contains('sb-sidenav-toggled')) {
-        console.log('entro');
         this.sidebar();
       }
     }

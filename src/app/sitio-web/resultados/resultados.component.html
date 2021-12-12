@@ -1,0 +1,78 @@
+<div class="row mt-5">
+    <div class="col-12">
+      <h3 class="text-center">
+        Resultados de partidos disputados
+      </h3>
+    </div>
+  </div>
+
+<div class="row mt-5">
+    <div class="col-8 offset-2">
+        <div class="card">
+            <div class="card-header">
+              <h5 class="titulo d-inline">Partidos jugados</h5>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Equipo local</th>
+                    <th scope="col" class="text-left">Goles</th>
+                    <th scope="col">Equipo visitante</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let partido of partidosJugados">
+                    <td>
+                        {{ partido.dia }}
+                    </td>
+                    <td>
+                      <i class="fab fa-angular" 
+                        [ngClass]="{
+                          'text-danger': partido.equipoLocal == 'Deportivo Rojo',
+                          'text-orange': partido.equipoLocal == 'Deportivo Naranja',
+                          'text-success': partido.equipoLocal == 'Deportivo Verde',
+                          'text-violet': partido.equipoLocal == 'Deportivo Violeta',
+                          'text-blue': partido.equipoLocal == 'Deportivo Azul',
+                          'text-yellow': partido.equipoLocal == 'Deportivo Amarillo',
+                          'text-secondary': partido.equipoLocal == 'Deportivo Gris',
+                          'text-celeste': partido.equipoLocal == 'Deportivo Celeste',
+                          'text-bordo': partido.equipoLocal == 'Deportivo Bordo'
+                        }">
+                      </i>
+                      {{ partido.equipoLocal }}
+                    </td>
+                    <td class="text-left">
+                        {{ partido.golesLocal }} - {{ partido.golesVisitante }}
+                    </td>
+                    <td>
+                      <i class="fab fa-angular" 
+                        [ngClass]="{
+                          'text-danger': partido.equipoVisitante == 'Deportivo Rojo',
+                          'text-orange': partido.equipoVisitante == 'Deportivo Naranja',
+                          'text-success': partido.equipoVisitante == 'Deportivo Verde',
+                          'text-violet': partido.equipoVisitante == 'Deportivo Violeta',
+                          'text-blue': partido.equipoVisitante == 'Deportivo Azul',
+                          'text-yellow': partido.equipoVisitante == 'Deportivo Amarillo',
+                          'text-secondary': partido.equipoVisitante == 'Deportivo Gris',
+                          'text-celeste': partido.equipoVisitante == 'Deportivo Celeste',
+                          'text-bordo': partido.equipoVisitante == 'Deportivo Bordo'
+                        }">
+                      </i>
+                      {{ partido.equipoVisitante }}
+                    </td>
+                    <td>
+                        <ng-template #ver>Ver detalles de partido</ng-template>
+                        <button type="button" [ngbTooltip]="ver" class="btn btn-primary">
+                            <i class="fas fa-file-alt"></i>
+                        </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+    </div>
+</div>

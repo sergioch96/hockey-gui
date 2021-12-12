@@ -190,14 +190,11 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Equipo</th>
+              <th scope="col" class="text-center">Puntos</th>
               <th scope="col">PJ</th>
               <th scope="col">PG</th>
               <th scope="col">PE</th>
               <th scope="col">PP</th>
-              <th scope="col">GF</th>
-              <th scope="col">GC</th>
-              <th scope="col">DF</th>
-              <th scope="col">PTS</th>
             </tr>
           </thead>
           <tbody>
@@ -219,14 +216,11 @@
                 </i>
                 {{ equipo.equipo }}
               </td>
+              <td class="text-center">{{ equipo.puntos }}</td>
               <td>{{ equipo.partidosJugados }}</td>
               <td>{{ equipo.partidosGanados }}</td>
               <td>{{ equipo.partidosEmpatados }}</td>
               <td>{{ equipo.partidosPerdidos }}</td>
-              <td>{{ equipo.golesFavor }}</td>
-              <td>{{ equipo.golesContra }}</td>
-              <td>{{ equipo.diferenciaGoles }}</td>
-              <td>{{ equipo.puntos }}</td>
             </tr>
           </tbody>
         </table>
