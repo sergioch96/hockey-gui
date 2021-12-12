@@ -7,8 +7,8 @@
             <a class="list-group-item list-group-item-action list-group-item-light p-3" [routerLink]="['/crear-campeonato']" *ngIf="this.usuario != undefined && this.usuario.idTipoUsuario == 1">Crear Campeonato</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" [routerLink]="['/gestion-equipos']">Gestión de equipos</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" [routerLink]="['/gestion-partidos']">Gestión de partidos</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Agregar Árbitros</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Agregar Jueces de mesa</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" [routerLink]="['/gestion-arbitros']">Gestión de árbitros</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" [routerLink]="['/gestion-jueces']"href="#!">Gestión de Jueces de mesa</a>
         </div>
     </div>
     <!-- Page content wrapper-->

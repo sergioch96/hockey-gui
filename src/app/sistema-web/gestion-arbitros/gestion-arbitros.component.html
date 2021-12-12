@@ -1,0 +1,126 @@
+<div class="row ms-4">
+    <div class="row mt-3">
+        <div class="col-12">
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="nounderline" href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Gestión de árbitros</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-8">
+            <h3 class="">Gestión de árbitros</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="mt-4 mb-5 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="titulo d-inline">LISTADO DE ÁRBITROS</h5>
+                    <button class="btn btn-primary float-end" (click)="abrirModalPerson(modalPersona)">
+                        Agregar Árbitro
+                    </button>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nº</th>
+                                <th scope="col">Nombre y Apellido</th>
+                                <th scope="col">Número de documento</th>
+                                <th scope="col">Fecha de Nacimiento</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="listaArbitros && listaArbitros.length > 0; else vacio">
+                            <tr *ngFor="let arbitro of listaArbitros; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ arbitro.nombreApellido }}</td>
+                                <td>{{ arbitro.numDocumento }}</td>
+                                <td>{{ arbitro.fechaNacimiento | date:"dd/MM/yyyy" }}</td>
+                                <td>{{ arbitro.telefono }}</td>
+                                <td>{{ arbitro.email }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" (click)="editarArbitro(modalPersona, arbitro)">
+                                        <i class="fas fa-user-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <ng-template #vacio>
+                            <tbody>
+                                <tr class="center-align">
+                                    <td colspan="6" class="text-center">Sin registros</td>
+                                </tr>
+                            </tbody>
+                        </ng-template>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Persona -->
+<ng-template #modalPersona let-modal>
+    <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white">{{ tituloModalPersona }}</h5>
+        <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
+    </div>
+    <form [formGroup]="formPersona" (ngSubmit)="guardarPersona()">
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <label for="inputNombre" class="col-md-6 col-form-label">
+                        Nombre y apellido
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="nombreApellido" id="inputNombre" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputDocumento" class="col-md-6 col-form-label">
+                        Número de documento
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="numDocumento" id="inputDocumento" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputFecha" class="col-md-6 col-form-label">
+                        Fecha de nacimiento
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="fechaNacimiento" id="inputFecha" type="date" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputTel" class="col-md-6 col-form-label">
+                        Teléfono
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="telefono" id="inputTel" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail" class="col-md-6 col-form-label">
+                        Email
+                    </label>
+                    <div class="col-md-6">
+                        <input formControlName="email" id="inputEmail" type="email" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
+            <button type="submit" [disabled]="this.formPersona.invalid" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</ng-template>

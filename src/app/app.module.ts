@@ -17,6 +17,8 @@ import { CrearEquipoComponent } from './sistema-web/crear-equipo/crear-equipo.co
 import { GestionPartidosComponent } from './sistema-web/gestion-partidos/gestion-partidos.component';
 import { CrearCampeonatoComponent } from './sistema-web/crear-campeonato/crear-campeonato.component';
 import { GestionEquiposComponent } from './sistema-web/gestion-equipos/gestion-equipos.component';
+import { GestionArbitrosComponent } from './sistema-web/gestion-arbitros/gestion-arbitros.component';
+import { GestionJuecesComponent } from './sistema-web/gestion-jueces/gestion-jueces.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { GestionEquiposComponent } from './sistema-web/gestion-equipos/gestion-e
     CrearEquipoComponent,
     GestionPartidosComponent,
     CrearCampeonatoComponent,
-    GestionEquiposComponent
+    GestionEquiposComponent,
+    GestionArbitrosComponent,
+    GestionJuecesComponent
   ],
   imports: [
     BrowserModule,
