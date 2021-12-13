@@ -65,7 +65,7 @@
                     </td>
                     <td>
                         <ng-template #ver>Ver detalles de partido</ng-template>
-                        <button type="button" [ngbTooltip]="ver" class="btn btn-primary">
+                        <button type="button" [ngbTooltip]="ver" class="btn btn-primary" (click)="mostrarDetalle(modalDetalle, partido)">
                             <i class="fas fa-file-alt"></i>
                         </button>
                     </td>
@@ -76,3 +76,114 @@
           </div>
     </div>
 </div>
+
+<!-- Modal detalle de partido -->
+<ng-template #modalDetalle let-modal>
+  <div class="modal-header bg-primary">
+      <h5 class="modal-title text-white">Partido</h5>
+      <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
+  </div>
+      <div class="text-center">
+          <h4 class="my-3">Detalles de Partido</h4>
+          <span class="me-2">
+              <b>Fecha de torneo:</b>
+          </span>
+          <span class="me-5">{{ fechaTorneo }}</span>
+          <span class="me-2">
+              <b>Dia:</b>
+          </span>
+          <span class="me-5">{{ dia }}</span>
+          <span class="me-2">
+              <b>Hora:</b>
+          </span>
+          <span class="me-5">{{ hora }}</span>
+      </div>
+      <div class="row mt-3">
+          <div class="col-5 offset-1">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th class="text-center">Equipo local</th>
+                          <th class="text-center">Goles</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td class="text-center">{{ equipo1 }}</td>
+                          <td class="text-center">{{ golesLocal }}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="col-5">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th class="text-center">Equipo visitante</th>
+                          <th class="text-center">Goles</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td class="text-center">{{ equipo2 }}</td>
+                          <td class="text-center">{{ golesVisitante }}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+      <div class="modal-body">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="mt-2 mb-5 col-6">
+                      <div *ngIf="jugadoresLocal.length > 0" class="card">
+                          <div class="card-body">
+                              <table class="table table-striped">
+                                  <thead>
+                                      <tr>
+                                          <th scope="col">Jugador</th>
+                                          <th scope="col" class="text-center">Goles</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let jugadorLocal of jugadoresLocal; index as i">
+                                          <td>{{ jugadorLocal.nombreApellido }}</td>
+                                          <td class="text-center">
+                                              <div>{{ jugadorLocal.goles }}</div>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="mt-2 mb-5 col-6">
+                      <div *ngIf="jugadoresVisitante.length > 0" class="card">
+                          <div class="card-body">
+                              <table class="table table-striped">
+                                  <thead>
+                                      <tr>
+                                          <th scope="col">Jugador</th>
+                                          <th scope="col" class="text-center">Goles</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let jugadorVisitante of jugadoresVisitante; index as i">
+                                          <td>{{ jugadorVisitante.nombreApellido }}</td>
+                                          <td class="text-center">
+                                              <div>{{ jugadorVisitante.goles }}</div>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cerrar</button>
+      </div>
+</ng-template>
