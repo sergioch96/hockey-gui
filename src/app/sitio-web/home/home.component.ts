@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
         if (resultado.exito === 0) {
           let partidos: PartidoDTO[] = resultado.data;
           this.encuentros = partidos.filter(x => x.idEstado == 1);
-          this.resultados = partidos.filter(x => x.idEstado == 2);
+          this.resultados = partidos.filter(x => x.fechaTorneo == 'fecha 3');
         }
       }, error => {
         console.log('Ocurrió un error al obtener los partidos', 'Error');
@@ -66,6 +66,7 @@ export class HomeComponent implements OnInit {
       resultado => {
         if (resultado.exito === 0) {
           this.goleadores = resultado.data;
+          this.goleadores = this.goleadores.filter(x => x.goles != undefined && x.goles > 1);
         }
       }, error => {
         console.log('Ocurrió un error al obtener tabla de goleadores', 'Error');
@@ -78,6 +79,9 @@ export class HomeComponent implements OnInit {
       resultado => {
         if (resultado.exito === 0) {
           this.tarjetas = resultado.data;
+          this.tarjetas = this.tarjetas.filter(x => x.tarjetasVerdes != undefined && x.tarjetasVerdes > 1
+            || x.tarjetasAmarillas != undefined && x.tarjetasAmarillas > 1
+            || x.tarjetasRojas != undefined && x.tarjetasRojas > 0)
         }
       }, error => {
         console.log('Ocurrió un error al obtener tabla de acumulación de tarjetas', 'Error');
