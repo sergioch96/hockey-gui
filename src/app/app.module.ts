@@ -21,6 +21,11 @@ import { GestionArbitrosComponent } from './sistema-web/gestion-arbitros/gestion
 import { GestionJuecesComponent } from './sistema-web/gestion-jueces/gestion-jueces.component';
 import { CalendarioComponent } from './sitio-web/calendario/calendario.component';
 import { ResultadosComponent } from './sitio-web/resultados/resultados.component';
+import { TablaPosicionesComponent } from './sitio-web/tabla-posiciones/tabla-posiciones.component';
+import { TablaGoleadoresComponent } from './sitio-web/tabla-goleadores/tabla-goleadores.component';
+import { TablaTarjetasComponent } from './sitio-web/tabla-tarjetas/tabla-tarjetas.component';
+import { EquiposComponent } from './sitio-web/equipos/equipos.component';
+import { PlanillaJugadoresComponent } from './sitio-web/planilla-jugadores/planilla-jugadores.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ import { ResultadosComponent } from './sitio-web/resultados/resultados.component
     GestionArbitrosComponent,
     GestionJuecesComponent,
     CalendarioComponent,
-    ResultadosComponent
+    ResultadosComponent,
+    TablaPosicionesComponent,
+    TablaGoleadoresComponent,
+    TablaTarjetasComponent,
+    EquiposComponent,
+    PlanillaJugadoresComponent
   ],
   imports: [
     BrowserModule,

@@ -63,6 +63,7 @@ export interface JugadorPartidoDTO {
     tarjetasAmarillas?: number,
     tarjetasRojas?: number,
     partidosSuspendidos?: number,
+    partidosJugados?: number,
     idEquipo?: number,
     equipo?: string
 }

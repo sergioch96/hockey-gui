@@ -24,4 +24,8 @@ export class EquipoService {
   agregarEquipo(equipo: EquipoDTO): Observable<Response> {
     return this._http.post<Response>(this.url, equipo, this._apiAuthService.getHeaders());
   }
+
+  obtenerPlanillaJugadores(idEquipo: number): Observable<Response> {
+    return this._http.get<Response>(`${this.url}/planillaJugadores/${idEquipo}`, this._apiAuthService.getHeaders());
+  }
 }

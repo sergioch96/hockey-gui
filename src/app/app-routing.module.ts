@@ -9,14 +9,24 @@ import { GestionJuecesComponent } from './sistema-web/gestion-jueces/gestion-jue
 import { GestionPartidosComponent } from './sistema-web/gestion-partidos/gestion-partidos.component';
 import { MenuComponent } from './sistema-web/menu/menu.component';
 import { CalendarioComponent } from './sitio-web/calendario/calendario.component';
+import { EquiposComponent } from './sitio-web/equipos/equipos.component';
 import { HomeComponent } from './sitio-web/home/home.component';
+import { PlanillaJugadoresComponent } from './sitio-web/planilla-jugadores/planilla-jugadores.component';
 import { ResultadosComponent } from './sitio-web/resultados/resultados.component';
+import { TablaGoleadoresComponent } from './sitio-web/tabla-goleadores/tabla-goleadores.component';
+import { TablaPosicionesComponent } from './sitio-web/tabla-posiciones/tabla-posiciones.component';
+import { TablaTarjetasComponent } from './sitio-web/tabla-tarjetas/tabla-tarjetas.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'calendario', component: CalendarioComponent },
   { path: 'resultados', component: ResultadosComponent },
+  { path: 'tabla-posiciones', component: TablaPosicionesComponent },
+  { path: 'tabla-goleadores', component: TablaGoleadoresComponent },
+  { path: 'tabla-tarjetas', component: TablaTarjetasComponent },
+  { path: 'equipos', component: EquiposComponent },
+  { path: 'planilla-jugadores/:id', component: PlanillaJugadoresComponent },
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
   { path: 'gestion-equipos', component: GestionEquiposComponent, canActivate: [AuthGuard] },
   { path: 'crear-equipo/:id', component: CrearEquipoComponent, canActivate: [AuthGuard] },

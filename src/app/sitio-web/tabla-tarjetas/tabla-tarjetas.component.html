@@ -1,0 +1,58 @@
+<div class="row mt-5">
+    <div class="col-12">
+      <h3 class="text-center">
+        Estadísticas del Torneo
+      </h3>
+    </div>
+  </div>
+
+<div class="row mt-5">
+    <div class="col-8 offset-2">
+        <div class="card">
+            <div class="card-header">
+              <h5 class="titulo d-inline">Tabla de acumulación de tarjetas</h5>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Jugador</th>
+                    <th scope="col">Equipo</th>
+                    <th scope="col">TV</th>
+                    <th scope="col">TA</th>
+                    <th scope="col">TR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let tarjeta of tarjetas; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ tarjeta.nombreApellido }}</td>
+                    <td>
+                      <i class="fab fa-angular" 
+                      [ngClass]="{
+                        'text-danger': tarjeta.equipo == 'Deportivo Rojo',
+                        'text-orange': tarjeta.equipo == 'Deportivo Naranja',
+                        'text-success': tarjeta.equipo == 'Deportivo Verde',
+                        'text-violet': tarjeta.equipo == 'Deportivo Violeta',
+                        'text-blue': tarjeta.equipo == 'Deportivo Azul',
+                        'text-yellow': tarjeta.equipo == 'Deportivo Amarillo',
+                        'text-secondary': tarjeta.equipo == 'Deportivo Gris',
+                        'text-celeste': tarjeta.equipo == 'Deportivo Celeste',
+                        'text-bordo': tarjeta.equipo == 'Deportivo Bordo'
+                      }">
+                      </i>
+                      {{ tarjeta.equipo }}
+                    </td>
+                    <td>{{ tarjeta.tarjetasVerdes }}</td>
+                    <td>{{ tarjeta.tarjetasAmarillas }}</td>
+                    <td>{{ tarjeta.tarjetasRojas }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

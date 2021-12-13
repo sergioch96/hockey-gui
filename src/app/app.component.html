@@ -21,19 +21,19 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                        <li class="nav-item active"><a class="nav-link" href="#!">Inicio</a></li>
+                        <li class="nav-item active"><a class="nav-link" [routerLink]="['/home']">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" [routerLink]="['/calendario']">Calendario</a></li>
                         <li class="nav-item"><a class="nav-link" [routerLink]="['/resultados']">Resultados</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Estadísticas</a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#!">Tabla de posiciones</a>
-                                <a class="dropdown-item" href="#!">Tabla de goleadores</a>
+                                <a class="dropdown-item" [routerLink]="['/tabla-posiciones']">Tabla de posiciones</a>
+                                <a class="dropdown-item" [routerLink]="['/tabla-goleadores']">Tabla de goleadores</a>
                                 <!-- <div class="dropdown-divider"></div> -->
-                                <a class="dropdown-item" href="#!">Tarjetero</a>
+                                <a class="dropdown-item" [routerLink]="['/tabla-tarjetas']">Tarjetero</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link me-5" href="#!">Equipos</a></li>
+                        <li class="nav-item"><a class="nav-link me-5" [routerLink]="['/equipos']">Equipos</a></li>
                         <li class="nav-item"><a class="nav-link" (click)="abrirLogin()" *ngIf="!usuario" style="cursor: pointer;">Iniciar sesión <i class="fas fa-sign-in-alt"></i></a></li>
                         <li class="nav-item"><a class="nav-link" (click)="logout()" *ngIf="usuario" style="cursor: pointer;">Cerrar sesión <i class="fas fa-sign-in-alt"></i></a></li>
                     </ul>

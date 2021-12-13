@@ -1,0 +1,95 @@
+<div class="row ms-4">
+    <div class="row mt-3">
+        <div class="col-12">
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="nounderline" [routerLink]="['/equipos']">Equipos</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ equipo.nombreEquipo }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-4 offset-1">
+            <div class="card">
+                <div class="card-header text-center">
+                  <h5 class="titulo d-inline">{{ equipo.nombreEquipo }}</h5>
+                </div>
+                <div class="card-body text-center">
+                    <i class="fab fa-angular fa-8x"
+                        [ngClass]="{
+                        'text-danger': equipo.nombreEquipo == 'Deportivo Rojo',
+                        'text-orange': equipo.nombreEquipo == 'Deportivo Naranja',
+                        'text-success': equipo.nombreEquipo == 'Deportivo Verde',
+                        'text-violet': equipo.nombreEquipo == 'Deportivo Violeta',
+                        'text-blue': equipo.nombreEquipo == 'Deportivo Azul',
+                        'text-yellow': equipo.nombreEquipo == 'Deportivo Amarillo',
+                        'text-secondary': equipo.nombreEquipo == 'Deportivo Gris',
+                        'text-celeste': equipo.nombreEquipo == 'Deportivo Celeste',
+                        'text-bordo': equipo.nombreEquipo == 'Deportivo Bordo'
+                        }">
+                    </i>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 offset-1 fw-bold">
+            <div class="my-4">
+                Director Técnico:
+            </div>
+            <div class="my-4">
+                Asistente Técnico:
+            </div>
+            <div class="my-4">
+                Preparador Físico:
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="my-4">
+                {{ equipo.directorTecnico }}
+            </div>
+            <div class="my-4">
+                {{ equipo.asistenteTecnico }}
+            </div>
+            <div class="my-4">
+                {{ equipo.preparadorFisico }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-10 offset-1">
+            <div class="card">
+                <div class="card-header">
+                <h5 class="titulo d-inline">Planilla de jugadores</h5>
+                </div>
+                <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Jugador</th>
+                        <th scope="col">Partidos jugados</th>
+                        <th scope="col">Goles</th>
+                        <th scope="col">TV</th>
+                        <th scope="col">TA</th>
+                        <th scope="col">TR</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let jugador of listaJugadores; index as i">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ jugador.nombreApellido }}</td>
+                        <td>{{ jugador.partidosJugados }}</td>
+                        <td>{{ jugador.goles }}</td>
+                        <td>{{ jugador.tarjetasVerdes }}</td>
+                        <td>{{ jugador.tarjetasAmarillas }}</td>
+                        <td>{{ jugador.tarjetasRojas }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
